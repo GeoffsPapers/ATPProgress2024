@@ -33,7 +33,7 @@ Christian Suttner\inst{2}
 \and \\
 Ray Perrault\inst{3}\orcidID{}
 \and
-Zain Khalid\inst{1}\orcidID{}
+Zain Khalid\inst{1}\orcidID{0009-0001-2063-6933}
 }
 \authorrunning{G. Sutcliffe, et al.}
 \institute{University of Miami, USA \\
@@ -77,16 +77,145 @@ components.
 Section~\ref{WHAT} provides 
 
 %--------------------------------------------------------------------------------------------------
-\section{The TPTP World}
-\label{TPTPWorld}
+\section{The TPTP Problem Library}
+\label{TPTP}
+
+The core of the TPTP World is the TPTP problem library \cite{Sut09}.
+
+The problems of the TPTP are divided into Specialist Problem Classes (SPCs) - classes of 
+homogeneous problems with the same recognizable syntactic and semantic reatures.
+SPCs added in v4.1.0 15/06/10
+Problems have easily identifiable logical, language, and syntactic characteristics. 
+Various ATP systems and techniques have been observed to be particularly well or ill suited to 
+problems with certain characteristics (this specialization is sometimes by design, but sometimes 
+without intent). 
+For example, everyone agrees that special techniques are deserved for problems with equality, 
+and the CASC-15 results (SS99) showed that problems with true functions, i.e., with an infinite 
+Herbrand universe, should be treated differently from those with only constants, i.e., essentially 
+propositional problems. 
+Due to this specialization, empirical evaluation of ATP systems must be done in the context of 
+problems that are reasonably homogeneous with respect to the systems. 
+These sets of problems are called Specialist Problem Classes (SPCs), and are based on problem 
+characteristics. 
+Evaluation of ATP systems within SPCs makes it possible to say which systems work well for what 
+types of problems. 
+This identifies specialist capabilities of ATP systems, while general capabilities can be 
+inferred from the separate SPC capabilities. Also, ATP systems that are specialized out of 
+an SPC, e.g., some ATP systems cannot deal with FOF, need not be evaluated within that SPC.
+
+When defining SPCs it is necessary to decide on their granularity. 
+The finest level of granularity is individual problems, which reduces system evaluation within an 
+SPC to whether or not each system solves the problem. 
+The coarsest level of granularity is the entire evaluation problem set, which defeats the notion. 
+The appropriate level of SPC granularity for ATP system evaluation is that at which the next 
+coarser granularity would merge SPCs for which the systems have distinguishable behaviour (i.e., 
+the ATP systems are specialized to this level of granularity), and at which the next finer level 
+of granularity would divide an SPC for which the systems have reasonably homogenous behaviour 
+(i.e., the ATP systems are not specialized below this level of granularity) \cite{FS02}.
+• Order:
+• Equality:
+• Form:
+• Horness:
+• Unit equality:
+Based on these characteristics 14 SPCs have been defined, as indicated by the leaves of the tree in Figure 3.
+The choice of what problem characteristics are used to form the SPCs is based on community input and analysis of system performance data. The range of characteristics that have so far been identified as relevant are:
+• Theoremhood:
+Theorems vs. Non-theorems
+Essentially propositional vs. Real 1st order
+No equality vs. Some equality vs. Pure equality
+CNF (Clause Normal Form) vs. FOF (First Order Form) Horn vs. Non-Horn
+Unit equality vs. Non-unit pure equality
+
+As is explained above, it is necessary for the SPCs to be reasonably homogenous with respect to 
+the ATP system being evaluated. This is ensured by examining the patterns of system performance 
+across the problems in each SPC. 
+If there are 'clumps' of problems that some system(s) solve while others do not, this suggests 
+that the SPC may need to be split along some characteristic that separates out the 'clump'. 
+For example, the separation of the "Essentially propositional" from others was motivated by 
+observing that SPASS (WA+99) performed differently on the ALC problems in the SYN domain of the 
+TPTP.
 
 %--------------------------------------------------------------------------------------------------
-\section{The TPTP Problem Ratings}
+\section{The TSTP Solution Library}
+\label{TSTP}
+
+The complement of the problem library is the TSTP solution library \cite{Sut10}.
+Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
+A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
+understand how they can be solved, leading to improvements to their own systems. 
+The use considered here is as the basis for TPTP problem ratings.
+At the time of writing this paper, the TSTP contained the results of running NNN ATP systems and 
+system variants on all the problems in the TPTP that they can, in principle, attempt to solve 
+(therefore, e.g., systems that do model finding for FOF are not run on THF problems).
+The ATP system versions used for building the TSTP are the most recent available, taken either 
+from the systems’ web sites, or from the most recent CASC \cite{}.
+
+User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{} in 2012,
+now StarExec Miami since 2018.
+
+Various time limits at first, now fixed at 300s CPU time.
+The performance data in the collection is provided by the individual system developers, which 
+means that the systems have been tested using a range of computational and memory resource limits. 
+Analysis shows that the differences in resource limits do not significantly affect which problems 
+are solved by each ATP system. Figure 2 illustrates this point.
+Figure 2 plots the CPU times taken by several contemporary ATP systems to solve TPTP problems, 
+for each solution found, in increasing order of time taken. 
+The relevant feature of these plots is that each system has a point at which the time taken to 
+find solutions starts to increase dramatically. 
+This point is called the system's Peter Principle \cite{} Point (PPP), as it is the point at 
+which the system has reached its level of incompetence. 
+Evidently a linear increase in the computational resources beyond the PPP would not lead to the 
+solution of significantly more problems. 
+The PPP thus defines a ``realistic computational resource limit'' for the system. 
+From an ATP perspective, the PPP is the point at which the ATP system gets lost in its quickly 
+growing search space. 
+Even though there may be enough memory to represent the search space at the PPP, the system is 
+largely unable to find a solution within the space. 
+The point thus also defines a ``realistic memory resource limit''. 
+Therefore, provided that enough CPU time and memory are allowed for the ATP system to pass its 
+PPP, a usefully accurate measure of what problems it can solve within realistic resource limits 
+is achieved.
+The performance data in the TSTP is produced with adequate resource limits.
+
+At the time of writing the TSTP contained the performance data from 71 ATP
+systems, for a total of 668679 runs on TPTP v6.4.0 (systems are run on only
+those SPCs that they can attempt in principle).
+262830 (39\%) of the runs solved the problem, and 175680 (26\%, which is
+69\% of those solved) of those include a proof or model output.
+
+%--------------------------------------------------------------------------------------------------
+\subsection{TPTP Problem Ratings}
 \label{Ratings}
 
+Each TPTP problem has a difficulty rating that provides a well-defined measure
+of how difficult the problem is for current ATP systems \cite{SS01}.
+The ratings are based on performance data in the TSTP \cite{Sut07-CSR},
+generated by currently available ATP systems.
+The ratings range from 0.00 (easy problems) to 1.00 (problems that are
+unsolved by any current ATP system), with increasing ratings inbetween
+(difficult problems).
+The ratings help users select problems that are appropriate for their needs.
+
+The ratings provide an accurate measure of how difficult the problems are for state-of-the-art 
+ATP systems. 
+To rate problems, the performance of contemporary ATP systems on the problems is analyzed. 
+The performance data comes from the TSTP, described in Section 3. 
+Rating is done separately for each SPC, to provide a rating that
+compares “apples with apples”. A partial order between systems is determined according to whether or not a system solves a strict superset of the problems solved by another system. If a strict superset is solved, the first system is said to subsume the second system. The union of the problems solved by the non- subsumed systems defines the state-of-the-art - all the problems that are solved by any system. The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the problem. Problems that are solved by all non- subsumed systems get a rating of 0.00, and are considered to be easy; problems that are solved by just some of the non-subsumed systems get a rating between 0.00 and 1.00, and are considered difficult; problems that are unsolved get a rating of 1.00.
+The analysis done for problem ratings also provides ratings for the ATP systems. The fraction of the difficult unbiased problems that a system solves is the rating for that system. Systems that subsume all other systems get a rating of 1.00, and systems that solve only easy problems get a rating of 0.00.
 %--------------------------------------------------------------------------------------------------
-\section{The Analysis Process}
+\section{Analysis Process}
 \label{Analysis}
+
+Over time, decreasing difficult ratings of individual TPTP problems provide
+an indication of progress in the field \cite{SFS01}.
+In\cite{Sut17} the plot showed 
+``The ratings generally show a downward trend - there has been progress!
+Note that ratings can also increase when data from new systems is added to
+the TSTP.''
+
+Start CNF and FOF from v4.0.0, released 04/07/09, by which time they were well established.
+Start TFF and THF from v6.0.0, released 21/09/13, by which time they were well established.
 
 %--------------------------------------------------------------------------------------------------
 \section{Evidence of Progress}
