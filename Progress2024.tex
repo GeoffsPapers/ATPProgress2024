@@ -6,6 +6,7 @@
 \usepackage{color}
 \usepackage{setspace}
 \usepackage{verbatim}
+\usepackage{multicol}
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 % \renewcommand{\arraystretch}{0.8}
 \renewcommand{\floatpagefraction}{0.9}
@@ -37,7 +38,7 @@ Zain Khalid\inst{1}\orcidID{0009-0001-2063-6933}
 }
 \authorrunning{G. Sutcliffe, et al.}
 \institute{University of Miami, USA \\
-\email{geoff@cs.miami.edu} \\
+\email{geoff@cs.miami.edu},
 \email{zsk17@miami.edu}
 \and
 Deceased
@@ -82,7 +83,7 @@ the ratings decrease
 As the problems are unchanged (they are not actually getting easier) this is evidence that 
 the state-of-the-art in ATP systems is improving.
 This paper provides an update on progress in ATP based on the data in the TPTP release v8.2.0.
-The analysis process has been refined to take into account perturbations caused by ATP systems
+The analysis process has been refined to take into account anomalies caused by ATP systems
 becoming (un)available over the years.
 
 The use of system performance data to evaluate a field of endeavour is common.
@@ -100,116 +101,141 @@ Section~\ref{WHAT} provides
 \label{TPTP}
 
 The core of the TPTP World is the TPTP problem library \cite{Sut09}.
+The problem library is the de facto standard set of test problems for classical logic ATP
+systems.
+Since its first release in 1993, many researchers have used the TPTP as an appropriate and 
+convenient basis for ATP system evaluation.
+The TPTP is supported by a rich infrastructure of standards, tools, and linked projects.
+Each release of the TPTP is identified by a number in the form v$version$.$edition$.$patch$.
+The $version$ is incremented when important new features are added,
+the $edition$ is incremented when new problems are added, and
+the $patch$ level is incremented when errors have been corrected.
 
+TPTP v8.2.0 contains 25474 problems in 55 domains of interest.
+Each problem has a header (as comments) that provides information about ZZZZ
 SZS status. Based on Syntax.
 
-The problems of the TPTP are divided into Specialist Problem Classes (SPCs) - classes of 
-homogeneous problems with the same recognizable syntactic and semantic reatures.
-SPCs added in v4.1.0 15/06/10
-Problems have easily identifiable logical, language, and syntactic characteristics. 
-Various ATP systems and techniques have been observed to be particularly well or ill suited to 
-problems with certain characteristics (this specialization is sometimes by design, but sometimes 
-without intent). 
-For example, everyone agrees that special techniques are deserved for problems with equality, 
-and the CASC-15 results (SS99) showed that problems with true functions, i.e., with an infinite 
-Herbrand universe, should be treated differently from those with only constants, i.e., essentially 
-propositional problems. 
-Due to this specialization, empirical evaluation of ATP systems must be done in the context of 
-problems that are reasonably homogeneous with respect to the systems. 
-These sets of problems are called Specialist Problem Classes (SPCs), and are based on problem 
-characteristics. 
+%--------------------------------------------------------------------------------------------------
+\subsection{Specialist Problem Classes}
+\label{SPCs}
+
+The problems in the library are divided into Specialist Problem Classes (SPCs) - classes of 
+homogeneous problems with the same recognizable logical, language, and syntactic characteristics.
+% SPCs added in v4.1.0 15/06/10
 Evaluation of ATP systems within SPCs makes it possible to say which systems work well for what 
 types of problems. 
-This identifies specialist capabilities of ATP systems, while general capabilities can be 
-inferred from the separate SPC capabilities. Also, ATP systems that are specialized out of 
-an SPC, e.g., some ATP systems cannot deal with FOF, need not be evaluated within that SPC.
-
-When defining SPCs it is necessary to decide on their granularity. 
-It is necessary for the SPCs to be reasonably homogenous with respect to the ATP systems.
-The finest level of granularity is individual problems, which reduces system evaluation within an 
-SPC to whether or not each system solves the problem. 
-The coarsest level of granularity is the entire evaluation problem set, which defeats the notion. 
-The appropriate level of SPC granularity for ATP system evaluation is that at which the next 
-coarser granularity would merge SPCs for which the systems have distinguishable behaviour (i.e., 
-the ATP systems are specialized to this level of granularity), and at which the next finer level 
-of granularity would divide an SPC for which the systems have reasonably homogenous behaviour 
-(i.e., the ATP systems are not specialized below this level of granularity).
+The appropriate level of subdivision for SPCs is that at which less subdivision would merge 
+SPCs for which ATP systems have distinguishable behaviour, and at which further subdivision
+would unnecessarily split an SPC for which ATP systems have reasonably homogenous behaviour.
 Empirically, this is ensured by examining the patterns of system performance across the 
 problems in each SPC. 
-If there are 'clumps' of problems that some system(s) solve while others do not, this suggests 
-that the SPC may need to be split along some characteristic that separates out the 'clump'. 
-For example, the separation of the "Essentially propositional" from others was motivated by 
+For example, the separation of ``essentially propositional'' problems was motivated by 
 observing that SPASS (WA+99) performed differently on the ALC problems in the SYN domain of the 
 TPTP.
-A detailed analysis of the rating data wrt the SPCs was also done to test the homogeneity 
-\cite{FS02}.
+A data-driven test of the homogeneity can also provide assurance that the SPCs are
+appropriate \cite{FS02}.
 
-The problem characteris tics used to define the SPCs in TPTP v8.2.0 are~\ldots
+The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
 \begin{enumerate}
-\item TPTP language: 
+\item TPTP language: \\
       {\tt CNF} -- Clause Normal Form,
-      {\tt FOF} -- First-Order Form,
-      {\tt TF0} -- Typed Monomorphic First-order form,
-      {\tt TF1} -- Typed Polymorphic First-order form ,
-      {\tt TX0} -- Typed Monomorphic eXtended First-order form,
-      {\tt TX1} -- Typed Polymorphic eXtended First-order form,
-      {\tt TH0} -- Typed Monomorphic Higher-order form,
+      {\tt FOF} -- First-Order Form, \\
+      {\tt TF0} -- Typed Monomorphic First-order form, \\
+      {\tt TF1} -- Typed Polymorphic First-order form , \\
+      {\tt TX0} -- Typed Monomorphic eXtended First-order form, \\
+      {\tt TX1} -- Typed Polymorphic eXtended First-order form, \\
+      {\tt TH0} -- Typed Monomorphic Higher-order form, \\
       {\tt TH1} -- Typed Polymorphic Higher-order form.
-\item SZS status: 
-      {\tt THM} (includes {\tt CAX}) -- Theorem (includes Contradictory AXioms),
+\item SZS status: \\
+      {\tt THM} (includes {\tt CAX}) -- Theorem (includes Contradictory AXioms), \\
       {\tt CSA} -- CounterSAtisfiable,
-      {\tt UNS} -- UNSatisfiable,
+      {\tt UNS} -- UNSatisfiable, \\
       {\tt SAT} -- SATisfiable,
-      {\tt OPN} -- OPeN,
+      {\tt OPN} -- OPeN, 
       {\tt UNK} -- UNKown.
-\item Order (for {\tt CNF} and {\tt FOF}): 
-      {\tt RFO} -- Real First-Order (not thought to be reducaible to~\ldots),
-      {\tt EPR} -- Effectively PRopositional (can be reduced to~\ldots),
+\item Order (for {\tt CNF} and {\tt FOF}): \\
+      {\tt RFO} -- Real First-Order (not thought to be reducaible to~\ldots),\\
+      {\tt EPR} -- Effectively PRopositional (can be reduced to~\ldots),\\
       {\tt PRP} -- PRoPositional.
-\item Equality: 
+\item Equality: \\
       {\tt NEQ} -- No EQuality,
-      {\tt EQU} -- EQUality (some or pure),
-      {\tt SEQ} -- Some (not pure) EQUality,
-      {\tt PEQ} -- Pure EQUality (for {\tt CNF} qualified as either~\ldots),
+      {\tt EQU} -- EQUality (some or pure), \\
+      {\tt SEQ} -- Some (not pure) EQUality, \\
+      {\tt PEQ} -- Pure EQUality (for {\tt CNF} qualified as either~\ldots),\\
       {\tt UEQ} -- Unit EQUality or
       {\tt NUE} -- Non-Unit Equality.
-\item Hornness (for {\tt CNF}):
+\item Hornness (for {\tt CNF}): \\
       {\tt HRN} -- HoRN,
       {\tt NHN} -- Non-HorN.
-\item Arithmetic (for {\tt T*}):
+\item Arithmetic (for {\tt T*}): \\
       {\tt NAR} -- No ARithmetic,
       {\tt ARI} -- ARIthmetic.
 \end{enumerate}
 
-Using these charactertistics 223 SPCs are defined in TPTP v8.2.0, and are used when rating
-the problems -- see Section~\ref{Rating}.
+Using these charactertistics 223 SPCs are defined in TPTP v8.2.0, and are used when computing
+the TPTP problem ratings.
+
+%--------------------------------------------------------------------------------------------------
+\subsection{TPTP Problem Ratings}
+\label{Ratings}
+
+Each TPTP problem has a difficulty rating that provides a well-defined measure of how difficult 
+the problem is for current ATP systems \cite{SS01}.
+The ratings are based on performance data in the TSTP (see Section~\ref{TSTP})
+Rating is done separately for each SPC, to provide a rating that compares problems with the
+same characteristics.
+A partial order between systems is determined according to whether or not a system solves a strict 
+superset of the problems solved by another system. 
+If a strict superset is solved, the first system is said to subsume the second system. 
+The union of the problems solved by the non-subsumed systems defines the state-of-the-art -- all 
+the problems that are solved by any system. 
+The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the 
+problem. 
+Problems that are solved by all of the non-subsumed systems get a rating of 0.00 (``easy'');
+problems that are solved by some of the non-subsumed systems get a rating between 
+0.00 and 1.00 (``difficult''); 
+problems that are solved by none of the non-subsumed systems get a rating of 1.00 (``unsolved'').
 
 %--------------------------------------------------------------------------------------------------
 \section{The TSTP Solution Library}
 \label{TSTP}
 
+ZZZZZZZZ
 The complement of the problem library is the TSTP solution library \cite{Sut07-CSR,Sut10}.
 Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
 A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
 understand how they can be solved, leading to improvements to their own systems. 
 The use considered here is as the basis for TPTP problem ratings.
-At the time of writing this paper, the TSTP contained the results of running NNN ATP systems and 
-system variants on all the problems in the TPTP that they can, in principle, attempt to solve 
-(therefore, e.g., systems that do model finding for FOF are not run on THF problems).
-The ATP system versions used for building the TSTP are the most recent available, taken either 
-from the systems’ web sites, or from the most recent CADE ATP System Competition (CASC) 
-\cite{Sut16}.
+The ATP system versions used for building the TSTP have come from a range of sources.
+Some were developed many years ago, and are no longer distributed.
+Some are the most recent available, taken either from the systems’ web sites or from the most 
+recent edition of the CADE ATP System Competition (CASC) \cite{Sut16}.
 
 User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
 now StarExec Miami since 2018.
+The StarExec Miami computers have an
+octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
+128 GiB memory,
+and the CentOS Linux release 7.4.1708 (Core) operating system
+Linux kernel 3.10.0-693.el7.x86\_64.
+StarExec runs one ATP system on one CPU at a time.
+All the TSTP data was generated using a CPU time limit of 300s, and a memory limit of 128GiB.
 
-Various time limits at first, now fixed at 300s CPU time.
-The performance data in the collection is provided by the individual system developers, which 
-means that the systems have been tested using a range of computational and memory resource limits. 
-Analysis shows that the differences in resource limits do not significantly affect which problems 
-are solved by each ATP system. Figure 2 illustrates this point.
-Figure 2 plots the CPU times taken by several contemporary ATP systems to solve TPTP problems, 
-for each solution found, in increasing order of time taken. 
+At the time of writing this paper, the TSTP contained the results of running 87 ATP systems and 
+system variants on all the problems in the TPTP that they could attempt.
+% (therefore, e.g., systems that do model finding for FOF are not run on THF problems).
+This has produced 1091026 runs, of which 432718 (39.6\%) solved the problem.
+
+%--------------------------------------------------------------------------------------------------
+\subsection{Resource Limits}
+\label{ResourceLimits}
+
+Analysis shows that increasing resource limits does not significantly affect which problems 
+are solved by each ATP system. 
+Figure\ref{PPPPlot} illustrates this point.
+Figure\ref{PPPPlot} plots the CPU times taken by several contemporary ATP systems to solve the 
+TPTP problems for the SPCs {\tt FOF\_THM\_RFO\_*}, in increasing order of time taken. 
+The data was taken from the TSTP, i.e., using the StarExec Miami computers.
 The relevant feature of these plots is that each system has a point at which the time taken to 
 find solutions starts to increase dramatically. 
 This point is called the system's Peter Principle \cite{PH69} Point (PPP), as it is the point at 
@@ -222,42 +248,19 @@ growing search space.
 Even though there may be enough memory to represent the search space at the PPP, the system is 
 largely unable to find a solution within the space. 
 The point thus also defines a ``realistic memory resource limit''. 
-Therefore, provided that enough CPU time and memory are allowed for the ATP system to pass its 
+Therefore, provided that enough CPU time and memory are allowed for an ATP system to pass its 
 PPP, a usefully accurate measure of what problems it can solve within realistic resource limits 
 is achieved.
 The performance data in the TSTP is produced with adequate resource limits.
 
-At the time of writing the TSTP contained the performance data from 71 ATP systems, for a total 
-of 668679 runs on TPTP v6.4.0 (systems are run on only those SPCs that they can attempt in 
-principle).
-262830 (39\%) of the runs solved the problem.
-
-%--------------------------------------------------------------------------------------------------
-\subsection{TPTP Problem Ratings}
-\label{Ratings}
-
-Each TPTP problem has a difficulty rating that provides a well-defined measure of how difficult 
-the problem is for current ATP systems \cite{SS01}.
-The ratings are based on performance data in the TSTP.
-The ratings range from 0.00 (easy problems) to 1.00 (problems that are unsolved by any current 
-ATP system), with increasing ratings inbetween (difficult problems).
-The ratings help users select problems that are appropriate for their needs.
-
-The ratings provide an accurate measure of how difficult the problems are for state-of-the-art 
-ATP systems. 
-To rate problems, the performance of contemporary ATP systems on the problems is analyzed. 
-The performance data comes from the TSTP, described in Section 3. 
-Rating is done separately for each SPC, to provide a rating that compares ``apples with apples//. 
-A partial order between systems is determined according to whether or not a system solves a strict 
-superset of the problems solved by another system. 
-If a strict superset is solved, the first system is said to subsume the second system. 
-The union of the problems solved by the non-subsumed systems defines the state-of-the-art - all 
-the problems that are solved by any system. 
-The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the 
-problem. 
-Problems that are solved by all non-subsumed systems get a rating of 0.00, and are considered to 
-be easy; problems that are solved by just some of the non-subsumed systems get a rating between 
-0.00 and 1.00, and are considered difficult; problems that are unsolved get a rating of 1.00.
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{Plots/FOF_THM_RFO_PPP/FOF_THM_RFO_PPP}
+\vspace*{-1em}
+\caption{CPU times for {\tt FOF\_THM\_RFO\_*}}
+\label{PPPPlot}
+\end{center}
+\end{figure}
 
 %--------------------------------------------------------------------------------------------------
 \section{Analysis Process}
@@ -265,10 +268,28 @@ be easy; problems that are solved by just some of the non-subsumed systems get a
 
 Over time, decreasing difficult ratings of individual TPTP problems provide an indication of 
 progress in the field \cite{SFS01}.
-In \cite{Sut17} the plot showed 
+Individual problem ratings can be averaged over individual SPCs, or combinations of SPCs that
+that describe compatible problem characteristics, to get an indication of progress for the SPCs.
+Prior analysis, e.g., that in \cite{Sut17}, did just that.
+Figure~\ref{OldRatingsPlot} is taken from \cite{Sut17}, where it was noted:
 ``The ratings generally show a downward trend - there has been progress!
-Note that ratings can also increase when data from new systems is added to
-the TSTP.''
+Note that ratings can also increase when data from new systems is added to the TSTP.''
+The counterintuitive increases in difficulty as time progresses (the problems as unchanged,
+the data from the systems is still available) is caused by new systems becoming available.
+A new system might not be subsumed, and the ratings of problems it solves go down. 
+At the time the new system might not be able to solve problems that the previously available
+systems can, and the rating of such problems increases.
+For this work the analysis process has been refined to avoid this anomaly.
+
+\begin{figure}[htb]
+\begin{center}
+\mbox{}
+\includegraphics[width=0.75\textwidth]{Plots/RatingsDecline}
+\vspace*{-1em}
+\caption{Ratings decline from TPTP v5.0.0 to TPTP v6.4.0}
+\label{OldRatingsPlot}
+\end{center}
+\end{figure}
 
 Start from v6.0.0, released 21/09/13, by which time TSTP data was coming from StarExec, SPCs
 were in place (but that doesn't matter because we care about only the current SPCs).
