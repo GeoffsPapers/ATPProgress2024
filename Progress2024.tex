@@ -73,6 +73,25 @@ in both academia and industry.
 The web page \href{https://www.tptp.org}{\tt www.tptp.org} provides access to all 
 components.
 
+At two points in the past, the TPTP World has been used as the basis for evaluating progress
+in ATP \cite{SFS01,SSP21}.
+In both cases the core idea was to examine the difficulty ratings of the problems in the TPTP 
+problem library, which are computed wrt performance data from ATP systems.
+The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
+the ratings decrease
+As the problems are unchanged (they are not actually getting easier) this is evidence that 
+the state-of-the-art in ATP systems is improving.
+This paper provides an update on progress in ATP based on the data in the TPTP release v8.2.0.
+The analysis process has been refined to take into account perturbations caused by ATP systems
+becoming (un)available over the years.
+
+The use of system performance data to evaluate a field of endeavour is common.
+In the realm of logic-based systems, examples include
+the use of Shapely values to evaluate algorithmic improvements in SAT solving \cite{KF+19},
+and
+an examination of progress in SAT solving comparing algorithmic and hardware advances \cite{FHS20}.
+A general examination of the requirements for such benchmarking is provided by \cite{BLW19}.
+
 \paragraph{Paper structure:}
 Section~\ref{WHAT} provides 
 
@@ -81,6 +100,8 @@ Section~\ref{WHAT} provides
 \label{TPTP}
 
 The core of the TPTP World is the TPTP problem library \cite{Sut09}.
+
+SZS status. Based on Syntax.
 
 The problems of the TPTP are divided into Specialist Problem Classes (SPCs) - classes of 
 homogeneous problems with the same recognizable syntactic and semantic reatures.
@@ -104,6 +125,7 @@ inferred from the separate SPC capabilities. Also, ATP systems that are speciali
 an SPC, e.g., some ATP systems cannot deal with FOF, need not be evaluated within that SPC.
 
 When defining SPCs it is necessary to decide on their granularity. 
+It is necessary for the SPCs to be reasonably homogenous with respect to the ATP systems.
 The finest level of granularity is individual problems, which reduces system evaluation within an 
 SPC to whether or not each system solves the problem. 
 The coarsest level of granularity is the entire evaluation problem set, which defeats the notion. 
@@ -111,35 +133,62 @@ The appropriate level of SPC granularity for ATP system evaluation is that at wh
 coarser granularity would merge SPCs for which the systems have distinguishable behaviour (i.e., 
 the ATP systems are specialized to this level of granularity), and at which the next finer level 
 of granularity would divide an SPC for which the systems have reasonably homogenous behaviour 
-(i.e., the ATP systems are not specialized below this level of granularity) \cite{FS02}.
-• Order:
-• Equality:
-• Form:
-• Horness:
-• Unit equality:
-Based on these characteristics 14 SPCs have been defined, as indicated by the leaves of the tree in Figure 3.
-The choice of what problem characteristics are used to form the SPCs is based on community input and analysis of system performance data. The range of characteristics that have so far been identified as relevant are:
-• Theoremhood:
-Theorems vs. Non-theorems
-Essentially propositional vs. Real 1st order
-No equality vs. Some equality vs. Pure equality
-CNF (Clause Normal Form) vs. FOF (First Order Form) Horn vs. Non-Horn
-Unit equality vs. Non-unit pure equality
-
-As is explained above, it is necessary for the SPCs to be reasonably homogenous with respect to 
-the ATP system being evaluated. This is ensured by examining the patterns of system performance 
-across the problems in each SPC. 
+(i.e., the ATP systems are not specialized below this level of granularity).
+Empirically, this is ensured by examining the patterns of system performance across the 
+problems in each SPC. 
 If there are 'clumps' of problems that some system(s) solve while others do not, this suggests 
 that the SPC may need to be split along some characteristic that separates out the 'clump'. 
 For example, the separation of the "Essentially propositional" from others was motivated by 
 observing that SPASS (WA+99) performed differently on the ALC problems in the SYN domain of the 
 TPTP.
+A detailed analysis of the rating data wrt the SPCs was also done to test the homogeneity 
+\cite{FS02}.
+
+The problem characteris tics used to define the SPCs in TPTP v8.2.0 are~\ldots
+\begin{enumerate}
+\item TPTP language: 
+      {\tt CNF} -- Clause Normal Form,
+      {\tt FOF} -- First-Order Form,
+      {\tt TF0} -- Typed Monomorphic First-order form,
+      {\tt TF1} -- Typed Polymorphic First-order form ,
+      {\tt TX0} -- Typed Monomorphic eXtended First-order form,
+      {\tt TX1} -- Typed Polymorphic eXtended First-order form,
+      {\tt TH0} -- Typed Monomorphic Higher-order form,
+      {\tt TH1} -- Typed Polymorphic Higher-order form.
+\item SZS status: 
+      {\tt THM} (includes {\tt CAX}) -- Theorem (includes Contradictory AXioms),
+      {\tt CSA} -- CounterSAtisfiable,
+      {\tt UNS} -- UNSatisfiable,
+      {\tt SAT} -- SATisfiable,
+      {\tt OPN} -- OPeN,
+      {\tt UNK} -- UNKown.
+\item Order (for {\tt CNF} and {\tt FOF}): 
+      {\tt RFO} -- Real First-Order (not thought to be reducaible to~\ldots),
+      {\tt EPR} -- Effectively PRopositional (can be reduced to~\ldots),
+      {\tt PRP} -- PRoPositional.
+\item Equality: 
+      {\tt NEQ} -- No EQuality,
+      {\tt EQU} -- EQUality (some or pure),
+      {\tt SEQ} -- Some (not pure) EQUality,
+      {\tt PEQ} -- Pure EQUality (for {\tt CNF} qualified as either~\ldots),
+      {\tt UEQ} -- Unit EQUality or
+      {\tt NUE} -- Non-Unit Equality.
+\item Hornness (for {\tt CNF}):
+      {\tt HRN} -- HoRN,
+      {\tt NHN} -- Non-HorN.
+\item Arithmetic (for {\tt T*}):
+      {\tt NAR} -- No ARithmetic,
+      {\tt ARI} -- ARIthmetic.
+\end{enumerate}
+
+Using these charactertistics 223 SPCs are defined in TPTP v8.2.0, and are used when rating
+the problems -- see Section~\ref{Rating}.
 
 %--------------------------------------------------------------------------------------------------
 \section{The TSTP Solution Library}
 \label{TSTP}
 
-The complement of the problem library is the TSTP solution library \cite{Sut10}.
+The complement of the problem library is the TSTP solution library \cite{Sut07-CSR,Sut10}.
 Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
 A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
 understand how they can be solved, leading to improvements to their own systems. 
@@ -148,9 +197,10 @@ At the time of writing this paper, the TSTP contained the results of running NNN
 system variants on all the problems in the TPTP that they can, in principle, attempt to solve 
 (therefore, e.g., systems that do model finding for FOF are not run on THF problems).
 The ATP system versions used for building the TSTP are the most recent available, taken either 
-from the systems’ web sites, or from the most recent CASC \cite{}.
+from the systems’ web sites, or from the most recent CADE ATP System Competition (CASC) 
+\cite{Sut16}.
 
-User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{} in 2012,
+User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
 now StarExec Miami since 2018.
 
 Various time limits at first, now fixed at 300s CPU time.
@@ -162,7 +212,7 @@ Figure 2 plots the CPU times taken by several contemporary ATP systems to solve 
 for each solution found, in increasing order of time taken. 
 The relevant feature of these plots is that each system has a point at which the time taken to 
 find solutions starts to increase dramatically. 
-This point is called the system's Peter Principle \cite{} Point (PPP), as it is the point at 
+This point is called the system's Peter Principle \cite{PH69} Point (PPP), as it is the point at 
 which the system has reached its level of incompetence. 
 Evidently a linear increase in the computational resources beyond the PPP would not lead to the 
 solution of significantly more problems. 
@@ -177,49 +227,108 @@ PPP, a usefully accurate measure of what problems it can solve within realistic 
 is achieved.
 The performance data in the TSTP is produced with adequate resource limits.
 
-At the time of writing the TSTP contained the performance data from 71 ATP
-systems, for a total of 668679 runs on TPTP v6.4.0 (systems are run on only
-those SPCs that they can attempt in principle).
-262830 (39\%) of the runs solved the problem, and 175680 (26\%, which is
-69\% of those solved) of those include a proof or model output.
+At the time of writing the TSTP contained the performance data from 71 ATP systems, for a total 
+of 668679 runs on TPTP v6.4.0 (systems are run on only those SPCs that they can attempt in 
+principle).
+262830 (39\%) of the runs solved the problem.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{TPTP Problem Ratings}
 \label{Ratings}
 
-Each TPTP problem has a difficulty rating that provides a well-defined measure
-of how difficult the problem is for current ATP systems \cite{SS01}.
-The ratings are based on performance data in the TSTP \cite{Sut07-CSR},
-generated by currently available ATP systems.
-The ratings range from 0.00 (easy problems) to 1.00 (problems that are
-unsolved by any current ATP system), with increasing ratings inbetween
-(difficult problems).
+Each TPTP problem has a difficulty rating that provides a well-defined measure of how difficult 
+the problem is for current ATP systems \cite{SS01}.
+The ratings are based on performance data in the TSTP.
+The ratings range from 0.00 (easy problems) to 1.00 (problems that are unsolved by any current 
+ATP system), with increasing ratings inbetween (difficult problems).
 The ratings help users select problems that are appropriate for their needs.
 
 The ratings provide an accurate measure of how difficult the problems are for state-of-the-art 
 ATP systems. 
 To rate problems, the performance of contemporary ATP systems on the problems is analyzed. 
 The performance data comes from the TSTP, described in Section 3. 
-Rating is done separately for each SPC, to provide a rating that
-compares “apples with apples”. A partial order between systems is determined according to whether or not a system solves a strict superset of the problems solved by another system. If a strict superset is solved, the first system is said to subsume the second system. The union of the problems solved by the non- subsumed systems defines the state-of-the-art - all the problems that are solved by any system. The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the problem. Problems that are solved by all non- subsumed systems get a rating of 0.00, and are considered to be easy; problems that are solved by just some of the non-subsumed systems get a rating between 0.00 and 1.00, and are considered difficult; problems that are unsolved get a rating of 1.00.
-The analysis done for problem ratings also provides ratings for the ATP systems. The fraction of the difficult unbiased problems that a system solves is the rating for that system. Systems that subsume all other systems get a rating of 1.00, and systems that solve only easy problems get a rating of 0.00.
+Rating is done separately for each SPC, to provide a rating that compares ``apples with apples//. 
+A partial order between systems is determined according to whether or not a system solves a strict 
+superset of the problems solved by another system. 
+If a strict superset is solved, the first system is said to subsume the second system. 
+The union of the problems solved by the non-subsumed systems defines the state-of-the-art - all 
+the problems that are solved by any system. 
+The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the 
+problem. 
+Problems that are solved by all non-subsumed systems get a rating of 0.00, and are considered to 
+be easy; problems that are solved by just some of the non-subsumed systems get a rating between 
+0.00 and 1.00, and are considered difficult; problems that are unsolved get a rating of 1.00.
+
 %--------------------------------------------------------------------------------------------------
 \section{Analysis Process}
 \label{Analysis}
 
-Over time, decreasing difficult ratings of individual TPTP problems provide
-an indication of progress in the field \cite{SFS01}.
-In\cite{Sut17} the plot showed 
+Over time, decreasing difficult ratings of individual TPTP problems provide an indication of 
+progress in the field \cite{SFS01}.
+In \cite{Sut17} the plot showed 
 ``The ratings generally show a downward trend - there has been progress!
 Note that ratings can also increase when data from new systems is added to
 the TSTP.''
 
-Start CNF and FOF from v4.0.0, released 04/07/09, by which time they were well established.
-Start TFF and THF from v6.0.0, released 21/09/13, by which time they were well established.
+Start from v6.0.0, released 21/09/13, by which time TSTP data was coming from StarExec, SPCs
+were in place (but that doesn't matter because we care about only the current SPCs).
+
+\begin{enumerate}
+\item Extract all data from TSTP, starting from v6.0.0, per above.
+      Remove problems that were added in or after v7.0.0, so we have enough TSTP data for
+      them (why v7.0.0?). 
+      These release numbers need to be parameters for Zain.
+\item Fill right for problems added after v6.0.0.
+      If the rating started at 1.00, this makes sense because if the a problem was unsolved
+      when added, it would almost certainly have been unsolved by earlier systems.
+      If the rating started below 1.00, that assumes that earlier systems would have been
+      equally able to solve it, which might be kind to those systems.
+      The result is less apparent progress before then.
+\item Fill left for missing data, but not allowing a problem to become more difficult.
+      That deals with new systems arriving and making a problem appear harder, but of course
+      it does not.
+      The new system makes some other problems become easier.
+\item Remove problem data that is all 0.00 or all 1.00s -- those problems do no show any change
+      in systems' performances because they are too easy or too hard.
+\item Extract problem data for a given set of SPCs, e.g., I'm planning~\ldots
+      \begin{itemize}
+      \item {\tt CNF\_UNS\_RFO\_NEQ\_*} $\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*} $\cup$ 
+            {\tt CNF\_UNS\_RFO\_PEQ\_NUE} \\
+            1115 + 2785 + 545 = 4445 problems in v8.2.0. NNNN in analysis.
+      \item {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} \\
+            1140 problems. NNNN in analysis.
+      \item {\tt CNF\_SAT\_RFO\_*} \\
+            1044 problems. NNNN in analysis.
+      \item {\tt CNF\_*\_EPR\_*} \\ 
+            Decidable, so do {\tt SAT} and {\tt UNS} together.
+            897 problems. NNNN in analysis.
+      \item {\tt FOF\_THM\_RFO\_*} \\
+            7204 problems. NNNN in analysis.
+      \item {\tt FOF\_CSA\_RFO\_*} $\cup$ {\tt FOF\_SAT\_RFO\_*} \\
+            707 + 322 = 1329 problems. NNNN in analysis.
+      \item {\tt TF0\_THM\_*\_NAR} \\
+            400 problems. NNNN in analysis.
+      \item {\tt TF0\_THM\_*\_ARI} \\
+            1176 problems. NNNN in analysis.
+      \item {\tt TF0\_CSA\_*\_NAR} $\cup$ {\tt TF0\_SAT\_*\_NAR}. 
+            35 + 120 = 155 problems. NNNN in analysis.
+            Too few?
+      \item {\tt TH0\_THM\_*\_NAR} \\
+            3189 problems. NNNN in analysis.
+      \end{itemize}
+      Notes: TXF excluded because it started in only v8.0.0.
+      Polymorphic TF1 and TH1 excluded because not enough systems are capable.
+      Other excluded because too few problems.
+\item Plot average rating by date.
+      Zain needs to add date row.
+\end{enumerate}
 
 %--------------------------------------------------------------------------------------------------
 \section{Evidence of Progress}
 \label{Evidence}
+
+Plots.
+Commentary.
 
 %--------------------------------------------------------------------------------------------------
 \section{Conclusion}
