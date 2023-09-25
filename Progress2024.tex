@@ -105,15 +105,34 @@ The problem library is the de facto standard set of test problems for classical 
 systems.
 Since its first release in 1993, many researchers have used the TPTP as an appropriate and 
 convenient basis for ATP system evaluation.
-The TPTP is supported by a rich infrastructure of standards, tools, and linked projects.
-Each release of the TPTP is identified by a number in the form v$version$.$edition$.$patch$.
+The TPTP problem library is supported by a rich infrastructure of standards, tools, and 
+linked projects.
+Each release of the TPTP is identified by a number in the form $version$.$edition$.$patch$.
 The $version$ is incremented when important new features are added,
 the $edition$ is incremented when new problems are added, and
 the $patch$ level is incremented when errors have been corrected.
-
 TPTP v8.2.0 contains 25474 problems in 55 domains of interest.
-Each problem has a header (as comments) that provides information about ZZZZ
-SZS status. Based on Syntax.
+The problems can be browsed online\footnote{%
+\href{https://www.tptp.org/cgi-bin/SeeTPTP?Category=Problems}
+{\tt www.tptp.org/cgi-bin/SeeTPTP?Category=Problems}}
+and documentation is available\footnote{%
+\href{https://www.tptp.org/cgi-bin/SeeTPTP?Category=Documents\&File=OverallSynopsis}
+{\tt www.tptp.org/cgi-bin/SeeTPTP?Category=Documents\&File=OverallSynopsis}}.
+
+The TPTP problem files present the logical formulae in a format that is both human and machine 
+readable, and additionally provide useful information for users.
+Each problem file has a header section (as comments) that file contains information for users
+in four parts:
+the first part identifies and describes the problem;
+the second part provides information about occurrences of the problem in the literature and 
+elsewhere;
+the third part provides semantic and syntactic characteristics of the problem;
+the last part contains comments and bugfix information.
+It is the third part that is relevant to this work, as it contains the problems SZS status
+\cite{SZS03} that provides the semantic status of the problem, e.g., if it is a {\tt Theorem},
+a {\tt Satisfiable} set of formulae, a problem whose status is {\tt Unknown}, etc.
+The SZS status and the syntactic characteristics are used to form the Specialist Problem Class
+of the problem.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Specialist Problem Classes}
@@ -172,8 +191,20 @@ The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
       {\tt ARI} -- ARIthmetic.
 \end{enumerate}
 
-Using these charactertistics 223 SPCs are defined in TPTP v8.2.0, and are used when computing
-the TPTP problem ratings.
+Using these charactertistics 223 SPCs are defined in TPTP v8.2.0.
+Some examples are:
+{\tt CNF\_SAT\_EPR\_PEQ\_UEQ} -- clause normal form satisfiable clauses that are effectively
+propositional (known to be reducible to propositional logic), have purely equality literals
+in unit equality clauses;
+{\tt FOF\_THM\_RFO\_SEQ} -- first-order theorems that are ``really first-order'' (not believed
+to be reducible to propositional logic) and contain some (not only) equality;
+{\tt TF0\_THM\_NEQ\_ARI} -- typed monomorphic first-order theorems that have no equality but do
+include arithemtic.
+Combinations of SPCs are written using UNIX globbing, e.g., {\tt TH0\_CSA\_*\_NAR} is the
+combination of {\tt TH0\_CSA\_EQU\_NAR} and {\tt TH0\_CSA\_NEQ\_NAR} -- typed monomorphic 
+higher-order countersatisfiable (non-theorem) problems either with or without equality.
+
+The SPCs are used when computing the TPTP problem ratings.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{TPTP Problem Ratings}
@@ -200,31 +231,33 @@ problems that are solved by none of the non-subsumed systems get a rating of 1.0
 \section{The TSTP Solution Library}
 \label{TSTP}
 
-ZZZZZZZZ
 The complement of the problem library is the TSTP solution library \cite{Sut07-CSR,Sut10}.
-Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
-A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
-understand how they can be solved, leading to improvements to their own systems. 
-The use considered here is as the basis for TPTP problem ratings.
-The ATP system versions used for building the TSTP have come from a range of sources.
-Some were developed many years ago, and are no longer distributed.
-Some are the most recent available, taken either from the systems’ web sites or from the most 
-recent edition of the CADE ATP System Competition (CASC) \cite{Sut16}.
-
-User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
-now StarExec Miami since 2018.
-The StarExec Miami computers have an
-octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
-128 GiB memory,
-and the CentOS Linux release 7.4.1708 (Core) operating system
-Linux kernel 3.10.0-693.el7.x86\_64.
-StarExec runs one ATP system on one CPU at a time.
-All the TSTP data was generated using a CPU time limit of 300s, and a memory limit of 128GiB.
-
+% Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
+The TSTP is built by running all the ATP systems that are available in the TPTP World on
+all the problems in the TPTP problem library.
 At the time of writing this paper, the TSTP contained the results of running 87 ATP systems and 
 system variants on all the problems in the TPTP that they could attempt.
 % (therefore, e.g., systems that do model finding for FOF are not run on THF problems).
 This has produced 1091026 runs, of which 432718 (39.6\%) solved the problem.
+
+The available ATP systems have come from a range of sources:
+some were developed many years ago, and are no longer distributed;
+some are the most recent available, taken either from the systems’ web sites or from the most 
+recent edition of the CADE ATP System Competition (CASC) \cite{Sut16}.
+% User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
+The ATP systems are run on StarExec \cite{SST14} Miami.
+% since 2018.
+The computers have an
+octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
+128 GiB memory,
+and the CentOS Linux release 7.4.1708 (Core) operating system
+Linux kernel 3.10.0-693.el7.x86\_64.
+One ATP system is run on one CPU at a time, with a 300s CPU time limit and a 129GiB memory
+limit (see Section~\ref{ResourceLimits}).
+
+A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
+understand how they can be solved, leading to improvements to their own systems. 
+The use considered here is as the basis for TPTP problem ratings.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Resource Limits}
@@ -272,13 +305,14 @@ Individual problem ratings can be averaged over individual SPCs, or combinations
 that describe compatible problem characteristics, to get an indication of progress for the SPCs.
 Prior analysis, e.g., that in \cite{Sut17}, did just that.
 Figure~\ref{OldRatingsPlot} is taken from \cite{Sut17}, where it was noted:
-``The ratings generally show a downward trend - there has been progress!
-Note that ratings can also increase when data from new systems is added to the TSTP.''
-The counterintuitive increases in difficulty as time progresses (the problems as unchanged,
-the data from the systems is still available) is caused by new systems becoming available.
+``The ratings generally show a downward trend - there has been progress!''.
+It was also noted that:
+``ratings can also increase when data from new systems is added to the TSTP.''
+The counterintuitive increases in ratings as time progresses is caused by new systems becoming 
+available.
 A new system might not be subsumed, and the ratings of problems it solves go down. 
-At the time the new system might not be able to solve problems that the previously available
-systems can, and the rating of such problems increases.
+At the same time the new system might not be able to solve problems that the previously available
+systems can, and the ratings of such problems go up.
 For this work the analysis process has been refined to avoid this anomaly.
 
 \begin{figure}[htb]
