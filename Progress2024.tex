@@ -244,16 +244,23 @@ The available ATP systems have come from a range of sources:
 some were developed many years ago, and are no longer distributed;
 some are the most recent available, taken either from the systems’ web sites or from the most 
 recent edition of the CADE ATP System Competition (CASC) \cite{Sut16}.
+
 % User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
-The ATP systems are run on StarExec \cite{SST14} Miami.
-% since 2018.
-The computers have an
+Since 2014 the ATP systems have been run on StarExec \cite{SST14}, initially on the StarExec
+Iowa cluster, and since 2018 on the StarExec Miami cluster.
+The StarExec Iowa computers have an ZZZZZZZZZZZZ Add Version
+octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
+128 GiB memory,
+and the CentOS Linux release 7.4.1708 (Core) operating system
+Linux kernel 3.10.0-693.el7.x86\_64.
+The StarExec Miami computers have an
 octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
 128 GiB memory,
 and the CentOS Linux release 7.4.1708 (Core) operating system
 Linux kernel 3.10.0-693.el7.x86\_64.
 One ATP system is run on one CPU at a time, with a 300s CPU time limit and a 129GiB memory
 limit (see Section~\ref{ResourceLimits}).
+StarExec provides a consistent level of hardware - not much difference between Iowa and Miami.
 
 A major use of the TSTP is for ATP system developers to examine solutions to problems and thus 
 understand how they can be solved, leading to improvements to their own systems. 
@@ -325,27 +332,26 @@ For this work the analysis process has been refined to avoid this anomaly.
 \end{center}
 \end{figure}
 
-Start from v6.0.0, released 21/09/13, by which time TSTP data was coming from StarExec, SPCs
+Start from v6.2.0, released 14/07/15, by which time TSTP data was coming from StarExec, SPCs
 were in place (but that doesn't matter because we care about only the current SPCs).
 
 \begin{enumerate}
-\item Extract all data from TSTP, starting from v6.0.0, per above.
-      Remove problems that were added in or after v7.0.0, so we have enough TSTP data for
-      them (why v7.0.0?). 
-      These release numbers need to be parameters for Zain.
-\item Fill right for problems added after v6.0.0.
-      If the rating started at 1.00, this makes sense because if the a problem was unsolved
-      when added, it would almost certainly have been unsolved by earlier systems.
-      If the rating started below 1.00, that assumes that earlier systems would have been
-      equally able to solve it, which might be kind to those systems.
-      The result is less apparent progress before then.
-\item Fill left for missing data, but not allowing a problem to become more difficult.
-      That deals with new systems arriving and making a problem appear harder, but of course
-      it does not.
-      The new system makes some other problems become easier.
-\item Remove problem data that is all 0.00 or all 1.00s -- those problems do no show any change
-      in systems' performances because they are too easy or too hard.
-\item Extract problem data for a given set of SPCs, e.g., I'm planning~\ldots
+\item Extract all data from TSTP, starting from v6.2.0, per above.
+\item Fill right for problems added after v6.2.0 if their rating started at 1.00. 
+      This makes sense because if the a problem was unsolved when added, it would almost certainly 
+      have been unsolved by earlier systems.
+%      If the rating started below 1.00, that assumes that earlier systems would have been
+%      equally able to solve it, which might be kind to those systems.
+%      The result is less apparent progress before then.
+\item Fill left for missing data
+      \begin{itemize}
+      \item Do not allowing a problem to become more difficult.
+            That deals with new systems arriving and making a problem appear harder, but of course
+            it does not.
+      \item The new system makes some other problems become easier.
+      \end{itemize}
+\item Remove problems with missing ratings
+\item Extract problems for a chosen set of SPCs 
       \begin{itemize}
       \item {\tt CNF\_UNS\_RFO\_NEQ\_*} $\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*} $\cup$ 
             {\tt CNF\_UNS\_RFO\_PEQ\_NUE} \\
@@ -374,6 +380,9 @@ were in place (but that doesn't matter because we care about only the current SP
       Notes: TXF excluded because it started in only v8.0.0.
       Polymorphic TF1 and TH1 excluded because not enough systems are capable.
       Other excluded because too few problems.
+\item Compute fraction of problems solved
+\item Remove problems with ratings all 0.00 or all 1.00s -- they do no show any change
+      in systems' performances because they are too easy or too hard.
 \item Plot average rating by date.
       Zain needs to add date row.
 \end{enumerate}
