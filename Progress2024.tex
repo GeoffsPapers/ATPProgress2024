@@ -7,6 +7,7 @@
 \usepackage{setspace}
 \usepackage{verbatim}
 \usepackage{multicol}
+\usepackage{tabularx}
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 % \renewcommand{\arraystretch}{0.8}
 \renewcommand{\floatpagefraction}{0.9}
@@ -327,85 +328,96 @@ The performance data in the TSTP is produced with adequate resource limits.
 \end{figure}
 
 %--------------------------------------------------------------------------------------------------
-\section{Analysis Process}
-\label{Analysis}
+\section{Analysis Processes}
+\label{AnalysisProcesses}
 
-The analyses performed use the TPTP problem ratings, and also historical data about which
-systems solved which problems in each TPTP release provided in the 
+%--------------------------------------------------------------------------------------------------
+\subsection{Analysis Data}
+\label{AnalysisData}
+
+The analyses performed use the TPTP problem ratings, and historical data about which
+ATP systems solved which problems in each TPTP release provided in the 
 {\tt ProblemAndSolutionStatistics} file that accompanies each TPTP release.
 As explained in Section~\ref{TSTP}, TSTP data starting from TPTP v6.2.0 in July 2015 has been
 used.
-As it is not possible to run all previously available ATP systems on new problems when they 
-are added, it is assumed that if a problem is unsolved by the current ATP systems when it is 
-added to the TPTP, then it would have been unsolved by previously available ATP systems.
-Thus to augment the analysis data, problems added after v6.2.0 with an initial rating of 1.00 
-(unsolved) are retrospectively ``added'' to prior TPTP releases back to v6.2.0 with a rating 
-of 1.00.
+
+Before analysis the rating data is cleaned in two steps:
+
+\paragraph{Cleaning for the Past:}
+Problems are added to the TPTP in each release, and corresponding TSTP data is generated using 
+the {\em currently available} ATP systems.
+As it is not possible to run all {\em previously available} ATP systems on new problems when they 
+are added to the TPTP, it is simply {\em assumed} that if a new problem is unsolved by the 
+current ATP systems when it is added to the TPTP, then it would have been unsolved by 
+previously available ATP systems.
+The rating data is thus augmented for problems added after v6.2.0 with an initial rating of 1.00 
+(unsolved), by setting the rating to 1.00 in prior TPTP releases back to v6.2.0.
 % Additionally, problems added in v6.3.0 in November 2015 with an initial rating less than
 % 1.00 are also retrospectively ``added'' to v6.2.0, because the set of ATP systems used for
 % building the TSTP did not change in that time period.
 Other problems added after v6.2.0 with an initial rating less than 1.00 are ignored, because 
-it is unknown whether or not prior systems would have solved them.
+it is unknown whether or not the previously available systems would have solved them.
 
-Over time, decreasing difficult ratings of individual TPTP problems provide an indication of 
-progress in the field \cite{SFS01}.
-Individual problem ratings can be averaged over individual SPCs, or combinations of SPCs that
-that describe compatible problem characteristics, to get an indication of progress for the SPCs.
-Prior analysis, e.g., that in \cite{Sut17}, did just that,
-% Figure~\ref{OldRatingsPlot} is taken from \cite{Sut17}, 
-where it was noted: ``The ratings generally show a downward trend - there has been progress!''.
-It was also noted that:
-``ratings can also increase when data from new systems is added to the TSTP.''
-The increase is caused by new systems becoming available, and their TSTP data being used in 
-the rating process.
+\paragraph{Cleaning for Change:}
+A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
+increase with time, because they are computed wrt the TSTP data from all the currently available
+ATP systems.
+Increases are caused by new ATP systems becoming available, and their data being added to the TSTP.
 A new system might not be subsumed, i.e., no system solves all the problems the new system solves, 
 and the system's TSTP data is therefore used in the rating process.
 The ratings of problems that the new system solves decrease, but at the same time the ratings of
-problems that the new system does not solve increase.
-The increase in a problem's difficulty rating is counterintuitive because the problem has not 
-changed, and the problem can still be solved by the previously available systems.
-This anomaly is resolved in this paper's analyses by tracking each problem's rating backwards 
-in time, from the point that it was added to the TPTP.
+problems that the new system does not solve might increase.
+An increase of a problem's rating is counterintuitive because the problem has not changed, and 
+it can still be solved by the previously available systems.
+This anomaly was noted in prior analysis \cite{Sut17} where it was noted: ``The ratings generally 
+show a downward trend - there has been progress!'', but ``ratings can also increase when data 
+from new systems is added to the TSTP.''
+This anomaly is resolved by tracking each problem's rating forwards in time from the point 
+that it was added to the TPTP.
 If at any release the rating increases, for analysis the rating is reduced to its prior
 lower rating value.
 
-% \begin{figure}[htb]
-% \begin{center}
-% \mbox{}
-% \includegraphics[width=0.75\textwidth]{Plots/RatingsDecline}
-% \vspace*{-1em}
-% \caption{Ratings decline from TPTP v5.0.0 to TPTP v6.4.0}
-% \label{OldRatingsPlot}
-% \end{center}
-% \end{figure}
+%--------------------------------------------------------------------------------------------------
+\subsection{Coherent SPC Sets}
+\label{SPCSets}
 
-Before examining the decreasing problem ratings in the TPTP, a simple analysis is provided
-by the fraction of problems solved in each TPTP release -- it is simply the fraction of 
-problems with rating less than 1.00.
-This is the approach used in \cite{SSP21}.
+Three of the analyses (as described in Section~\ref{AnalysisTypes}) look at the data for a set
+of problems.
+In order for such analyses to be meaningful it is necessary that the problems are reasonable
+coherent, so that the ATP systems whose TSTP data is used in the analysis are able, at least
+in principle, able to attempt the problems.
+The basis for such sets are the SPCs (see Section~\ref{SPCs}).
+The SPCs provide a quite fine-grained partitioning of the TPTP problems, and individual SPCs
+are intrinsically coherent.
+Additionally, some SPCs that that capture compatible problem characteristic can be merged
+to form a coherent set.
 
-Another analysis is provided through the use of temporal Shapley values \cite{KF+19}.
-In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
-defined by the union of the problems solved by all the individual ATP systems used for the TSTP 
-at the time.
-The SotA systems in the TPTP releases are treated as a portfolio of systems to be analysed, and 
-the analysis results show which SotA systems made strong contributions to progress, i.e., at
-which TPTP release there was strong progress.
-Following that, plain (non-temporal) Shapley analysis \cite{FK+16} is used to identify which
-of the individual ATP systems made strong contributions to those strong SotA systems.
+The coherent SPC sets used for the analyses are listed in Table~\ref{SPCSets}.
+The first column lists the SPCs that are in the set, using the abbreviations given in 
+Section~\ref{SPCs}.
+The second column describes the set, explaining why it is coherent.
+The third column gives the total number of problems in the set in TPTP v8.2.0, and the
+number of problems after the data cleaning.
+Notes: TXF excluded because it started in only v8.0.0.
+Polymorphic TF1 and TH1 excluded because not enough systems are capable.
+Other excluded because too few problems.
 
-\begin{enumerate}
-\item Extract all data from TSTP, starting from v6.2.0, per above.
-\item Fill right for problems added after v6.2.0 if their rating started at 1.00. 
-%      If the rating started below 1.00, that assumes that earlier systems would have been
-%      equally able to solve it, which might be kind to those systems.
-%      The result is less apparent progress before then.
-\item Fill left for missing data
-      \begin{itemize}
-      \item Do not allow a problem to become more difficult.
-      \end{itemize}
-\item Remove problems with missing ratings
-\item Extract problems for a chosen set of SPCs 
+\begin{table*}[tbh]
+\begin{tabularx}{\textwidth}{lX|lX|r}
+\hline
+SPCs & Description & Size \\
+\hline
+{\tt CNF\_UNS\_RFO\_NEQ\_*} $\cup$ \newline
+{\tt CNF\_UNS\_RFO\_SEQ\_*} $\cup$ \newline
+{\tt CNF\_UNS\_RFO\_PEQ\_NUE} &
+describe 
+& 4445 \newline
+NNNN \\
+\hline
+\end{tabularx}
+\caption{Coherent SPC sets}
+\label{SPCSets}
+\end{table*}
       \begin{itemize}
       \item {\tt CNF\_UNS\_RFO\_NEQ\_*} $\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*} $\cup$ 
             {\tt CNF\_UNS\_RFO\_PEQ\_NUE} \\
@@ -431,9 +443,71 @@ of the individual ATP systems made strong contributions to those strong SotA sys
       \item {\tt TH0\_THM\_*\_NAR} \\
             3189 problems. NNNN in analysis.
       \end{itemize}
-      Notes: TXF excluded because it started in only v8.0.0.
-      Polymorphic TF1 and TH1 excluded because not enough systems are capable.
-      Other excluded because too few problems.
+
+%--------------------------------------------------------------------------------------------------
+\subsection{Four Analyses}
+\label{AnalysisTypes}
+
+The cleaned rating and the historical data is used for four analyses of progress.
+Individual problem ratings are used for the first analysis.
+For the other three analyses that ZZZZZ can be averaged over individual SPCs, or combinations of SPCs that
+that capture compatible problem characteristics, to get an indication of progress for the SPCs.
+
+\paragraph{First Solutions:}
+ATP has been successfully applied in a range of academic applications.
+Arguably the last use comes from the ``hammers'' \cite{BK+16} associated with Interactive 
+Theorem Proving (ITP) systems, e.g., Sledghammer \cite{PB10} for Isabelle \cite{NPW02}, 
+HOLyHammer \cite{KU14} for HOL Light \cite{Har09} and HOL4 \cite{SN08}, 
+MizAR \cite{KU15-M40} for Mizar \cite{GKN10}.
+In these applications the problems being solved are not of individual interest to humans,
+who are focussed on the larger task being addressed in the ITP system.
+In contrast, the use of ATP by practioners attacking problems are less common, and even
+less successful.
+The sparsity makes successes particularly noteworthy, e.g., the solution of the Robbins
+problem by Bill McCune using the ATP system EQP \cite{McC97}.
+In general, the first solutions of problems that are of specific interest to humans are
+indications of progress.
+These are identifiable in the cleaned ratings data by (i)~the rating decreasing from 1.00, 
+and (ii)~some evidence that the problem is of specific interest to at least some humans.
+
+\paragraph{Fraction Solved:}
+The first overall analysis looks at the fraction of problems solved in each TPTP release -- 
+it is simply the fraction of problems with rating less than 1.00.
+This is the approach used in \cite{SSP21}.
+This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
+% CS OBJECTS In order for this analysis to be meaningful 
+
+\paragraph{Decreasing Ratings:}
+A more fine-grained analysis is provided by the decrease in problem difficulty ratings over
+time \cite{SFS01}.
+This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
+SPC set.
+
+\paragraph{Shapley Values:}
+Another quite fine-grained analysis is provided through the use of temporal Shapley values 
+\cite{KF+19}.
+In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
+defined by the union of the problems solved by all the individual ATP systems used for the TSTP 
+at the time.
+The SotA systems in the TPTP releases are treated as a portfolio of systems to be analysed, and 
+the Shapley analysis shows which SotA systems made strong contributions to progress, i.e., it
+identifies the TPTP releases where strong progress was evident.
+Following that, plain (non-temporal) Shapley analysis \cite{FK+16} is used to identify which
+of the individual ATP systems made strong contributions to those strong SotA systems.
+This analysis uses the historical solution data within each coherent SPC set.
+
+\begin{enumerate}
+\item Extract all data from TSTP, starting from v6.2.0, per above.
+\item Fill right for problems added after v6.2.0 if their rating started at 1.00. 
+%      If the rating started below 1.00, that assumes that earlier systems would have been
+%      equally able to solve it, which might be kind to those systems.
+%      The result is less apparent progress before then.
+\item Fill left for missing data
+      \begin{itemize}
+      \item Do not allow a problem to become more difficult.
+      \end{itemize}
+\item Remove problems with missing ratings
+\item Extract problems for a chosen set of SPCs 
 \item Compute summary data
       \begin{itemize}
       \item Number of problem rows
