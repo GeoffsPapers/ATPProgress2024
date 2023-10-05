@@ -1,0 +1,22 @@
+set terminal pdf color
+set output "FOF_THM_RFO_PPP.pdf"
+set style data linespoints
+set pointsize 0.5
+# set title "FOF\_THM\_RFO\_PPP"
+set xlabel "Problem"
+set ylabel "CPU time"
+set key at 2000,290
+set grid
+plot [0:5500] [0:300] \
+"Times_SnakeForV---1.0" title "SnakeForV 1.0", \
+"Times_Enigma---0.5.1" title "Enigma 0.5.1", \
+"Times_Vampire---4.8" title "Vampire 4.8", \
+"Times_CSE_E---1.5" title "CSE\\_E 1.5", \
+"Times_E---3.1" title "E 3.1", \
+"Times_cvc5---1.0.5" title "cvc5 1.0.5", \
+"Times_GKC---0.8" title "GKC 0.8", \
+"Times_iProver---3.8" title "iProver 3.8", \
+"Times_Leo-III---1.7.7" title "Leo-III 1.7.7", \
+"Times_Etableau---0.67" title "Etableau 0.67", \
+"Times_Drodi---3.5.1" title "Drodi 3.5.1", \
+"Times_Zipperpin---2.1.9999" title "Zipperpin 2.1.9999"

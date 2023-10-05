@@ -1,0 +1,17 @@
+set terminal pdf 
+set output "TestData.pdf"
+set style data linespoints
+set xlabel "Release date" offset 0,0
+set xdata time
+#----Note the date format, used all below, due to fucking Microsoft
+set timefmt "%m/%d/%y"
+set xtics rotate
+set format x "20%y"
+set ylabel "Rating" offset 1
+set key at "01/01/18",0.95
+set grid
+plot ["07/01/15":"07/01/23"] [0:1] \
+"TestData.txt" using 2:3 title "Fraction solved",\
+"TestData.txt" using 2:4 title "Average rating",\
+"TestData.txt" using 2:5 title "Shapley value"
+

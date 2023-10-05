@@ -1,0 +1,19 @@
+set terminal pdf monochrome
+set output "RatingsDecline.pdf"
+set style data linespoints
+set xlabel "Release date" offset 0,-1
+set xdata time
+#----Note the date format, used all below, due to fucking Microsoft
+set timefmt "%m/%d/%y"
+set xtics rotate
+set format x "%m/%y"
+set ylabel "Rating" offset 1
+set key at "07/01/11",0.95
+set grid
+plot ["09/16/10":"08/31/16"] [0:1] \
+"AverageRatingsForVersions" using 2:3 title "All",\
+"AverageRatingsForVersions" using 2:4 title "THF",\
+"AverageRatingsForVersions" using 2:5 title "TFF",\
+"AverageRatingsForVersions" using 2:6 title "FOF",\
+"AverageRatingsForVersions" using 2:7 title "CNF"
+
