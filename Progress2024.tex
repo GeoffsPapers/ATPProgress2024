@@ -13,7 +13,6 @@
 \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
 \newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.5}
 
 \renewcommand{\floatpagefraction}{0.9}
 \renewcommand{\textfloatsep}{2.0ex}
@@ -143,7 +142,35 @@ $version$.$edition$.$patch$.
 The $version$ is incremented when important new features are added,
 the $edition$ is incremented when new problems are added, and
 the $patch$ level is incremented when errors have been corrected.
-The current release is v8.2.0, which contains 25474 problems in 55 domains of interest.
+The current release is v8.2.0.
+Section~\ref{TSTP} explains why the analyses of progress presented in this paper start at
+TPTP~v6.2.0.
+Table~\ref{TPTPReleases} gives some summary data abot the TPTP releases from v6.2.0 to v8.2.0;
+the acronyms for problem types are listed in Section~\ref{SPCs}.
+
+\begin{table}[htb]
+\begin{center}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ll|l|r}
+Release & Date     & Changes                                 & Size \\
+\hline
+v6.2.0  & 14/07/15 & TSTP data from StarExec                 &   20654 \\
+v6.3.0  & 28/11/15 & New TFO problems with arithmetic        &   20762 \\
+v6.4.0  & 31/06/16 & New problems                            &   20897 \\
+v7.0.0  & 24/07/17 & First TH1 problems                      &   20897 \\
+v7.1.0  & 06/03/18 & TXF syntax specified, no problems       &   20897 \\
+v7.2.0  & 10/07/18 & New problems                            &   20897 \\
+v7.3.0  & 02/08/19 & New problems                            &   20897 \\
+v7.4.0  & 10/07/20 & New problems                            &   20897 \\
+v7.5.0  & 13/07/21 & New problems                            &   20897 \\
+v8.0.0  & 19/04/22 & First TXF problems                      &   20897 \\
+v8.1.0  & 30/07/22 & New problems                            &   20897 \\
+v8.2.0  & 13/06/23 & New problems                            &   25474 \\
+\end{tabular}
+\end{center}
+\caption{Overview of TPTP releases}
+\label{TPTPReleases}
+\end{table}
 
 The TPTP problem files present the logical formulae in a format that is both human and machine 
 readable, and additionally provide useful information for users.
@@ -241,7 +268,8 @@ The SPCs are used when computing the TPTP problem ratings.
 
 Each TPTP problem has a difficulty rating that provides a well-defined measure of how difficult 
 the problem is for current ATP systems \cite{SS01}.
-The ratings are based on performance data in the TSTP (see Section~\ref{TSTP})
+The ratings are based on performance data in the TSTP (see Section~\ref{TSTP}), and are updated
+in each TPTP edition.
 Rating is done separately for each SPC, to provide a rating that compares problems with the
 same characteristics.
 A partial order between systems is determined according to whether or not a system solves a strict 
@@ -284,6 +312,7 @@ the TSTP.
 For that reason the analyses presented in Section~\ref{AnalysisProcesses} start at TPTP v6.2.0, 
 which was released in July 2015, i.e., the problem ratings were based on data produced on the 
 StarExec computers.
+
 The StarExec Iowa computers have an ZZZZZZZZZZZZ Add Version
 octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
 128 GiB memory,
@@ -349,7 +378,7 @@ The analyses performed use the TPTP problem ratings, and historical data about w
 ATP systems solved which problems in each TPTP release provided in the 
 {\tt ProblemAndSolutionStatistics} file that accompanies each TPTP release.
 As explained in Section~\ref{TSTP}, TSTP data starting from TPTP v6.2.0 in July 2015 has been
-used.
+used, taking snapshots at each TPTP edition up to v8.2.0.
 
 Before analysis the rating data is cleaned in two steps:
 
@@ -421,6 +450,7 @@ Typed polymorphic first-order and higher-order problems excluded because too few
 capable of attempting the problems and generating the necessary TSTP data;
 Some SPCs that have too few problems.
 
+\renewcommand{\arraystretch}{1.5}
 \begin{table*}[h!]
 \center
 \begin{tabular}{p{3.5cm}|p{7cm}|R{1cm}}
