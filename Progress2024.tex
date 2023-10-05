@@ -326,12 +326,11 @@ is achieved.
 The performance data in the TSTP is produced with adequate resource limits.
 
 \begin{figure}[ht!]
-\begin{center}
+\centering
 \includegraphics[width=0.75\textwidth]{Plots/FOF_THM_RFO_PPP/FOF_THM_RFO_PPP}
 \vspace*{-1em}
 \caption{CPU times for {\tt FOF\_THM\_RFO\_*}}
 \label{PPPPlot}
-\end{center}
 \end{figure}
 
 %--------------------------------------------------------------------------------------------------
@@ -548,26 +547,99 @@ This analysis uses the historical solution data within each coherent SPC set.
 \section{Evidence of Progress}
 \label{Evidence}
 
-Plots.
 \begin{figure}[ht!]
 \centering
-\begin{minipage}{.49\textwidth}
+\begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
-  \vspace*{-1em}
-  \caption{Analyses for SOME\_SPC}
-  \label{SOME_SPC_Plot}
+  \vspace*{-2em}
+  \caption{{\tt CNF\_UNS\_RFO\_\{NEQ\_*,SEQ\_*,PEQ\_NUE\}}}
+  \label{Plot_CNF_UNS}
 \end{minipage}
-\begin{minipage}{.49\textwidth}
+\begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
-  \vspace*{-1em}
-  \caption{Analyses for SOME\_SPC}
-  \label{SOME_SPC_Plot}
+  \vspace*{-2em}
+  \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
+  \label{Plot_CNF_UEQ}
+\end{minipage}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt CNF\_SAT\_RFO\_*}}
+  \label{Plot_CNF_SAT}
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt CNF\_*\_EPR\_*}}
+  \label{Plot_CNF_EPR}
 \end{minipage}
 \end{figure}
 
-Commentary.
+Commentary for CNF.
+
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt FOF\_THM\_RFO\_*}}
+  \label{Plot_FOF_THM}
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt FOF\_\{CSA,SAT\}\_RFO\_*}}
+  \label{Plot_FOF_SAT}
+\end{minipage}
+\end{figure}
+
+Commentary for FOF.
+
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt TF0\_THM\_*\_NAR}}
+  \label{Plot_TF0_THM_NAR}
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt TF0\_THM\_*\_ARI}}
+  \label{Plot_TF0_THM_ARI}
+\end{minipage}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt TF0\_\{CSA,SAT\}\_*\_NAR}}
+  \label{Plot_TF0_SAT_NAR}
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \vspace*{-2em}
+  \caption{{\tt TH0\_THM\_*\_NAR}}
+  \label{Plot_TH0_THM_NAR}
+\end{minipage}
+\end{figure}
+
+Commentary for TF0 and TH0.
 
 %--------------------------------------------------------------------------------------------------
 \section{Conclusion}
