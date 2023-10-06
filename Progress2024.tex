@@ -116,14 +116,14 @@ the hardware/software platform used are static.
 That provides a clean basis for detailed comparison between systems.
 In contrast, evaluation over time is complicated by changing test problems, changing systems,
 and changing hardware/software.
-This dynamic evaluation environmnt requires additional control to provide meaningful results.
+This dynamic evaluation environment requires additional control to provide meaningful results.
 
 \paragraph{Paper structure:}
 Section~\ref{TPTP} provides ...
 Section~\ref{TSTP} provides ...
 Section~\ref{AnalysisProcesses} provides ...
 Section~\ref{Evidence} provides ...
-Section~\ref{Concludes} concludes. 
+Section~\ref{Conclusion} concludes. 
 
 %--------------------------------------------------------------------------------------------------
 \section{The TPTP Problem Library}
@@ -145,7 +145,7 @@ the $patch$ level is incremented when errors have been corrected.
 The current release is v8.2.0.
 Section~\ref{TSTP} explains why the analyses of progress presented in this paper start at
 TPTP~v6.2.0.
-Table~\ref{TPTPReleases} gives some summary data abot the TPTP releases from v6.2.0 to v8.2.0;
+Table~\ref{TPTPReleases} gives some summary data about the TPTP releases from v6.2.0 to v8.2.0;
 the acronyms for problem types are listed in Section~\ref{SPCs}.
 
 \begin{table}[htb]
@@ -201,12 +201,11 @@ Evaluation of ATP systems within SPCs makes it possible to say which systems wor
 types of problems. 
 The appropriate level of subdivision for SPCs is that at which less subdivision would merge 
 SPCs for which ATP systems have distinguishable behaviour, and at which further subdivision
-would unnecessarily split an SPC for which ATP systems have reasonably homogenous behaviour.
+would unnecessarily split an SPC for which ATP systems have reasonably homogeneous behaviour.
 Empirically, this is ensured by examining the patterns of system performance across the 
 problems in each SPC. 
-For example, the separation of ``essentially propositional'' problems was motivated by 
-observing that SPASS (WA+99) performed differently on the ALC problems in the SYN domain of the 
-TPTP.
+For example, the separation of ``essentially propositional'' problems was motivated by observing 
+that SPASS (WA+99) performed differently on the ALC problems in the SYN domain of the TPTP.
 A data-driven test of the homogeneity can also provide assurance that the SPCs are
 appropriate \cite{FS02}.
 
@@ -247,7 +246,7 @@ The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
       {\tt ARI} -- ARIthmetic.
 \end{enumerate}
 
-Using these charactertistics 223 SPCs are defined in TPTP v8.2.0.
+Using these characteristics 223 SPCs are defined in TPTP v8.2.0.
 Some examples are:
 {\tt CNF\_SAT\_EPR\_PEQ\_UEQ} -- clause normal form satisfiable clauses that are effectively
 propositional (known to be reducible to propositional logic), have purely equality literals
@@ -255,7 +254,7 @@ in unit equality clauses;
 {\tt FOF\_THM\_RFO\_SEQ} -- first-order theorems that are ``really first-order'' (not believed
 to be reducible to propositional logic) and contain some (not only) equality;
 {\tt TF0\_THM\_NEQ\_ARI} -- typed monomorphic first-order theorems that have no equality but do
-include arithemtic.
+include arithmetic.
 Combinations of SPCs are written using UNIX globbing, e.g., {\tt TH0\_CSA\_*\_NAR} is the
 combination of {\tt TH0\_CSA\_EQU\_NAR} and {\tt TH0\_CSA\_NEQ\_NAR} -- typed monomorphic 
 higher-order countersatisfiable (non-theorem) problems either with or without equality.
