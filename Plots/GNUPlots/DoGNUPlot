@@ -2,27 +2,39 @@ set terminal pdf
 set output "TestData.pdf"
 set style data linespoints
 set xlabel "Release date" offset 0,0 
-set ylabel "Rating" offset 1
-set xdata time
+# set ylabel "Rating" offset 1
+set rmargin 4.0
+
 #----Note the date format, used all below, due to fucking Microsoft
 set timefmt "%m/%d/%y"
-set xtics rotate 
+set xdata time
 set format x "20%y"
-set xtics add ("v6.2.0" "07/14/15") 
-set xtics add ("v6.3.0" "11/28/15")
-set xtics add ("v6.4.0" "06/31/16")
-set xtics add ("v7.0.0" "07/24/17")
-set xtics add ("v7.1.0" "03/06/18")
-set xtics add ("v7.2.0" "07/10/18")
-set xtics add ("v7.3.0" "08/02/19")
-set xtics add ("v7.4.0" "07/10/20")
-set xtics add ("v7.5.0" "07/13/21")
-set xtics add ("v8.0.0" "04/19/22")
-set xtics add ("v8.1.0" "07/30/22")
-set xtics add ("v8.2.0" "06/13/23")
+set format y "%.1f"
+#----No minor tics
+unset mxtics
+#----No dates on top X-axis
+set xtics nomirror
+
+set x2data time
+set format x2 "%g"
+set x2tics rotate by 45
+unset mx2tics
+set x2tics ("v6.2.0" "07/14/15") 
+set x2tics add ("v6.3.0" "11/28/15")
+set x2tics add ("v6.4.0" "06/31/16")
+set x2tics add ("v7.0.0" "07/24/17")
+set x2tics add ("v7.1.0" "03/06/18")
+set x2tics add ("v7.2.0" "07/10/18")
+set x2tics add ("v7.3.0" "08/02/19")
+set x2tics add ("v7.4.0" "07/10/20")
+set x2tics add ("v7.5.0" "07/13/21")
+set x2tics add ("v8.0.0" "04/19/22")
+set x2tics add ("v8.1.0" "07/30/22")
+set x2tics add ("v8.2.0" "06/13/23")
+
 set grid
 set key at "01/01/18",0.95
-plot ["07/01/15":"07/01/23"] [0:1] \
+plot ["06/15/15":"07/01/23"] [0:1] \
 "TestData.txt" using 2:3 title "Fraction solved",\
 "TestData.txt" using 2:4 title "Average rating",\
 "TestData.txt" using 2:5 title "Shapley value"
