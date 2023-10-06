@@ -40,7 +40,9 @@ Geoff Sutcliffe\inst{1}\orcidID{0000-0001-9120-3927}
 Christian Suttner\inst{2}
 \and \\
 C. Raymond Perrault\inst{3}\orcidID{0009-0001-1178-343X}
-\and
+\and \\
+Lars Kotthoff\inst{4}\orcidID{0000-0003-4635-6873}
+\and \\
 Zain~Khalid\inst{1}\orcidID{0009-0001-2063-6933}
 }
 \authorrunning{G. Sutcliffe, et al.}
@@ -52,11 +54,21 @@ Deceased
 \and 
 SRI International, USA \\
 \email{ray.perrault@sri.com}
+\and 
+University of Wyoming, USA \\
+\email{larsko@uwyo.edu}
 }
 
 \maketitle
 %--------------------------------------------------------------------------------------------------
 \begin{abstract}
+The TPTP World is a well established infrastructure that supports research, development, and 
+deployment of Automated Theorem Proving (ATP) systems
+Two major components of the TPTP World are the TPTP problem library and the TSTP solution library.
+Data in the TPTP and TSTP has been used to assess progress in ATP in the last decade, in
+terms of first solutions of problems that are of direct interest to humans, the fraction of
+problems solved, decreasing problem difficulty ratings, and temporal Shapley values.
+The analyses show WHAT?
 
 \keywords{Automated Theorem Proving \and Empirical Evaluation \and Progress in ATP}
 \end{abstract}
@@ -510,16 +522,16 @@ Arguably the last use comes from the ``hammers'' \cite{BK+16} associated with In
 Theorem Proving (ITP) systems, e.g., Sledghammer \cite{PB10} for Isabelle \cite{NPW02}, 
 HOLyHammer \cite{KU14} for HOL Light \cite{Har09} and HOL4 \cite{SN08}, 
 MizAR \cite{KU15-M40} for Mizar \cite{GKN10}.
-In these applications the problems being solved are not of individual interest to humans,
+In these applications the problems being solved are not of direct interest to humans,
 who are focussed on the larger task being addressed in the ITP system.
 In contrast, the use of ATP by practitioners attacking problems are less common, and even
 less successful.
 The sparsity makes successes particularly noteworthy, e.g., the solution of the Robbins
 problem by Bill McCune using the ATP system EQP \cite{McC97}.
-In general, the first solutions of problems that are of specific interest to humans are
+In general, the first solutions of problems that are of direct interest to humans are
 indications of progress.
 These are identifiable by (i)~the rating decreasing from 1.00, and (ii)~some evidence that the 
-problem is of specific interest to at least some humans.
+problem is of direct interest to at least some humans.
 
 \paragraph{Fraction Solved:}
 The first overall analysis looks at the fraction of problems solved in each TPTP release --
