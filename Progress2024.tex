@@ -93,17 +93,19 @@ in both academia and industry.
 The web page \href{https://www.tptp.org}{\tt www.tptp.org} provides access to all 
 components.
 
-At two points in the past, the TPTP World has been used as the basis for evaluating progress
-in ATP \cite{SFS01,SSP21}.
-In both cases the core idea was to examine the difficulty ratings of the problems in the TPTP 
-problem library, which are computed wrt performance data from ATP systems.
-The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
-the ratings decrease
-As the problems are unchanged (they are not actually getting easier) this is evidence that 
-the state-of-the-art in ATP systems is improving.
-This paper provides an update on progress in ATP based on the data in the TPTP release v8.2.0.
-The analysis process has been refined to take into account anomalies caused by ATP systems
-becoming (un)available over the years.
+Any sound progress metric must refer to the ability of systems to solve problems.
+The data in the TSTP solution library provides the necessary data about ATP systems' abilities
+to solve the problems in the TPTP problem library.
+This paper examines the progress in ATP, based on the data from TPTP v6.2.0 released on 
+14th July 2015 to TPTP v8.2.0 released on 13th June 2023.
+Four analyses are considered:
+(i)~First ATP solutions of individual problems that are of direct interest to humans;
+(ii)~The fraction of problems solved over fixed coherent sets of problems;
+(iii)~The decrease in problem difficulty ratings over fixed coherent sets of problems;
+(iv)~Shapley values over time and at fixed points in time.
+All four analyses are fundamentally based on the ability of ATP systems to solve problems, and 
+do not explicitly factor in the resources, e.g., hardware, time limits, etc., needed to find 
+solutions -- Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
 
 The use of system performance data to evaluate a field of endeavour is common.
 In the realm of logic-based systems, examples include
@@ -536,14 +538,18 @@ problem is of direct interest to at least some humans.
 
 \paragraph{Fraction Solved:}
 The first overall analysis looks at the fraction of problems solved in each TPTP release --
-this is the approach used in \cite{SSP21}.
+this approach was used in \cite{SSP21}.
 It is simply the fraction of problems with rating less than 1.00.
 This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
 
 \paragraph{Decreasing Ratings:}
 A more fine-grained analysis is provided by the decrease in problem difficulty ratings over
-time \cite{SFS01}.
+time -- this approach was used in \cite{SFS01}.
+The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
+the ratings decrease
+As the problems are unchanged (they are not actually getting easier) this is evidence that 
+the state-of-the-art in ATP systems is improving.
 This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
 SPC set.
 
