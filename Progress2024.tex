@@ -318,25 +318,26 @@ performed testing on their own hardware.
 From 2010 to 2013 the data was generated on the TPTP World servers at the University of Miami.
 Since 2014 the ATP systems have been run on StarExec \cite{SST14}, initially on the StarExec
 Iowa cluster, and since 2018 on the StarExec Miami cluster.
-This has provided stable platforms that produce reliably consistent and comparable data in
+StarExec has provided stable platforms that produce reliably consistent and comparable data in
 the TSTP.
 For that reason the analyses presented in Section~\ref{AnalysisProcesses} start at TPTP v6.2.0, 
 which was released in July 2015, i.e., the problem ratings were based on data produced on the 
 StarExec computers.
 
-The StarExec Iowa computers have an ZZZZZZZZZZZZ Add Version
-octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
+The StarExec Iowa computers have an 
+quad-core Intel(R) Xeon(R) CPU E5-2609 CPU run at 2.40 GHz,
 128 GiB memory,
-and the CentOS Linux release 7.4.1708 (Core) operating system
+and the CentOS Linux release 7.9.2009 (Core) operating system
 Linux kernel 3.10.0-693.el7.x86\_64.
 The StarExec Miami computers have an
 octa-core Intel(R) Xeon(R) E5-2667 v4 CPU run at 2.10 GHz,
 128 GiB memory,
 and the CentOS Linux release 7.4.1708 (Core) operating system
-Linux kernel 3.10.0-693.el7.x86\_64.
-One ATP system is run on one CPU at a time, with a 300s CPU time limit and a 129GiB memory
+Linux kernel 3.10.0-1160.62.1.el7.x86\_64.
+One ATP system is run on one CPU at a time, with a 300s CPU time limit and a 128GiB memory
 limit (see Section~\ref{ResourceLimits}).
-StarExec provides a consistent level of hardware - not much difference between Iowa and Miami.
+The minor differences between the Iowa and Miami configurations can be ignored for the task
+of ``solving problems'', as is explained in Section~\ref{ResourceLimits}.
 
 One use of the TSTP is for ATP system developers to examine solutions to problems and thus 
 understand how they can be solved, leading to improvements to their own systems. 
