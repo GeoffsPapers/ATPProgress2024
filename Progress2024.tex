@@ -94,8 +94,14 @@ The web page \href{https://www.tptp.org}{\tt www.tptp.org} provides access to al
 components.
 
 Any sound progress metric must refer to the ability of systems to solve problems.
-The data in the TSTP solution library provides the necessary data about ATP systems' abilities
-to solve the problems in the TPTP problem library.
+While the systems improve the problem that they must solve also change, to meet the demands
+of users.
+(If there is a fixed set of problems then the systems can simply be finely tuned to solve that
+fixed set, with inevitable asymptotic progress towards solving all the problems.)
+The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
+ATP users, and is an appropriate basis for evaluating the changing ability of ATP systems.
+Alongside the TPTP TPTP problem library, the TSTP solution library provides the data about ATP 
+systems' abilities to solve the problems in the TPTP problem library.
 This paper examines the progress in ATP, based on the data from TPTP v6.2.0 released on 
 14th July 2015 to TPTP v8.2.0 released on 13th June 2023.
 Four analyses are considered:
@@ -104,8 +110,8 @@ Four analyses are considered:
 (iii)~The decrease in problem difficulty ratings over fixed coherent sets of problems;
 (iv)~Shapley values over time and at fixed points in time.
 All four analyses are fundamentally based on the ability of ATP systems to solve problems, and 
-do not explicitly factor in the resources, e.g., hardware, time limits, etc., needed to find 
-solutions -- Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
+do not explicitly factor in the resources needed to find solutions, e.g., hardware, time limits, 
+etc. -- Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
 
 The use of system performance data to evaluate a field of endeavour is common.
 In the realm of logic-based systems, examples include
@@ -165,21 +171,21 @@ the acronyms for problem types are listed in Section~\ref{SPCs}.
 \begin{table}[htb]
 \begin{center}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{ll|l|r}
-Release & Date     & Changes                                 & Size \\
+\begin{tabular}{ll|l|rr}
+Release & Date     & Changes                                 & Size & @~v8.2.0 \\
 \hline
-v6.2.0  & 14/07/15 & TSTP data from StarExec                 &   20654 \\
-v6.3.0  & 28/11/15 & New TFO problems with arithmetic        &   20762 \\
-v6.4.0  & 31/06/16 & New problems                            &   20897 \\
-v7.0.0  & 24/07/17 & First TH1 problems                      &   21851 \\
-v7.1.0  & 06/03/18 & TXF syntax specified, no problems       &   22011 \\
-v7.2.0  & 10/07/18 & New problems                            &   22026 \\
-v7.3.0  & 02/08/19 & New problems                            &   22686 \\
-v7.4.0  & 10/07/20 & New problems                            &   23291 \\
-v7.5.0  & 13/07/21 & New problems                            &   24098 \\
-v8.0.0  & 19/04/22 & First TXF problems                      &   24785 \\
-v8.1.0  & 30/07/22 & New problems                            &   25257 \\
-v8.2.0  & 13/06/23 & New problems                            &   25474 \\
+v6.2.0  & 14/07/15 & TSTP data from StarExec                 &   20654 & 20649 \\
+v6.3.0  & 28/11/15 & New TFO problems with arithmetic        &   20762 & 20757 \\
+v6.4.0  & 31/06/16 & New problems                            &   20897 & 20890 \\
+v7.0.0  & 24/07/17 & First TH1 problems                      &   21851 & 21845 \\
+v7.1.0  & 06/03/18 & TXF syntax specified                    &   22011 & 22008 \\
+v7.2.0  & 10/07/18 & New problems                            &   22026 & 22023 \\
+v7.3.0  & 02/08/19 & New problems                            &   22686 & 22684 \\
+v7.4.0  & 10/07/20 & New problems                            &   23291 & 23283 \\
+v7.5.0  & 13/07/21 & New problems                            &   24098 & 24091 \\
+v8.0.0  & 19/04/22 & First TXF problems                      &   24785 & 24785 \\
+v8.1.0  & 30/07/22 & New problems                            &   25257 & 25256 \\
+v8.2.0  & 13/06/23 & New problems                            &   25474 & 25474 \\
 \end{tabular}
 \end{center}
 \caption{Overview of TPTP releases}
@@ -398,18 +404,33 @@ Before analysis the rating data is cleaned in two steps:
 
 \paragraph{Cleaning for the Past:}
 Problems are added to the TPTP in each release, and corresponding TSTP data is generated using 
-the {\em currently available} ATP systems.
-As it is not possible to run all {\em previously available} ATP systems on new problems when they 
-are added to the TPTP, it is simply {\em assumed} that if a new problem is unsolved by the 
+the currently available ATP systems.
+As it is not possible to run all previously available ATP systems on new problems when they 
+are added to the TPTP, it is reasonble to assume that if a new problem is unsolved by the 
 current ATP systems when it is added to the TPTP, then it would have been unsolved by 
 previously available ATP systems.
-The rating data is thus augmented for problems added after v6.2.0 with an initial rating of 1.00 
-(unsolved), by setting the rating to 1.00 in prior TPTP releases back to v6.2.0.
-% Additionally, problems added in v6.3.0 in November 2015 with an initial rating less than
-% 1.00 are also retrospectively ``added'' to v6.2.0, because the set of ATP systems used for
-% building the TSTP did not change in that time period.
-Other problems added after v6.2.0 with an initial rating less than 1.00 are ignored, because 
-it is unknown whether or not the previously available systems would have solved them.
+The rating data can thus be augmented for problems added after v6.2.0 with an initial rating 
+of 1.00 (unsolved), by setting the problems' ratings in prior TPTP releases to 1.00.
+This, however, can lead to an unfairly optimistic view of progress, because those retrospectively 
+added 1.00 ratings increase the average problem rating in the past.
+For problems added after v6.2.0 with an initial rating less than 1.00, it is unknown if the
+previously available ATP systems would have been able to solve them.
+Augmenting the rating data by setting the problems' ratings in prior TPTP releases to their 
+initial rating can lead to a pessimistic view of progress, because those retrospectively
+added ratings decrease the average problem rating in the past.
+The optimistic/pessimistic effect gets stronger when rating data is augmented for problems that
+were added in more recent TPTP releases.
+In this work the rating data was augmented for all problems added after v6.2.0.
+That results in 4739 or 4825 problems having their ratings augmented, 4638 by 1.00 and 187 by less than 
+1.00.
+Of the 4638 problems that were unsolved when they added to the TPTP, KKKK were solved by v8.2.0.
+SOMETHING DOESN'T ADD UP HERE.
+  4825 AddedBy-v8.2.0
+  4739 Added
+   187 AddedSolved
+  4559 AddedUnsolved
+% 3451 problems are ignored, so that the analysis is done over the 22023 problems that were in
+% v7.2.0 and not subsequently removed.
 
 \paragraph{Cleaning for Change:}
 A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
@@ -554,17 +575,19 @@ This analysis also uses the cleaned ratings data, averaged over the problems in 
 SPC set.
 
 \paragraph{Shapley Values:}
-Another quite fine-grained analysis is provided through the use of temporal Shapley values 
-\cite{KF+19}.
+Another quite fine-grained analysis is provided through the use of Shapley values 
+\cite{XH+12,FK+16,KF+19}.
 In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
 defined by the union of the problems solved by all the individual ATP systems used for the TSTP 
 at the time.
 The SotA systems in the TPTP releases are treated as a portfolio of systems to be analysed, and 
-the Shapley analysis shows which SotA systems made strong contributions to progress, i.e., it
+temporal Shapley analysis shows which SotA systems made strong contributions to progress, i.e., it
 identifies the TPTP releases where strong progress was evident.
-Following that, plain (non-temporal) Shapley analysis \cite{FK+16} is used to identify which
-of the individual ATP systems made strong contributions to those strong SotA systems.
+Following that, plain (non-temporal) Shapley analysis is used to identify which of the individual 
+ATP systems made strong contributions to those strong SotA systems.
 This analysis uses the historical solution data within each coherent SPC set.
+Finally (MAYBE) temporal Shapley analysis is used to analyse the progress of some of the
+individual systems that made most strong contributions to strong SotA systems.
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
