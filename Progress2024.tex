@@ -102,8 +102,8 @@ The TPTP problem library provides an evolving set of ATP problems that reflect t
 ATP users, and is an appropriate basis for evaluating the changing ability of ATP systems.
 Alongside the TPTP TPTP problem library, the TSTP solution library provides the data about ATP 
 systems' abilities to solve the problems in the TPTP problem library.
-This paper examines the progress in ATP, based on the data from TPTP v6.2.0 released on 
-14th July 2015 to TPTP v8.2.0 released on 13th June 2023.
+This paper examines the progress in ATP, based on the data from TPTP v6.3.0 released on 
+28th November 2015 to TPTP v8.2.0 released on 13th June 2023.
 Four analyses are considered:
 (i)~First ATP solutions of individual problems that are of direct interest to humans;
 (ii)~The fraction of problems solved over fixed coherent sets of problems;
@@ -164,28 +164,31 @@ the $edition$ is incremented when new problems are added, and
 the $patch$ level is incremented when errors have been corrected.
 The current release is v8.2.0.
 Section~\ref{TSTP} explains why the analyses of progress presented in this paper start at
-TPTP~v6.2.0.
-Table~\ref{TPTPReleases} gives some summary data about the TPTP releases from v6.2.0 to v8.2.0;
-the acronyms for problem types are listed in Section~\ref{SPCs}.
+TPTP~v6.3.0.
+Table~\ref{TPTPReleases} gives some summary data about the TPTP releases from v6.3.0 to v8.2.0.
+The Size column gives the number of problems in the release to the time of the release, while
+the Analysed column gives the number of problems left for analysis after the data cleaning 
+described in Section~\ref{AnalysisData}.
+The acronyms for problem types are listed in Section~\ref{SPCs}.
 
 \begin{table}[htb]
 \begin{center}
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{ll|l|rr}
-Release & Date     & Changes                                 & Size & @~v8.2.0 \\
+Release & Date     & Changes                                 & Size & Analysed \\
 \hline
-v6.2.0  & 14/07/15 & TSTP data from StarExec                 &   20654 & 20649 \\
-v6.3.0  & 28/11/15 & New TFO problems with arithmetic        &   20762 & 20757 \\
-v6.4.0  & 31/06/16 & New problems                            &   20897 & 20890 \\
-v7.0.0  & 24/07/17 & First TH1 problems                      &   21851 & 21845 \\
-v7.1.0  & 06/03/18 & TXF syntax specified                    &   22011 & 22008 \\
-v7.2.0  & 10/07/18 & New problems                            &   22026 & 22023 \\
-v7.3.0  & 02/08/19 & New problems                            &   22686 & 22684 \\
-v7.4.0  & 10/07/20 & New problems                            &   23291 & 23283 \\
-v7.5.0  & 13/07/21 & New problems                            &   24098 & 24091 \\
-v8.0.0  & 19/04/22 & First TXF problems                      &   24785 & 24785 \\
-v8.1.0  & 30/07/22 & New problems                            &   25257 & 25256 \\
-v8.2.0  & 13/06/23 & New problems                            &   25474 & 25474 \\
+% v6.2.0  & 14/07/15 & TSTP data from StarExec                 &   20654 & 20012 \\
+v6.3.0  & 28/11/15 & New TFO problems with arithmetic        &   20762 & 20168 \\
+v6.4.0  & 31/06/16 & New problems                            &   20897 & 20839 \\
+v7.0.0  & 24/07/17 & First TH1 problems                      &   21851 & 21310 \\
+v7.1.0  & 06/03/18 & TXF syntax specified                    &   22011 & 21893 \\
+v7.2.0  & 10/07/18 & New problems                            &   22026 & 21909 \\
+v7.3.0  & 02/08/19 & New problems                            &   22686 & 22570 \\
+v7.4.0  & 10/07/20 & New problems                            &   23291 & 23204 \\
+v7.5.0  & 13/07/21 & New problems                            &   24098 & 24113 \\
+v8.0.0  & 19/04/22 & First TXF problems                      &   24785 & 24113 \\
+v8.1.0  & 30/07/22 & New problems                            &   25257 & 25189 \\
+v8.2.0  & 13/06/23 & New problems                            &   25474 & 25411 \\
 \end{tabular}
 \end{center}
 \caption{Overview of TPTP releases}
@@ -328,9 +331,9 @@ Since 2014 the ATP systems have been run on StarExec \cite{SST14}, initially on 
 Iowa cluster, and since 2018 on the StarExec Miami cluster.
 StarExec has provided stable platforms that produce reliably consistent and comparable data in
 the TSTP.
-For that reason the analyses presented in Section~\ref{AnalysisProcesses} start at TPTP v6.2.0, 
-which was released in July 2015, i.e., the problem ratings were based on data produced on the 
-StarExec computers.
+The analyses presented in Section~\ref{AnalysisProcesses} start at TPTP v6.3.0, which was released 
+in November 2015, by which time the problem ratings were consistently and reliably based on data 
+produced on the StarExec computers.
 
 The StarExec Iowa computers have an 
 quad-core Intel(R) Xeon(R) CPU E5-2609 CPU run at 2.40 GHz,
@@ -397,10 +400,22 @@ The performance data in the TSTP is produced with adequate resource limits.
 The analyses performed use the TPTP problem ratings, and historical data about which
 ATP systems solved which problems in each TPTP release provided in the 
 {\tt ProblemAndSolutionStatistics} file that accompanies each TPTP release.
-As explained in Section~\ref{TSTP}, TSTP data starting from TPTP v6.2.0 in July 2015 has been
+As explained in Section~\ref{TSTP}, TSTP data starting from TPTP v6.3.0 in November 2015 has been
 used, taking snapshots at each TPTP edition up to v8.2.0.
 
 Before analysis the rating data is cleaned in two steps:
+
+\paragraph{Cleaning for Bias:}
+The TPTP tags problems that are designed specifically to be suited or ill-suited to some ATP 
+system, calculus, or control strategy as {\em biased}. 
+This includes the {\tt SYN000} problems, which are designed for test ATP systems' parsers.
+The biased problems are excluded from the analysis.
+
+\paragraph{Cleaning for Bugfixes:}
+Over time there are problems that have to be removed from the TPTP because they are renamed,
+duplicates, wrongly formulated, etc.
+Such problems in a TPTP release are thus not in subsequent releases.
+The removed problems are excluded from the analysis.
 
 \paragraph{Cleaning for the Past:}
 Problems are added to the TPTP in each release, and corresponding TSTP data is generated using 
@@ -409,28 +424,21 @@ As it is not possible to run all previously available ATP systems on new problem
 are added to the TPTP, it is reasonble to assume that if a new problem is unsolved by the 
 current ATP systems when it is added to the TPTP, then it would have been unsolved by 
 previously available ATP systems.
-The rating data can thus be augmented for problems added after v6.2.0 with an initial rating 
+The rating data can thus be augmented for problems added after v6.3.0 with an initial rating 
 of 1.00 (unsolved), by setting the problems' ratings in prior TPTP releases to 1.00.
 This, however, can lead to an unfairly optimistic view of progress, because those retrospectively 
 added 1.00 ratings increase the average problem rating in the past.
-For problems added after v6.2.0 with an initial rating less than 1.00, it is unknown if the
+For problems added after v6.3.0 with an initial rating less than 1.00, it is unknown if the
 previously available ATP systems would have been able to solve them.
 Augmenting the rating data by setting the problems' ratings in prior TPTP releases to their 
 initial rating can lead to a pessimistic view of progress, because those retrospectively
 added ratings decrease the average problem rating in the past.
 The optimistic/pessimistic effect gets stronger when rating data is augmented for problems that
 were added in more recent TPTP releases.
-In this work the rating data was augmented for all problems added after v6.2.0.
-That results in 4739 or 4825 problems having their ratings augmented, 4638 by 1.00 and 187 by less than 
+In this work the rating data was augmented for all problems added after v6.3.0.
+That results in 5243 problems having their ratings augmented, 2195 by 1.00 and 3048 by less than 
 1.00.
-Of the 4638 problems that were unsolved when they added to the TPTP, KKKK were solved by v8.2.0.
-SOMETHING DOESN'T ADD UP HERE.
-  4825 AddedBy-v8.2.0
-  4739 Added
-   187 AddedSolved
-  4559 AddedUnsolved
-% 3451 problems are ignored, so that the analysis is done over the 22023 problems that were in
-% v7.2.0 and not subsequently removed.
+Of the 2195 problems that were unsolved when they added to the TPTP, 1475 were solved by v8.2.0.
 
 \paragraph{Cleaning for Change:}
 A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
