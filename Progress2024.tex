@@ -481,11 +481,17 @@ Additionally, some SPCs that that capture compatible problem characteristic can 
 to form a coherent set.
 
 The coherent SPC sets used for the analyses are listed in Table~\ref{SPCSetsTable}.
-The first column lists the SPCs that are in the set, using the abbreviations given in 
+The SPCs column lists the SPCs that are in the set, using the abbreviations given in 
 Section~\ref{SPCs}.
-The second column describes the set, explaining why it is coherent.
+The Description column describes the set, explaining why it is coherent.
 The third column gives the number of problems after the data cleaning, and the original
 total number of problems in the set in TPTP v8.2.0.
+The Anal/Size column gives the number of problems in TPTP v8.2.0, and the number of problems 
+left for analysis after the data cleaning described in Section~\ref{AnalysisData}.
+The acronyms for problem types are listed in Section~\ref{SPCs}.
+The 1.00/0.00 columns gives the number of problems with rating 1.00 in TPTP v6.3.0, and the number
+of problems with rating 0.00 in v8.2.0.
+
 Some noteworthy exclusions are:
 typed extended first-order problems because they were added to the TPTP only in v8.0.0;
 typed polymorphic first-order and higher-order problems excluded because too few systems are 
@@ -493,46 +499,44 @@ capable of attempting the problems and generating the necessary TSTP data;
 some SPCs that have too few problems, e.g., {\tt TF0\_CSA\_\*\_NAR} and {\tt TF0\_SAT\_\*\_NAR} 
 which combined have only 154 problems.
 
-\renewcommand{\arraystretch}{1.5}
 \begin{table*}[h!]
+\renewcommand{\arraystretch}{1.5}
 \center
-\begin{tabular}{p{3.5cm}|p{7cm}|R{1cm}}
+\begin{tabular}{p{3.5cm}|p{6.5cm}|R{0.7cm}R{0.7cm}}
 \hline
-SPCs & Description & Size \\
+SPCs & Description & Anal Size & 1.00 0.00 \\
 \hline
 {\tt CNF\_UNS\_RFO\_NEQ\_*}\enspace$\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*}\enspace$\cup$
 {\tt CNF\_UNS\_RFO\_PEQ\_NUE} &
 Unsatisfiable sets of really first-order Horn and non-Horn clauses that are not unit equality.
-& 4441 4445 \\  % 1115 + 2785 + 545 = 4445 problems in v8.2.0
+% 1115 + 2785 + 545 = 4445 problems in v8.2.0
+& 4441 4445 & 568 1780 \\
 {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} &
 Unsatisfiable sets of really-first-order unit equality clauses.
-& 1140 1140 \\
+& 1140 1140 & 120 233 \\
 {\tt CNF\_SAT\_RFO\_*} &
 Satisfiable sets of really-first-order Horn and non-Horn clauses.
-& 1042 1044 \\
+& 1042 1044 & 155 598 \\
 {\tt CNF\_*\_EPR\_*} &
-Unsatisfiable and satisfiable sets of effectively propositional Horn and non-Horn clauses.
-Un/Satisfiable sets are coherent because effectively propositional sets are decidable.
-& 888 897 \\
+Unsatisfiable and satisfiable sets of effectively propositional (EPR) Horn and non-Horn clauses.
+Un/Satisfiable sets are coherent because EPR sets are decidable.
+& 888 897 & 69 780 \\
 {\tt FOF\_THM\_RFO\_*} &
-Really first-order theorems, with and without equality.
-& 7201 7204 \\
+Really first-order theorems, with or without equality.
+& 7202 7204 & 1116 971 \\
 {\tt FOF\_CSA\_RFO\_*}\enspace$\cup$ {\tt FOF\_SAT\_RFO\_*} &
 Really first-order non-theorems and satisfiable sets, with and without equality.
-& 1028 1329 \\ % 707 + 322 = 1329 problems.
+% 707 + 322 = 1329 problems.
+& 1028 1329 & 282 709 \\
 {\tt TF0\_THM\_*\_NAR} &
-Typed monomorphic first-order theorems, with and without equality, without arithmetic.
-& 397 400 \\
+Typed monomorphic first-order theorems, with and without equality, no arithmetic.
+& 397 400 & 120 123 \\
 {\tt TF0\_THM\_*\_ARI} &
 Typed monomorphic first-order theorems, with and without equality, with arithmetic.
-& 1087 1176 \\
-% {\tt TF0\_CSA\_*\_NAR}\enspace$\cup$ {\tt TF0\_SAT\_*\_NAR} &
-% Typed monomorphic first-order non-theorems and satisfiable sets, with and without equality, without 
-% arithmetic.
-% & 154 155 \\ % 35 + 120  TOO FEW?
+& 1087 1176 & 172 785 \\
 {\tt TH0\_THM\_*\_NAR} &
-Typed monomorphic higher-order theorems, with and without equality, without arithmetic.
-& 3183 3189 \\
+Typed monomorphic higher-order theorems, with and without equality, no arithmetic.
+& 3183 3189 & 461 1244 \\
 \hline
 \end{tabular}
 \vspace*{0.5em}
