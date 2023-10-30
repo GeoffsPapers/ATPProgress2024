@@ -98,7 +98,7 @@ plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "TF0_THM_NAR.txt" using 2:6 pointsize 0.8 title "Shapley value"
 
 set output "TH0_THM_NAR.pdf"
-set key at "07/01/23",0.96
+set key at "07/01/23",0.66
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "TH0_THM_NAR.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "TH0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
