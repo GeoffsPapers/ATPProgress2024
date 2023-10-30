@@ -94,8 +94,8 @@ The web page \href{https://www.tptp.org}{\tt www.tptp.org} provides access to al
 components.
 
 Any sound progress metric must refer to the ability of systems to solve problems.
-While the systems improve, the problems that they have to solve also change to meet the 
-evolving needs of users.
+While the systems improve the problem that they must solve also change, to meet the demands
+of users.
 (If there is a fixed set of problems then the systems can simply be finely tuned to solve that
 fixed set, with inevitable asymptotic progress towards solving all the problems.)
 The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
@@ -278,9 +278,9 @@ in unit equality clauses;
 to be reducible to propositional logic) and contain some (not only) equality;
 {\tt TF0\_THM\_NEQ\_ARI} -- typed monomorphic first-order theorems that have no equality but do
 include arithmetic.
-Combinations of SPCs are written using UNIX globbing, e.g., {\tt TH0\_CSA\_*\_NAR} is the
-combination of {\tt TH0\_CSA\_EQU\_NAR} and {\tt TH0\_CSA\_NEQ\_NAR} -- typed monomorphic 
-higher-order countersatisfiable (non-theorem) problems either with or without equality.
+Combinations of SPCs are written using UNIX globbing, e.g., {\tt TF0\_THM\_*\_NAR} is the
+combination of {\tt TF0\_THM\_EQU\_NAR} and {\tt TF0\_THM\_NEQ\_NAR} -- typed monomorphic 
+higher-order theorems problems, either with or without equality, but no arithmetic.
 
 The SPCs are used when computing the TPTP problem ratings.
 
@@ -444,27 +444,26 @@ Of the 2195 problems that were unsolved when they added to the TPTP, 1475 were s
 A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
 increase with time, because they are computed wrt the TSTP data from all the currently available
 ATP systems.
-Increases are caused by new ATP systems becoming available.
-The TSTP data of a new system that is not subsumed (no other system solves all the problems 
-that the new system solves) is used in the rating process.
+Increases are caused by new ATP systems and system versions becoming available.
+If a new system is not subsumed (no other system solves all the problems that the new system 
+solves) then its TSTP is used in the rating process.
 The ratings of problems that the new system solves decrease, but at the same time the ratings of
-problems that the new system does not solve increase.\footnote{%
+problems that the new system does not solve increase\footnote{%
 Conversely, if a system that was not subsumed becomes unavailable, it does not contribute TSTP
 data for new problems.
 The new problems have higher ratings than they would have had if the system had remained
 available.
 Since the TSTP data started being generated on StarExec, this has been a rare occurrence, e.g.,
 Isabelle ran fine on StarExec Iowa, but did not port to StarExec Miami in 2018.
-This has not materially impacted the analyses of progress.}
-An increase of a problem's rating is counterintuitive because the problem has not changed, and 
-it can still be solved by the previously available systems.
+This has not materially impacted the analyses of progress.} -- you have to ``pay the piper''.
+% An increase of a problem's rating is counterintuitive because the problem has not changed, and 
+% it can still be solved by the previously available systems.
 This anomaly was noted in prior analysis \cite{Sut17} where it was noted: ``The ratings generally 
 show a downward trend - there has been progress!'', but ``ratings can also increase when data 
 from new systems is added to the TSTP.''
-This anomaly is resolved by tracking each problem's rating forwards in time from the point 
-that it was added to the TPTP.
-If at any release the rating increases, for analysis the rating is reduced to its prior
-lower rating value.
+In this work the anomaly is resolved by taking the view that if a problem has been solved in any 
+TPTP release, then it remains solved in subsequent releases even if the TSTP data from the 
+system/version that solved it is not used in computing the problem's rating.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Coherent SPC Sets}
@@ -488,10 +487,11 @@ The second column describes the set, explaining why it is coherent.
 The third column gives the number of problems after the data cleaning, and the original
 total number of problems in the set in TPTP v8.2.0.
 Some noteworthy exclusions are:
-Typed extended first-order problems because they were added to the TPTP only in v8.0.0;
-Typed polymorphic first-order and higher-order problems excluded because too few systems are 
+typed extended first-order problems because they were added to the TPTP only in v8.0.0;
+typed polymorphic first-order and higher-order problems excluded because too few systems are 
 capable of attempting the problems and generating the necessary TSTP data;
-Some SPCs that have too few problems.
+some SPCs that have too few problems, e.g., {\tt TF0\_CSA\_\*\_NAR} and {\tt TF0\_SAT\_\*\_NAR} 
+which combined have only 154 problems.
 
 \renewcommand{\arraystretch}{1.5}
 \begin{table*}[h!]
@@ -526,10 +526,10 @@ Typed monomorphic first-order theorems, with and without equality, without arith
 {\tt TF0\_THM\_*\_ARI} &
 Typed monomorphic first-order theorems, with and without equality, with arithmetic.
 & 1087 1176 \\
-{\tt TF0\_CSA\_*\_NAR}\enspace$\cup$ {\tt TF0\_SAT\_*\_NAR} &
-Typed monomorphic first-order non-theorems and satisfiable sets, with and without equality, without 
-arithmetic.
-& 154 155 \\ % 35 + 120  TOO FEW?
+% {\tt TF0\_CSA\_*\_NAR}\enspace$\cup$ {\tt TF0\_SAT\_*\_NAR} &
+% Typed monomorphic first-order non-theorems and satisfiable sets, with and without equality, without 
+% arithmetic.
+% & 154 155 \\ % 35 + 120  TOO FEW?
 {\tt TH0\_THM\_*\_NAR} &
 Typed monomorphic higher-order theorems, with and without equality, without arithmetic.
 & 3183 3189 \\
@@ -541,7 +541,7 @@ Typed monomorphic higher-order theorems, with and without equality, without arit
 \end{table*}
 
 %--------------------------------------------------------------------------------------------------
-\subsection{Four Analyses}
+\subsection{Five Analyses}
 \label{AnalysisTypes}
 
 The cleaned rating and the historical data is used for four analyses of progress.
@@ -588,22 +588,28 @@ Some examples are:
 \noindent
 The results of the following three analyses are presented in Section~\ref{Evidence}.
 
-\paragraph{Fraction Solved:}
-The first overall analysis looks at the fraction of problems solved in each TPTP release --
-this approach was used in \cite{SSP21}.
-It is simply the fraction of problems with rating less than 1.00.
-This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
+\paragraph{Fraction Unsolved:}
+The first overall analysis looks at the fraction of problems that have had a rating 1.00 
+(unsolved) up to each TPTP release, relative to the number of unsolved problems in v6.3.0.
+Decreasing fractions are evidence of progress, with more problems being solved by an ATP system.
+% This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
+
+\paragraph{Fraction Easy:}
+This is the converse of Fraction Unsolved -- the fraction of problems that have had a rating of 
+0.00 (easy) up to each TPTP release, relative to the number of easy problems in v8.2.0.
+Decreasing fractions are evidence of progress, with more problems being solved by the 
+state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
 
 \paragraph{Decreasing Ratings:}
 A more fine-grained analysis is provided by the decrease in problem difficulty ratings over
 time -- this approach was used in \cite{SFS01}.
-The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
-the ratings decrease
-As the problems are unchanged (they are not actually getting easier) this is evidence that 
-the state-of-the-art in ATP systems is improving.
-This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
-SPC set.
+% The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
+% the ratings decrease
+As the problems are unchanged (they are not actually getting easier), decreasing ratings are 
+evidence of progress in the state-of-the-art in ATP systems.
+% This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
+% SPC set.
 
 \paragraph{Shapley Values:}
 Another quite fine-grained analysis is provided through the use of Shapley values 
@@ -664,14 +670,14 @@ individual systems that made most strong contributions to strong SotA systems.
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_NUE.pdf}
   \vspace*{-2em}
-  \caption{{\tt CNF\_UNS\_RFO\_\{NEQ\_*,SEQ\_*,PEQ\_NUE\}}}
+  \caption{{\tt CNF\_UNS\_RFO\_*\_NUE}}
   \label{Plot_CNF_UNS}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_PEQ_UEQ.pdf}
   \vspace*{-2em}
   \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
   \label{Plot_CNF_UEQ}
@@ -681,14 +687,14 @@ individual systems that made most strong contributions to strong SotA systems.
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_SAT_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt CNF\_SAT\_RFO\_*}}
   \label{Plot_CNF_SAT}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_EPR.pdf}
   \vspace*{-2em}
   \caption{{\tt CNF\_*\_EPR\_*}}
   \label{Plot_CNF_EPR}
@@ -701,14 +707,14 @@ Commentary for CNF.
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_THM_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt FOF\_THM\_RFO\_*}}
   \label{Plot_FOF_THM}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_CSA_SAT_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt FOF\_\{CSA,SAT\}\_RFO\_*}}
   \label{Plot_FOF_SAT}
@@ -721,14 +727,14 @@ Commentary for FOF.
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TF0_THM_NAR.pdf}
   \vspace*{-2em}
   \caption{{\tt TF0\_THM\_*\_NAR}}
   \label{Plot_TF0_THM_NAR}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TF0_THM_ARI.pdf}
   \vspace*{-2em}
   \caption{{\tt TF0\_THM\_*\_ARI}}
   \label{Plot_TF0_THM_ARI}
@@ -738,14 +744,7 @@ Commentary for FOF.
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
-  \vspace*{-2em}
-  \caption{{\tt TF0\_\{CSA,SAT\}\_*\_NAR}}
-  \label{Plot_TF0_SAT_NAR}
-\end{minipage}
-\begin{minipage}[t]{.49\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/TestData.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/TH0_THM_NAR.pdf}
   \vspace*{-2em}
   \caption{{\tt TH0\_THM\_*\_NAR}}
   \label{Plot_TH0_THM_NAR}

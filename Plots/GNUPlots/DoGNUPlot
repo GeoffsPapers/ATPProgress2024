@@ -1,7 +1,6 @@
 set terminal pdf 
-set output "TestData.pdf"
 set style data linespoints
-set xlabel "Release date" offset 0,0 
+# set xlabel "Release date" offset 0,0 
 # set ylabel "Rating" offset 1
 set rmargin 4.0
 
@@ -19,8 +18,8 @@ set x2data time
 set format x2 "%g"
 set x2tics rotate by 45
 unset mx2tics
-set x2tics ("v6.2.0" "07/14/15") 
-set x2tics add ("v6.3.0" "11/28/15")
+#----First one no "add"
+set x2tics ("v6.3.0" "11/28/15")
 set x2tics add ("v6.4.0" "06/31/16")
 set x2tics add ("v7.0.0" "07/24/17")
 set x2tics add ("v7.1.0" "03/06/18")
@@ -33,9 +32,75 @@ set x2tics add ("v8.1.0" "07/30/22")
 set x2tics add ("v8.2.0" "06/13/23")
 
 set grid
-set key at "01/01/18",0.95
-plot ["06/15/15":"07/01/23"] [0:1] \
-"TestData.txt" using 2:3 title "Fraction solved",\
-"TestData.txt" using 2:4 title "Average rating",\
-"TestData.txt" using 2:5 title "Shapley value"
 
+set output "CNF_EPR.pdf"
+set key at "07/01/23",0.95
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"CNF_EPR.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_EPR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_EPR.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_EPR.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "CNF_SAT_RFO.pdf"
+set key at "07/01/23",0.82
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"CNF_SAT_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_SAT_RFO.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "CNF_UNS_RFO_NUE.pdf"
+set key at "07/01/23",0.66
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"CNF_UNS_RFO_NUE.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_UNS_RFO_NUE.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_UNS_RFO_NUE.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_UNS_RFO_NUE.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "CNF_UNS_RFO_PEQ_UEQ.pdf"
+set key at "07/01/23",0.66
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"CNF_UNS_RFO_PEQ_UEQ.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_UNS_RFO_PEQ_UEQ.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_UNS_RFO_PEQ_UEQ.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_UNS_RFO_PEQ_UEQ.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "FOF_CSA_SAT_RFO.pdf"
+set key at "07/01/23",0.82
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"FOF_CSA_SAT_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"FOF_CSA_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"FOF_CSA_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"FOF_CSA_SAT_RFO.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "FOF_THM_RFO.pdf"
+set key at "07/01/23",0.42
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"FOF_THM_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"FOF_THM_RFO.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"FOF_THM_RFO.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"FOF_THM_RFO.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "TF0_THM_ARI.pdf"
+set key at "07/01/23",0.82
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"TF0_THM_ARI.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"TF0_THM_ARI.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"TF0_THM_ARI.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"TF0_THM_ARI.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "TF0_THM_NAR.pdf"
+set key at "07/01/23",0.83
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"TF0_THM_NAR.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"TF0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"TF0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"TF0_THM_NAR.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "TH0_THM_NAR.pdf"
+set key at "07/01/23",0.96
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"TH0_THM_NAR.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"TH0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"TH0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"TH0_THM_NAR.txt" using 2:6 pointsize 0.8 title "Shapley value"
