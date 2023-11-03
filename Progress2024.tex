@@ -31,7 +31,7 @@
 
 \begin{document}
 
-\title{Empirical Evidence of Progress in ATP}
+\title{An Empirical Assessment of Progress in ATP}
 \titlerunning{Progress in ATP}
 
 \author{
@@ -64,10 +64,14 @@ University of Wyoming, USA,
 \begin{abstract}
 The TPTP World is a well established infrastructure that supports research, development, and 
 deployment of Automated Theorem Proving (ATP) systems
-Two major components of the TPTP World are the TPTP problem library and the TSTP solution library.
-Data in the TPTP and TSTP has been used to assess progress in ATP in the last decade, in
-terms of first solutions of problems that are of direct interest to humans, the fraction of
-problems solved, decreasing problem difficulty ratings, and temporal Shapley values.
+Data in the TPTP World has been used to assess progress in ATP in the last decade, in
+terms of 
+first solutions of problems that are of direct interest to humans, 
+the fraction of unsolved problems, 
+the fraction of easy problems,
+decreasing problem difficulty ratings, 
+and 
+temporal Shapley values.
 The analyses show WHAT?
 
 \keywords{Automated Theorem Proving \and Empirical Evaluation \and Progress in ATP}
@@ -93,31 +97,33 @@ in both academia and industry.
 The web page \href{https://www.tptp.org}{\tt www.tptp.org} provides access to all 
 components.
 
-Any sound progress metric must refer to the ability of systems to solve problems.
-While the systems improve the problem that they must solve also change, to meet the demands
-of users.
+Any meaningful assessment of progress in ATP must refer to the ability of systems to solve 
+ATP problems.
+As the ATP systems are improved over time, the problems that they must solve also change to meet 
+the demands of applications.
 (If there is a fixed set of problems then the systems can simply be finely tuned to solve that
 fixed set, with inevitable asymptotic progress towards solving all the problems.)
 The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
-ATP users, and is an appropriate basis for evaluating the changing ability of ATP systems.
-Alongside the TPTP TPTP problem library, the TSTP solution library provides the data about ATP 
+ATP users, and is an appropriate basis for assessing the changing ability of ATP systems.
+Alongside the TPTP problem library, the TSTP solution library provides data about ATP 
 systems' abilities to solve the problems in the TPTP problem library.
 This paper examines the progress in ATP, based on the data from TPTP v6.3.0 released on 
 28th November 2015 to TPTP v8.2.0 released on 13th June 2023.
-Four analyses are considered:
+Five analyses are considered:
 (i)~First ATP solutions of individual problems that are of direct interest to humans;
-(ii)~The fraction of problems solved over fixed coherent sets of problems;
-(iii)~The decrease in problem difficulty ratings over fixed coherent sets of problems;
-(iv)~Shapley values over time and at fixed points in time.
-All four analyses are fundamentally based on the ability of ATP systems to solve problems, and 
+(ii)~The fraction of unsolved problems over fixed coherent sets of problems;
+(iii)~The fraction of easy problems over fixed coherent sets of problems;
+(iv)~The decrease in problem difficulty ratings over fixed coherent sets of problems;
+(v)~Shapley values over time and at fixed points in time.
+All five analyses are fundamentally based on the ability of ATP systems to solve TPTP problems, and 
 do not explicitly factor in the resources needed to find solutions, e.g., hardware, time limits, 
-etc. -- Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
+etc. 
+Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
 
 The use of system performance data to evaluate a field of endeavour is common.
 In the realm of logic-based systems, examples include
-the various compititions for logic-based systems, e.g., CASC \cite{Sut16}, SAT Competition 
-\cite{JL+12}, SMT-COMP \cite{BdS05}, ASP Competition \cite{CI+12} (\cite{BB+19} provides an 
-overview of these and other competitions),
+the various compititions \cite{BB+19} for logic-based systems, e.g., CASC \cite{Sut16}, the SAT 
+Competition \cite{JL+12}, SMT-COMP \cite{BdS05,CSW15}, the ASP Competition \cite{CI+12},
 the Technical Performance chapter of Stanford University's AI Index Annual Report \cite{MF+23},
 the use of Shapley values to evaluate algorithmic improvements in SAT solving \cite{FK+16,KF+19},
 and
@@ -126,13 +132,13 @@ A general examination of the requirements for such benchmarking is provided by \
 In all cases the common features of the evaluation are (i)~the ability of systems solve given test
 problems, and (ii)~the resources required by the systems to solve those test problem.
 In order for the results to be relevant, the test problems must be representative of the problems
-the systems will face in research or industrial applications, and the resource measurements must
-be appropriate for the availability and demands of the applications.
+the systems will face in applications, and the resource measurements must be appropriate for 
+the availability and demands of the applications.
 
 It is important to differentiate between evaluations at instances in time, such as provided by
 competitions, and evaluation over time.
 At instances of time the test problems used for evaluation, the systems being evaluated, and
-the hardware/software platform used are static.
+the hardware/software platform used, are static.
 That provides a clean basis for detailed comparison between systems.
 In contrast, evaluation over time is complicated by changing test problems, changing systems,
 and changing hardware/software.
@@ -155,13 +161,13 @@ The problems can be browsed online\footnote{%
 \href{https://www.tptp.org/cgi-bin/SeeTPTP?Category=Problems}
 {\tt www.tptp.org/cgi-bin/SeeTPTP?Category=Problems}}
 and documentation is available\footnote{%
-\href{https://www.tptp.org/cgi-bin/SeeTPTP?Category=Documents\&File=OverallSynopsis}
+\href{https://www.tptp.org/cgi-bin/SeeTPTP?Category=Documents}
 {\tt www.tptp.org/cgi-bin/SeeTPTP?Category=Documents\&File=OverallSynopsis}}.
 Each release of the problem library is identified by a number in the form 
 $version$.$edition$.$patch$.
 The $version$ is incremented when important new features are added,
 the $edition$ is incremented when new problems are added, and
-the $patch$ level is incremented when errors have been corrected.
+the $patch$ is incremented when errors have been corrected.
 The current release is v8.2.0.
 Section~\ref{TSTP} explains why the analyses of progress presented in this paper start at
 TPTP~v6.3.0.
@@ -195,9 +201,7 @@ v8.2.0  & 13/06/23 & New problems                            &   25474 & 25325 \
 \label{TPTPReleases}
 \end{table}
 
-The TPTP problem files present the logical formulae in a format that is both human and machine 
-readable, and additionally provide useful information for users.
-Each problem file has a header section (as comments) that file contains information for users
+Each TPTP problem file has a header section (as comments) that file contains information for users
 in four parts:
 the first part identifies and describes the problem;
 the second part provides information about occurrences of the problem in the literature and 
@@ -217,7 +221,7 @@ of the problem.
 \subsection{Specialist Problem Classes}
 \label{SPCs}
 
-The problems in the library are divided into Specialist Problem Classes (SPCs) - classes of 
+The problems in the TPTP library are divided into Specialist Problem Classes (SPCs) -- classes of 
 homogeneous problems with the same recognizable logical, language, and syntactic characteristics.
 % SPCs added in v4.1.0 15/06/10
 Evaluation of ATP systems within SPCs makes it possible to say which systems work well for what 
@@ -235,47 +239,46 @@ appropriate \cite{FS02}.
 The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
 \begin{enumerate}
 \item TPTP language: \\
-      {\tt CNF} -- Clause Normal Form,
-      {\tt FOF} -- First-Order Form, \\
-      {\tt TF0} -- Typed Monomorphic First-order form, \\
-      {\tt TF1} -- Typed Polymorphic First-order form , \\
-      {\tt TX0} -- Typed Monomorphic eXtended First-order form, \\
-      {\tt TX1} -- Typed Polymorphic eXtended First-order form, \\
-      {\tt TH0} -- Typed Monomorphic Higher-order form, \\
-      {\tt TH1} -- Typed Polymorphic Higher-order form.
+      {\tt CNF} -- Clause Normal Form
+      {\tt FOF} -- First-Order Form \\
+      {\tt TF0} -- Typed Monomorphic First-order form \\
+      {\tt TF1} -- Typed Polymorphic First-order form \\
+      {\tt TX0} -- Typed Monomorphic eXtended First-order form \\
+      {\tt TX1} -- Typed Polymorphic eXtended First-order form \\
+      {\tt TH0} -- Typed Monomorphic Higher-order form \\
+      {\tt TH1} -- Typed Polymorphic Higher-order form
 \item SZS status: \\
-      {\tt THM} (includes {\tt CAX}) -- Theorem (includes Contradictory AXioms), \\
-      {\tt CSA} -- CounterSAtisfiable,
-      {\tt UNS} -- UNSatisfiable, \\
-      {\tt SAT} -- SATisfiable,
-      {\tt OPN} -- OPeN, 
-      {\tt UNK} -- UNKown.
+      {\tt THM} (includes {\tt CAX}) -- Theorem (includes Contradictory AXioms) \\
+      {\tt CSA} -- CounterSAtisfiable \\
+      {\tt UNS} -- UNSatisfiable \\
+      {\tt SAT} -- SATisfiable \\
+      {\tt OPN} -- OPeN  \\
+      {\tt UNK} -- UNKown
 \item Order (for {\tt CNF} and {\tt FOF}): \\
-      {\tt RFO} -- Real First-Order (not thought to be reducaible to~\ldots),\\
-      {\tt EPR} -- Effectively PRopositional (can be reduced to~\ldots),\\
-      {\tt PRP} -- PRoPositional.
+      {\tt PRP} -- PRoPositional \\
+      {\tt EPR} -- Effectively PRopositional (known to be reducible to {\tt PRP}) \\
+      {\tt RFO} -- Real First-Order (not known to be reducible to {\tt PRP})
 \item Equality: \\
-      {\tt NEQ} -- No EQuality,
-      {\tt EQU} -- EQUality (some or pure), \\
-      {\tt SEQ} -- Some (not pure) EQUality, \\
-      {\tt PEQ} -- Pure EQUality (for {\tt CNF} qualified as either~\ldots),\\
-      {\tt UEQ} -- Unit EQUality or
-      {\tt NUE} -- Non-Unit Equality.
+      {\tt NEQ} -- No EQuality \
+      {\tt EQU} -- EQUality (some or pure) \\
+      {\tt SEQ} -- Some (not pure) EQUality \\
+      {\tt PEQ} -- Pure EQUality (for {\tt CNF}: either {\tt UEQ} or {\tt NUE}) \\
+      {\tt UEQ} -- Unit EQUality \\
+      {\tt NUE} -- Non-Unit Equality
 \item Hornness (for {\tt CNF}): \\
-      {\tt HRN} -- HoRN,
-      {\tt NHN} -- Non-HorN.
+      {\tt HRN} -- HoRN
+      {\tt NHN} -- Non-HorN
 \item Arithmetic (for {\tt T*} languages): \\
-      {\tt NAR} -- No ARithmetic,
+      {\tt NAR} -- No ARithmetic \\
       {\tt ARI} -- ARIthmetic.
 \end{enumerate}
 
 Using these characteristics 223 SPCs are defined in TPTP v8.2.0.
 Some examples are:
 {\tt CNF\_SAT\_EPR\_PEQ\_UEQ} -- clause normal form satisfiable clauses that are effectively
-propositional (known to be reducible to propositional logic), have purely equality literals
-in unit equality clauses;
-{\tt FOF\_THM\_RFO\_SEQ} -- first-order theorems that are ``really first-order'' (not believed
-to be reducible to propositional logic) and contain some (not only) equality;
+propositional, have purely equality literals in unit equality clauses;
+{\tt FOF\_THM\_RFO\_SEQ} -- first-order theorems that are ``really first-order'' (not known
+to be effectively propositional), and contain some (not only) equality;
 {\tt TF0\_THM\_NEQ\_ARI} -- typed monomorphic first-order theorems that have no equality but do
 include arithmetic.
 Combinations of SPCs are written using UNIX globbing, e.g., {\tt TF0\_THM\_*\_NAR} is the
@@ -292,8 +295,7 @@ Each TPTP problem has a difficulty rating that provides a well-defined measure o
 the problem is for current ATP systems \cite{SS01}.
 The ratings are based on performance data in the TSTP (see Section~\ref{TSTP}), and are updated
 in each TPTP edition.
-Rating is done separately for each SPC, to provide a rating that compares problems with the
-same characteristics.
+Rating is done separately for each SPC.
 A partial order between systems is determined according to whether or not a system solves a strict 
 superset of the problems solved by another system. 
 If a strict superset is solved, the first system is said to {\em subsume} the second system. 
@@ -314,17 +316,20 @@ The complement of the problem library is the TSTP solution library \cite{Sut07-C
 % Started as the results collection for the TPTP circa 1997, became the TSTP circa 2002.
 The TSTP is built by running all the ATP systems that are available in the TPTP World on
 all the problems in the TPTP problem library.
-The ATP systems have come from a range of sources:
+The ATP systems come from a range of sources:
 some were developed many years ago, and are no longer distributed;
 some are the most recent available, taken either from the systems’ web sites or from the most 
-recent edition of the CADE ATP System Competition (CASC) \cite{Sut16}.
+recent edition of CASC.
 At the time of writing this paper, the TSTP contained the results of running 87 ATP systems and 
 system variants on all the problems in the TPTP that they could attempt.
 % (therefore, e.g., systems that do model finding for FOF are not run on THF problems).
 This has produced 1091026 runs, of which 432718 (39.6\%) solved the problem.
+One use of the TSTP is for ATP system developers to examine solutions to problems and thus 
+understand how they can be solved, leading to improvements to their own systems. 
+The use considered here is as the basis for TPTP problem ratings.
 
 % User hardware at first, moved to my servers around 2010, then StarExec Iowa \cite{SST14} in 2012,
-Prior to 2010 the data in the TSTP came from results submitted by ATP system developers who
+Prior to 2010 the data in the TSTP came from results submitted by ATP system developers, who
 performed testing on their own hardware.
 From 2010 to 2013 the data was generated on the TPTP World servers at the University of Miami.
 Since 2014 the ATP systems have been run on StarExec \cite{SST14}, initially on the StarExec
@@ -332,8 +337,9 @@ Iowa cluster, and since 2018 on the StarExec Miami cluster.
 StarExec has provided stable platforms that produce reliably consistent and comparable data in
 the TSTP.
 The analyses presented in Section~\ref{AnalysisProcesses} start at TPTP v6.3.0, which was released 
-in November 2015, by which time the problem ratings were consistently and reliably based on data 
-produced on the StarExec computers.
+in November 2015. 
+By that time the problem ratings were consistently and reliably based on data produced on the 
+StarExec computers.
 
 The StarExec Iowa computers have an 
 quad-core Intel(R) Xeon(R) CPU E5-2609 CPU run at 2.40 GHz,
@@ -350,19 +356,15 @@ limit (see Section~\ref{ResourceLimits}).
 The minor differences between the Iowa and Miami configurations can be ignored for the task
 of ``solving problems'', as is explained in Section~\ref{ResourceLimits}.
 
-One use of the TSTP is for ATP system developers to examine solutions to problems and thus 
-understand how they can be solved, leading to improvements to their own systems. 
-The use considered here is as the basis for TPTP problem ratings.
-
 %--------------------------------------------------------------------------------------------------
 \subsection{Resource Limits}
 \label{ResourceLimits}
 
 Analysis shows that increasing resource limits does not significantly affect which problems 
 are solved by each ATP system. 
-Figure\ref{PPPPlot} illustrates this point.
-Figure\ref{PPPPlot} plots the CPU times taken by several contemporary ATP systems to solve the 
-TPTP problems for the SPCs {\tt FOF\_THM\_RFO\_*}, in increasing order of time taken. 
+Figure\ref{PPPPlot} illustrates this point; it plots the CPU times taken by several contemporary 
+ATP systems to solve the TPTP problems for the SPCs {\tt FOF\_THM\_RFO\_*}, in increasing order 
+of time taken. 
 The data was taken from the TSTP, i.e., using the StarExec Miami computers.
 The relevant feature of these plots is that each system has a point at which the time taken to 
 find solutions starts to increase dramatically. 
@@ -370,13 +372,13 @@ This point is called the system's Peter Principle \cite{PH69} Point (PPP), as it
 which the system has reached its level of incompetence. 
 Evidently a linear increase in the computational resources beyond the PPP would not lead to the 
 solution of significantly more problems. 
-The PPP thus defines a ``realistic computational resource limit'' for the system. 
+The PPP thus defines a realistic computational resource limit for the system. 
 From an ATP perspective, the PPP is the point at which the ATP system gets lost in its quickly 
 growing search space. 
 Even though there may be enough memory to represent the search space at the PPP, the system is 
 largely unable to find a solution within the space. 
-The point thus also defines a ``realistic memory resource limit''. 
-Therefore, provided that enough CPU time and memory are allowed for an ATP system to pass its 
+The point thus also defines a realistic memory resource limit. 
+Therefore, provided that enough CPU time and memory are allowed for an ATP system to reach its 
 PPP, a usefully accurate measure of what problems it can solve within realistic resource limits 
 is achieved.
 The performance data in the TSTP is produced with adequate resource limits.
@@ -397,34 +399,36 @@ The performance data in the TSTP is produced with adequate resource limits.
 \subsection{Analysis Data}
 \label{AnalysisData}
 
-The analyses performed use the TPTP problem ratings, and historical data about which
-ATP systems solved which problems in each TPTP release provided in the 
-{\tt ProblemAndSolutionStatistics} file that accompanies each TPTP release.
+The analyses performed in this assessment use the TPTP problem ratings, and historical data about 
+which ATP systems solved which problems in each TPTP release.
+The data was extracted from the {\tt ProblemAndSolutionStatistics} file that accompanies each TPTP 
+release, which summarizes information from the header fields of the TPTP problem files and
+corresponding TSTP solution files.
 As explained in Section~\ref{TSTP}, TSTP data starting from TPTP v6.3.0 in November 2015 has been
 used, taking snapshots at each TPTP edition up to v8.2.0.
 
-Before analysis the rating data is cleaned in two steps:
+Before analysis the rating data was cleaned as follows:
 
 \paragraph{Cleaning for Bias:}
 The TPTP tags problems that are designed specifically to be suited or ill-suited to some ATP 
 system, calculus, or control strategy as {\em biased}. 
 This includes the {\tt SYN000} problems, which are designed for test ATP systems' parsers.
-The biased problems are excluded from the analysis.
+The biased problems are excluded from the analyses.
 
 \paragraph{Cleaning for Bugfixes:}
 Over time there are problems that have to be removed from the TPTP because they are renamed,
 duplicates, wrongly formulated, etc.
 Such problems in a TPTP release are thus not in subsequent releases.
-The removed problems are excluded from the analysis.
+The removed problems are excluded from the analyses.
 
 \paragraph{Cleaning for the Past:}
 Problems are added to the TPTP in each release, and corresponding TSTP data is generated using 
-the currently available ATP systems.
+the available ATP systems.
 As it is not possible to run all previously available ATP systems on new problems when they 
-are added to the TPTP, it is reasonble to assume that if a new problem is unsolved by the 
+are added to the TPTP, it was (quite reasonably) assumed that if a problem is unsolved by the 
 current ATP systems when it is added to the TPTP, then it would have been unsolved by 
 previously available ATP systems.
-The rating data can thus be augmented for problems added after v6.3.0 with an initial rating 
+The rating data was thus augmented for problems added after v6.3.0 with an initial rating 
 of 1.00 (unsolved), by setting the problems' ratings in prior TPTP releases to 1.00.
 This, however, can lead to an unfairly optimistic view of progress, because those retrospectively 
 added 1.00 ratings increase the average problem rating in the past.
@@ -438,15 +442,13 @@ were added in more recent TPTP releases.
 In this work the rating data was augmented for all problems added after v6.3.0.
 That results in 5243 problems having their ratings augmented, 2195 by 1.00 and 3048 by less than 
 1.00.
-Of the 2195 problems that were unsolved when they added to the TPTP, 1475 were solved by v8.2.0.
 
 \paragraph{Cleaning for Change:}
 A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
 increase with time, because they are computed wrt the TSTP data from all the currently available
 ATP systems.
-Increases are caused by new ATP systems and system versions becoming available.
-If a new system is not subsumed (no other system solves all the problems that the new system 
-solves) then its TSTP is used in the rating process.
+Increases are caused by new ATP systems (or system versions) becoming available.
+If a new system is not subsumed then its TSTP data is used in the rating process.
 The ratings of problems that the new system solves decrease, but at the same time the ratings of
 problems that the new system does not solve increase\footnote{%
 Conversely, if a system that was not subsumed becomes unavailable, it does not contribute TSTP
@@ -456,29 +458,35 @@ available.
 Since the TSTP data started being generated on StarExec, this has been a rare occurrence, e.g.,
 Isabelle ran fine on StarExec Iowa, but did not port to StarExec Miami in 2018.
 This has not materially impacted the analyses of progress.} -- you have to ``pay the piper''.
-% An increase of a problem's rating is counterintuitive because the problem has not changed, and 
-% it can still be solved by the previously available systems.
+A common case of this phenomenon is a new system that can solve some previously unsolved
+(rating 1.00) problems, but that cannot solve a substantial number of problems that are solved
+by other systems (rating less than 1.00).
+An increase of a problem's rating is counterintuitive because the problem has not changed, and 
+it could still be solved by the previously available systems.
 This anomaly was noted in prior analysis \cite{Sut17} where it was noted: ``The ratings generally 
 show a downward trend - there has been progress!'', but ``ratings can also increase when data 
 from new systems is added to the TSTP.''
-In this work the anomaly is resolved by taking the view that if a problem has been solved in any 
-TPTP release, then it remains solved in subsequent releases even if the TSTP data from the 
-system/version that solved it is not used in computing the problem's rating.
+In this work the anomaly is resolved by additionally looking at {\em monomorphized ratings}:
+if a problem's rating in a TPTP release is greater than it's previous rating, the monomorphized 
+rating is set to the previous lower rating.
+Monomorphization of ratings makes clear sense in the case of problem that was unsolved (rating 
+1.00) and is then solved by a new system (rating drops to less than 1.00) -- if a problem is 
+solved, it cannot become unsolved -- the solving system still exists in principle.
+In cases where the rating is less than 1.00 monomorphization might considered to be ``cheating'',
+because ratings do have to ``pay the piper''.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Coherent SPC Sets}
 \label{SPCSets}
 
-Three of the analyses (as described in Section~\ref{AnalysisTypes}) look at the data for a set
-of problems.
-In order for such analyses to be meaningful it is necessary that the problems are reasonably
-coherent, so that the ATP systems whose TSTP data is used in the analysis are, at least
-in principle, able to attempt the problems.
+Four of the analyses performed (see Section~\ref{AnalysisTypes}) use the data for a set of 
+problems.
+In order for such analyses to be meaningful it is necessary for the problems in each set to be 
+reasonably coherent, so that the analysis results are wrt that type of problem.
 The basis for such sets are the SPCs (see Section~\ref{SPCs}).
 The SPCs provide a quite fine-grained partitioning of the TPTP problems, and individual SPCs
 are intrinsically coherent.
-Additionally, some SPCs that that capture compatible problem characteristic can be merged
-to form a coherent set.
+Some SPCs that that capture compatible problem characteristic can be merged to form a coherent set.
 
 The coherent SPC sets used for the analyses are listed in Table~\ref{SPCSetsTable}.
 The SPCs column lists the SPCs that are in the set, using the abbreviations given in 
@@ -488,10 +496,10 @@ The third column gives the number of problems after the data cleaning, and the o
 total number of problems in the set in TPTP v8.2.0.
 The Anal/Size column gives the number of problems in TPTP v8.2.0, and the number of problems 
 left for analysis after the data cleaning described in Section~\ref{AnalysisData}.
+The 1.00/0.00 column gives the number of problems with rating 1.00 in TPTP v6.3.0, and the number
+of problems with rating 0.00 in v8.2.0. -- these numbers provide context for the ``Fraction 
+unsolved'' and ``Fraction easy'' analyses described in Section~\ref{AnalysisTypes}.
 The acronyms for problem types are listed in Section~\ref{SPCs}.
-The 1.00/0.00 columns gives the number of problems with rating 1.00 in TPTP v6.3.0, and the number
-of problems with rating 0.00 in v8.2.0.
-
 Some noteworthy exclusions are:
 typed extended first-order problems because they were added to the TPTP only in v8.0.0;
 typed polymorphic first-order and higher-order problems excluded because too few systems are 
@@ -548,6 +556,7 @@ Typed monomorphic higher-order theorems, with and without equality, no arithmeti
 \subsection{Five Analyses}
 \label{AnalysisTypes}
 
+ZZZZZZ NEED TO KEEP PLOISHING FROM HERE
 The cleaned rating and the historical data is used for four analyses of progress.
 Individual problem ratings are used for the first analysis.
 The other three analyses use the coherent SPC set described in Section~\ref{SPCSets}.
@@ -595,6 +604,7 @@ The results of the following three analyses are presented in Section~\ref{Eviden
 \paragraph{Fraction Unsolved:}
 The first overall analysis looks at the fraction of problems that have had a rating 1.00 
 (unsolved) up to each TPTP release, relative to the number of unsolved problems in v6.3.0.
+(This is the metric plotted in \cite{SSP21}.)
 Decreasing fractions are evidence of progress, with more problems being solved by an ATP system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
@@ -607,7 +617,8 @@ state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
 
 \paragraph{Decreasing Ratings:}
 A more fine-grained analysis is provided by the decrease in problem difficulty ratings over
-time -- this approach was used in \cite{SFS01}.
+time. 
+(This approach was used in \cite{SFS01}.)
 % The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
 % the ratings decrease
 As the problems are unchanged (they are not actually getting easier), decreasing ratings are 
@@ -670,7 +681,12 @@ individual systems that made most strong contributions to strong SotA systems.
 \section{Evidence of Progress}
 \label{Evidence}
 
-\begin{figure}[ht!]
+Commentary overall.
+Of the 2195 problems that were unsolved when they added to the TPTP, 1475 were solved by v8.2.0.
+
+Commentary for CNF.
+
+\begin{figure}[h!]
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
@@ -686,9 +702,9 @@ individual systems that made most strong contributions to strong SotA systems.
   \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
   \label{Plot_CNF_UEQ}
 \end{minipage}
-\end{figure}
-\begin{figure}[ht!]
-\centering
+% \end{figure}
+% \begin{figure}[ht!]
+% \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_SAT_RFO.pdf}
@@ -705,9 +721,9 @@ individual systems that made most strong contributions to strong SotA systems.
 \end{minipage}
 \end{figure}
 
-Commentary for CNF.
+Commentary for FOF.
 
-\begin{figure}[ht!]
+\begin{figure}[h!]
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
@@ -725,9 +741,9 @@ Commentary for CNF.
 \end{minipage}
 \end{figure}
 
-Commentary for FOF.
+Commentary for TF0 and TH0.
 
-\begin{figure}[ht!]
+\begin{figure}[h!]
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
@@ -754,8 +770,6 @@ Commentary for FOF.
   \label{Plot_TH0_THM_NAR}
 \end{minipage}
 \end{figure}
-
-Commentary for TF0 and TH0.
 
 %--------------------------------------------------------------------------------------------------
 \section{Conclusion}
