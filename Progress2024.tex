@@ -556,18 +556,18 @@ Typed monomorphic higher-order theorems, with and without equality, no arithmeti
 \subsection{Five Analyses}
 \label{AnalysisTypes}
 
-ZZZZZZ NEED TO KEEP PLOISHING FROM HERE
-The cleaned rating and the historical data is used for four analyses of progress.
+The cleaned TPTP problems ratings and the historical data is used for five analyses of progress
+in ATP.
 Individual problem ratings are used for the first analysis.
-The other three analyses use the coherent SPC set described in Section~\ref{SPCSets}.
+The other four analyses are wrt the coherent SPC sets described in Section~\ref{SPCSets}.
 
 \paragraph{First Solutions:}
-ATP has been successfully applied in a range of academic applications.
+ATP has been successfully applied in a range applications.
 Arguably the most use comes from the ``hammers'' \cite{BK+16} associated with Interactive 
 Theorem Proving (ITP) systems, e.g., Sledghammer \cite{PB10} for Isabelle \cite{NPW02}, 
 HOLyHammer \cite{KU14} for HOL Light \cite{Har09} and HOL4 \cite{SN08}, 
 MizAR \cite{KU15-M40} for Mizar \cite{GKN10}.
-In these applications the problems being solved are not of direct interest to humans,
+In these applications the problems being solved are not of direct interest to the humans
 who are focussed on the larger task being addressed in the ITP system.
 In contrast, the use of ATP by practitioners in solving individual problems that have resisted
 manual approaches is less common, possibly less successful, but the sparsity makes successes 
@@ -577,11 +577,16 @@ These are identifiable by (i)~the rating decreasing from 1.00, and (ii)~some evi
 problem is of direct interest to at least some humans.
 Some examples are:
 \begin{packed_itemize}
-\item The solution of the Robbins problem \cite{} by the specialist ATP system EQP \cite{McC97} 
+\item The solution of the Robbins problem\footnote{%
+      This was never published, but posed in personal communications between Edward Huntington,
+      Herbert Robbins, and Alfred Tarski.
+      The background is available in 
+      \href{https://en.wikipedia.org/wiki/Robbins_algebra}{en.wikipedia.org/wiki/Robbins\_algebra}.}
+      by the specialist ATP system EQP \cite{McC97} 
       in 1996, was a noteworthy success, as the problem had defied the efforts of eminent 
       mathematicians \cite{HMT71}.
       It is {\tt ROB001-1} in the TPTP, and it still has a rating of 1.00 because it has never 
-      been solved by a non-specialist system.
+      been solved by a non-specialist ATP system.
 \item The first inner five-segment theorem of Tarski's geometry \cite{SST83} was first 
       automatically proved by E \cite{Sch13-LPAR} in 2019, after being posed by Quaife in 
       1989 \cite{Qua89}.
@@ -599,19 +604,20 @@ Some examples are:
 
 \vspace*{1em}
 \noindent
-The results of the following three analyses are presented in Section~\ref{Evidence}.
+The results of the following four analyses are presented in Section~\ref{Evidence}.
 
 \paragraph{Fraction Unsolved:}
 The first overall analysis looks at the fraction of problems that have had a rating 1.00 
-(unsolved) up to each TPTP release, relative to the number of unsolved problems in v6.3.0.
+(unsolved) in all TPTP releases up to each TPTP release, relative to the number in v6.3.0.
 (This is the metric plotted in \cite{SSP21}.)
-Decreasing fractions are evidence of progress, with more problems being solved by an ATP system.
+Decreasing fractions are evidence of progress, with less problems being unsolved by some ATP 
+system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
 
 \paragraph{Fraction Easy:}
 This is the converse of Fraction Unsolved -- the fraction of problems that have had a rating of 
-0.00 (easy) up to each TPTP release, relative to the number of easy problems in v8.2.0.
+0.00 (easy) in all TPTP releases up to each TPTP release, relative to the number in v8.2.0.
 Decreasing fractions are evidence of progress, with more problems being solved by the 
 state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
 
@@ -623,23 +629,21 @@ time.
 % the ratings decrease
 As the problems are unchanged (they are not actually getting easier), decreasing ratings are 
 evidence of progress in the state-of-the-art in ATP systems.
+This analysis is done wrt the raw difficulty ratings and the monomorphized ratings.
 % This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
 % SPC set.
 
 \paragraph{Shapley Values:}
-Another quite fine-grained analysis is provided through the use of Shapley values 
-\cite{XH+12,FK+16,KF+19}.
+A quite fine-grained analysis is provided through the use of Shapley values \cite{XH+12}.
 In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
-defined by the union of the problems solved by all the individual ATP systems used for the TSTP 
-at the time.
+defined by the union of the problems solved by all the individual ATP systems.
 The SotA systems in the TPTP releases are treated as a portfolio of systems to be analysed, and 
-temporal Shapley analysis shows which SotA systems made strong contributions to progress, i.e., it
-identifies the TPTP releases where strong progress was evident.
-Following that, plain (non-temporal) Shapley analysis is used to identify which of the individual 
-ATP systems made strong contributions to those strong SotA systems.
-This analysis uses the historical solution data within each coherent SPC set.
+temporal Shapley analysis \cite{KF+19} shows which SotA systems made strong contributions to 
+progress, i.e., it identifies the TPTP releases where strong progress was evident.
+Following that, plain (non-temporal) Shapley analysis \cite{FK+16} is used to identify which of 
+the individual ATP systems made strong contributions to those strong SotA systems.
 Finally (MAYBE) temporal Shapley analysis is used to analyse the progress of some of the
-individual systems that made most strong contributions to strong SotA systems.
+individual systems that consistently made strong contributions to strong SotA systems.
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
