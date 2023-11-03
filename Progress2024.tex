@@ -763,15 +763,45 @@ Commentary for TF0 and TH0.
   \caption{{\tt TF0\_THM\_*\_ARI}}
   \label{Plot_TF0_THM_ARI}
 \end{minipage}
-\end{figure}
-\begin{figure}[ht!]
-\centering
+% \end{figure}
+% \begin{figure}[ht!]
+% \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TH0_THM_NAR.pdf}
   \vspace*{-2em}
   \caption{{\tt TH0\_THM\_*\_NAR}}
   \label{Plot_TH0_THM_NAR}
+\end{minipage}
+\end{figure}
+
+In prior analysis, done at TPTP release v6.4.0 \cite{Sut17}, Figure~\ref{Ratings_v5.0.0_v6.4.0} 
+was presented. 
+It was noted: ``Over time, decreasing difficult ratings of individual TPTP problems provide an 
+indication of progress in the field \cite{SFS01}. Figure~3 plots the average ratings for the 
+14527 problems that have been unchanged in the TPTP since v5.0.0, and whose ratings have not 
+been stuck at 0.00 or 1.00 since v5.0.0. The ratings generally show a downward trend - there 
+has been progress!''.
+The same analysis has been done now at TPTP release v8.2.0, for the 16236 problems that have been 
+unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 0.00 or 1.00 since 
+v6.3.0.
+COMMENT DIFFERENT PROFILE.
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/RatingsDecline_v5.0.0_v6.4.0.pdf}
+  \vspace*{-2em}
+  \caption{Ratings from v5.0.0 to v6.4.0}
+  \label{Ratings_v5.0.0_v6.4.0}
+\end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/RatingsDecline_v6.3.0_v8.2.0.pdf}
+  \vspace*{-2em}
+  \caption{Ratings from v6.3.0 to v8.2.0}
+  \label{Ratings_v6.3.0_v8.2.0}
 \end{minipage}
 \end{figure}
 
