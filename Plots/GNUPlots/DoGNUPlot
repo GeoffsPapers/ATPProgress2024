@@ -118,7 +118,7 @@ set output "../RatingsDecline_v6.3.0_v8.2.0.pdf"
 set key at "05/15/17",0.95
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "Ratings.txt" using 2:3 pointsize 0.8 title "All",\
-"Ratings.txt" using 2:4 pointsize 0.8 title "TH0",\
-"Ratings.txt" using 2:5 pointsize 0.8 title "TF0",\
+"Ratings.txt" using 2:4 pointsize 0.8 title "THF",\
+"Ratings.txt" using 2:5 pointsize 0.8 title "TFF",\
 "Ratings.txt" using 2:6 pointsize 0.8 title "FOF",\
 "Ratings.txt" using 2:7 pointsize 0.8 title "CNF"
