@@ -702,7 +702,7 @@ Commentary for CNF.
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_PEQ_UEQ.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_UEQ.pdf}
   \vspace*{-2em}
   \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
   \label{Plot_CNF_UEQ}
@@ -789,6 +789,19 @@ v6.3.0.
 COMMENT DIFFERENT PROFILE.
 NOTICE HOW THEY FLOW ON (modulo some minor differences caused by data cleaning and a refinement
 to the rating calculations \cite{SD23-CASC,SD24-CASC})
+Possible reasons:
+\begin{itemize}
+\item Systems gaining breadth of capability at the expense of depth, e.g., 
+      E -- CNF and FOF in 2015, added TF0 in ???? \cite{}, TH0 and TX0 in 2018? \cite{SCV19};
+      iProver -- CNF and FOF in 2015, added TF?(A) in ???? \cite{};
+      Vampire -- CNF, FOF, TF0(A), in 2015, added THF, TXF, TF1 in ???? \cite{}.
+\item New systems that take new approaches, solving different subsets of SPCs, e.g.,
+      CSE\_E -- Added in 2019, combines the XXX calculus with E \cite{};
+      Zipperposition -- Added in 2019, extends superposition to higher-order logic;
+      Twee -- Added in 2018, solves CNF and FOF problems by transformation to UEQ;
+\item CASC causing incremental development, as discussed in \cite{SD24-CASC}.
+\item More focus on SMT
+\end{itemize}
 
 \begin{figure}[h!]
 \centering
