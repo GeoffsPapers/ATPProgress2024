@@ -465,14 +465,14 @@ it could still be solved by the previously available systems.
 This anomaly was noted in prior analysis \cite{Sut17} where it was noted: ``The ratings generally 
 show a downward trend - there has been progress!'', but ``ratings can also increase when data 
 from new systems is added to the TSTP.''
-In this work the anomaly is resolved by additionally looking at {\em monomorphized ratings}:
-if a problem's rating in a TPTP release is greater than it's previous rating, the monomorphized 
+In this work the anomaly is resolved by additionally looking at {\em monotonic ratings}:
+if a problem's rating in a TPTP release is greater than it's previous rating, the monotonic 
 rating is set to the previous lower rating.
-Monomorphization of ratings makes clear sense in the case of problem that was unsolved (rating 
-1.00) and is then solved by a new system (rating drops to less than 1.00) -- if a problem is 
+Monotonized ratings make clear sense in the case of problem that was unsolved (rating 1.00) and 
+is then solved by a new system (the rating drops to less than 1.00) -- if a problem is 
 solved, it cannot become unsolved -- the solving system still exists in principle.
-In cases where the rating is less than 1.00 monomorphization might considered to be ``cheating'',
-because ratings do have to ``pay the piper''.
+In cases where the rating is less than 1.00 monotonized ratings might considered to be 
+optimistic, because ratings do have to ``pay the piper''.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Coherent SPC Sets}
@@ -608,7 +608,7 @@ The Excel spreadhseet that summarises all the data is available at
 \href{}{}.
 
 \paragraph{Fraction Unsolved:}
-The first overall analysis looks at the fraction of problems that have had a rating 1.00 
+The first overall analysis looks at the fraction of problems that had a rating 1.00 
 (unsolved) in all TPTP releases up to each TPTP release, relative to the number in v6.3.0.
 (This is the metric plotted in \cite{SSP21}.)
 Decreasing fractions are evidence of progress, with less problems being unsolved by some ATP 
@@ -617,7 +617,7 @@ system.
 % CS OBJECTS In order for this analysis to be meaningful 
 
 \paragraph{Fraction Easy:}
-This is the converse of Fraction Unsolved -- the fraction of problems that have had a rating of 
+This is the converse of Fraction Unsolved -- the fraction of problems that had a rating of 
 0.00 (easy) in all TPTP releases up to each TPTP release, relative to the number in v8.2.0.
 Decreasing fractions are evidence of progress, with more problems being solved by the 
 state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
@@ -630,7 +630,7 @@ time.
 % the ratings decrease
 As the problems are unchanged (they are not actually getting easier), decreasing ratings are 
 evidence of progress in the state-of-the-art in ATP systems.
-This analysis is done wrt the raw difficulty ratings and the monomorphized ratings.
+This analysis is done wrt the raw difficulty ratings and the monotonized ratings.
 % This analysis also uses the cleaned ratings data, averaged over the problems in each coherent 
 % SPC set.
 
@@ -686,10 +686,19 @@ individual systems that consistently made strong contributions to strong SotA sy
 \section{Evidence of Progress}
 \label{Evidence}
 
-Commentary overall.
-Of the 2195 problems that were unsolved when they added to the TPTP, 1475 were solved by v8.2.0.
+Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter four analyses
+described in Section~\ref{AnalysisTypes}.
+Altogether there were 3110 problems that had a rating of 1.00 (unsolved) when they were added to
+the TPTP, of which 859 (28\%) were solved in some release by v8.2.0. 
+Conversely, there were 7319 problems that had a rating of 0.00 in v8.2.0, of which 2490 (34\%) 
+had a higher rating in some preceding release.
+These overall figures provide evidence of overall progress, but the contributions vary across
+the coherent SPC sets, as can be seen in the plots.
+The overall change in problem ratings is discussed below, and again the plots for the individual
+coherent SPC sets vary.
+Peaks in the Shapley values highlight improvements in one or more of the other values.
 
-Commentary for CNF.
+Figures~\ref{Plot_CNF_UNS}-\ref{Plot_CNF_EPR} 
 
 \begin{figure}[h!]
 \centering
@@ -774,6 +783,13 @@ Commentary for TF0 and TH0.
   \caption{{\tt TH0\_THM\_*\_NAR}}
   \label{Plot_TH0_THM_NAR}
 \end{minipage}
+%\begin{minipage}[t]{.49\textwidth}
+%  \centering
+%  \includegraphics[width=\textwidth]{Plots/GNUPlots/ALL.pdf}
+%  \vspace*{-2em}
+%  \caption{All problems}
+%  \label{Plot_ALL}
+%\end{minipage}
 \end{figure}
 
 In prior analysis, done at TPTP release v6.4.0 \cite{Sut17}, Figure~\ref{Ratings_v5.0.0_v6.4.0} 
@@ -786,9 +802,13 @@ has been progress!''.
 The same analysis has been done now at TPTP release v8.2.0, for the 16236 problems that have been 
 unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 0.00 or 1.00 since 
 v6.3.0.
-COMMENT DIFFERENT PROFILE.
-NOTICE HOW THEY FLOW ON (modulo some minor differences caused by data cleaning and a refinement
-to the rating calculations \cite{SD23-CASC,SD24-CASC})
+The two figures' plots dovetail quite well, which gives confidence that they really are comparable
+(there are some minor differences caused by the data cleaning done for this work, and recent 
+refinements to the rating calculations \cite{SD23-CASC,SD24-CASC}).
+The older plots show a quite clear downward trend both overall and for the four types of problems,
+but the latest plots do not.
+The possible reasons are discussed in the conclusion (Section~\ref{Conclusion}).
+
 \begin{figure}[h!]
 \centering
 \begin{minipage}[t]{.49\textwidth}
@@ -817,26 +837,40 @@ The analyses have shown progress in the last eight years, in some aspects.
 There have been some first solutions of problems that are of direct interest to humans, 
 a quite large number of first ATP solutions of problems from the TPTP, and 
 some noteworthy improvements in individual ATP systems.
-The big picture is less bright, at least in terms problem difficulty ratings.
-The reason are not definitely known, but we have thought of the following possible reasons:
+The big picture is less bright (at least in terms of analysis of the problem difficulty ratings).
+While the monotonized ratings necessarily go down, the trend is not dramatic, and the raw
+ratings are generally stable.
+This is in contrast to the clearly decreasing ratings from 2011 to 2016.
+The reasons for this apparently slow progress are not definitely known, but we have thought of 
+the following possible reasons:
 \begin{itemize}
 \item Systems gaining breadth of capability at the expense of depth, e.g., 
-      E -- CNF and FOF in 2015, added TF0 in ???? \cite{}, TX0 and TH0 in 2018 \cite{SCV19};
-      iProver -- CNF and FOF in 2015, added TF?(A) in ???? \cite{};
-      Vampire -- CNF, FOF, TF0(A), in 2015, added THF, TXF, TF1 in ???? \cite{}.
+      E -- Only CNF and FOF up to 2015, added TF0 in 2017 \cite{SCV19}, TX0 and TH0 in 2019 
+           \cite{VB+19};
+      iProver -- Only CNF and FOF up to 2015, added TF0 with arithmetic in 2021 (unpublished);
+      Vampire -- Only CNF, FOF, TF0(A) up to 2015, added THF, TXF, TF1 in ???? \cite{}.
 \item New systems that take new approaches, solving different subsets of SPCs, e.g.,
-      CSE\_E -- Added in 2019, combines the XXX calculus with E \cite{};
-      Zipperposition -- Added in 2019, extends superposition to higher-order logic;
-      Twee -- Added in 2018, solves CNF and FOF problems by transformation to UEQ;
+      CSE\_E \cite{XL+18} -- Added in 2018, combines the S-CS calculus with E;
+      Zipperposition \cite{BB+21} -- Added in 2019, extends superposition to higher-order logic;
+      Twee \cite{Sma21} -- Added in 2018, solves CNF and FOF problems by transformation to UEQ.
 \item Time spent on machine learning based techniques, for 
       axiom selection, e.g., \cite{Urb06,KB14}, 
       given clause selection, e.g., \cite{JU17-CICM,CA+21,AA+22-ML,MS23}), 
       learning for large problem corpora, e.g., \cite{KM+14,JU19,BL+19-ICML}, 
-      and recently use of large language models to improve ATP performance \cite{}.
-\item More focus on SMT
-\item CASC causing incremental development, as discussed in \cite{SD24-CASC}.
+      and recently use of large language models to improve ATP performance \cite{WX+23,AS+23}.
+\item SMT solvers have been in existence since the late 1970s \cite{NO79}, and blossomed fully
+      in the early 2000s.
+      Since then there has been ever-increasing emphasis on SMT solving, with ATP systems being 
+      adapted to solving SMT problems, e.g., Vampire has been into SMT-COMP since 2016, and
+      iProver since 2021.
+      This is all good work, but has possibly diverted developer energy from ATP to SMT.
+\item In \cite{SD24-CASC} it was noted that CASC might be causing incremental development of ATP
+      systems.
+      This concern has been expressed as far back as CASC-JC in 2001 \cite{PSS02}.
+      In response to this concern CASC-J12 will have a new ICU (I Challenge yoU) division that
+      focusses on solving hard problems rather than solving more problems, hoping to stimulate
+      new developments and progress.
 \end{itemize}
-
 
 Ongoing and future work includes~\ldots
 
