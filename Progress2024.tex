@@ -643,8 +643,8 @@ temporal Shapley analysis \cite{KF+19} shows which SotA systems made strong cont
 progress, i.e., it identifies the TPTP releases where strong progress was evident.
 Following that, plain (non-temporal) Shapley analysis \cite{FK+16} is used to identify which of 
 the individual ATP systems made strong contributions to those strong SotA systems.
-Finally (MAYBE) temporal Shapley analysis is used to analyse the progress of some of the
-individual systems that consistently made strong contributions to strong SotA systems.
+% Finally (MAYBE) temporal Shapley analysis is used to analyse the progress of some of the
+% individual systems that consistently made strong contributions to strong SotA systems.
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
@@ -704,10 +704,10 @@ Figures~\ref{Plot_CNF_UNS}-\ref{Plot_CNF_EPR}
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_NUE.pdf}
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_EPR.pdf}
   \vspace*{-2em}
-  \caption{{\tt CNF\_UNS\_RFO\_*\_NUE}}
-  \label{Plot_CNF_UNS}
+  \caption{{\tt CNF\_*\_EPR\_*}}
+  \label{Plot_CNF_EPR}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
@@ -716,22 +716,19 @@ Figures~\ref{Plot_CNF_UNS}-\ref{Plot_CNF_EPR}
   \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
   \label{Plot_CNF_UEQ}
 \end{minipage}
-% \end{figure}
-% \begin{figure}[ht!]
-% \centering
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_NUE.pdf}
+  \vspace*{-2em}
+  \caption{{\tt CNF\_UNS\_RFO\_*\_NUE}}
+  \label{Plot_CNF_UNS}
+\end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_SAT_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt CNF\_SAT\_RFO\_*}}
   \label{Plot_CNF_SAT}
-\end{minipage}
-\begin{minipage}[t]{.49\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_EPR.pdf}
-  \vspace*{-2em}
-  \caption{{\tt CNF\_*\_EPR\_*}}
-  \label{Plot_CNF_EPR}
 \end{minipage}
 \end{figure}
 
