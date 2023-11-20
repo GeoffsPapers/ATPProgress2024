@@ -698,7 +698,9 @@ The overall change in problem ratings is discussed below, and again the plots fo
 coherent SPC sets vary.
 Peaks in the Shapley values highlight improvements in one or more of the other values.
 
-Figures~\ref{Plot_CNF_UNS}-\ref{Plot_CNF_EPR} 
+Figures~\ref{Plot_CNF_UNS} to \ref{Plot_CNF_EPR} plot the values for the CNF-based coherent 
+SPC sets.
+WHAT CAN I SAY.
 
 \begin{figure}[h!]
 \centering
@@ -732,7 +734,9 @@ Figures~\ref{Plot_CNF_UNS}-\ref{Plot_CNF_EPR}
 \end{minipage}
 \end{figure}
 
-Commentary for FOF.
+Figures~\ref{Plot_FOF_THM_RFO} and \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF-based 
+coherent SPC sets.
+WHAT CAN I SAY.
 
 \begin{figure}[h!]
 \centering
@@ -741,18 +745,20 @@ Commentary for FOF.
   \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_THM_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt FOF\_THM\_RFO\_*}}
-  \label{Plot_FOF_THM}
+  \label{Plot_FOF_THM_RFO}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_CSA_SAT_RFO.pdf}
   \vspace*{-2em}
   \caption{{\tt FOF\_\{CSA,SAT\}\_RFO\_*}}
-  \label{Plot_FOF_SAT}
+  \label{Plot_FOF_CSA_SAT_RFO}
 \end{minipage}
 \end{figure}
 
-Commentary for TF0 and TH0.
+Figures~\ref{Plot_TF0_THM_NAR} to \ref{Plot_TH0_THM_NAR} plot the values for the TFF and
+THF-based coherent SPC sets.
+WHAT CAN I SAY.
 
 \begin{figure}[h!]
 \centering
@@ -841,15 +847,23 @@ This is in contrast to the clearly decreasing ratings from 2011 to 2016.
 The reasons for this apparently slow progress are not definitely known, but we have thought of 
 the following possible reasons:
 \begin{itemize}
-\item Systems gaining breadth of capability at the expense of depth, e.g., 
+\item System developers have expended effort adding breadth of capability at the expense of 
+      depth, e.g., 
       E -- Only CNF and FOF up to 2015, added TF0 in 2017 \cite{SCV19}, TX0 and TH0 in 2019 
            \cite{VB+19};
       iProver -- Only CNF and FOF up to 2015, added TF0 with arithmetic in 2021 (unpublished);
       Vampire -- Only CNF, FOF, TF0(A) up to 2015, added TX0 in 2016 \cite{KK+16}, 
            TF1 and TX1 in 2020 \cite{BR20-IJCAR}, and THF in several incarnations from 2019 to 
            2023 \cite{BR19,Bha20-Thesis,BRS23}.
-      MPB@Dagstuhl, a ``crisis of growth'', as it becomes harder to make new systems, and instead
-      features are incrementally added.
+\item The high entry barrier to building new high-performance ATP systems, as several top systems
+      dominate the field and attract the best developer talent.
+      In Maria Paola Bonacina's wecoming address at the Dagstuhl Seminar ``The Next Generation 
+      of Deduction Systems: from Composition to Compositionality''\footnote{%
+      \href{https://www.dagstuhl.de/23471}{www.dagstuhl.de/23471}} she referred to this as a
+     `crisis of growth'', as it becomes harder to make new systems, and instead features are 
+      incrementally added to existing systems.
+      In Pascal Fontaine's presentation ``On the Need for a Modular Approach for Automated 
+      Reasoners'' he referred to this as an ``Automated reasoning software crisis''.
 \item New systems that take new approaches, solving different subsets of SPCs, e.g.,
       CSE\_E \cite{XL+18} -- Added in 2018, combines the S-CS calculus with E;
       Zipperposition \cite{BB+21} -- Added in 2019, extends superposition to higher-order logic;
@@ -859,6 +873,8 @@ the following possible reasons:
       given clause selection, e.g., \cite{JU17-CICM,CA+21,AA+22-ML,MS23}), 
       learning for large problem corpora, e.g., \cite{KM+14,JU19,BL+19-ICML}, 
       and recently use of large language models to improve ATP performance \cite{WX+23,AS+23}.
+      This work has focussed largely on large problem sets with a fixed signatures and many
+      very similar problem, and has not resulted in general improvements.
 \item SMT solvers have been in existence since the late 1970s \cite{NO79}, and blossomed fully
       in the early 2000s.
       Since then there has been ever-increasing emphasis on SMT solving, with ATP systems being 
