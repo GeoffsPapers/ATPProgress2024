@@ -60,14 +60,14 @@ plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
 "CNF_SAT_RFO.txt" using 2:6 pointsize 0.8 title "Shapley value"
 
-set output "CNF_EPR.pdf"
-set key at "07/01/23",0.58
+set output "FOF_CNF_EPR.pdf"
+set key at "07/01/23",0.95
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
-"CNF_EPR.txt" using 2:3 pointsize 0.8 title "Average rating",\
-"CNF_EPR.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_EPR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
-"CNF_EPR.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
-"CNF_EPR.txt" using 2:6 pointsize 0.8 title "Shapley value"
+"FOF_CNF_EPR.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"FOF_CNF_EPR.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
+"FOF_CNF_EPR.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"FOF_CNF_EPR.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"FOF_CNF_EPR.txt" using 2:6 pointsize 0.8 title "Shapley value"
 
 set output "FOF_THM_RFO.pdf"
 set key at "07/01/23",0.40

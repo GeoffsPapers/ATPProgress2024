@@ -513,21 +513,21 @@ which combined have only 154 problems.
 \hline
 SPCs & Description & Anal Size & 1.00 0.00 \\
 \hline
-{\tt CNF\_UNS\_RFO\_NEQ\_*}\enspace$\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*}\enspace$\cup$
-{\tt CNF\_UNS\_RFO\_PEQ\_NUE} &
-Unsatisfiable sets of really first-order clauses that are not unit equality.
-% 1115 + 2785 + 545 = 4445 problems in v8.2.0
-& 4441 4445 & 568 1780 \\
 {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} &
 Unsatisfiable sets of really-first-order unit equality clauses.
 & 1140 1140 & 120 233 \\
+{\tt CNF\_UNS\_RFO\_NEQ\_*}\enspace$\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*}\enspace$\cup$
+{\tt CNF\_UNS\_RFO\_PEQ\_NUE} &
+Unsatisfiable sets of really first-order clauses that are not unit equality.
+& 4441 4445 & 568 1780 \\
 {\tt CNF\_SAT\_RFO\_*} &
 Satisfiable sets of really-first-order clauses.
 & 1042 1044 & 155 598 \\
+{\tt FOF\_*\_PRP}\enspace$\cup$ {\tt FOF\_*\_EPR\_*}\enspace$\cup$
 {\tt CNF\_*\_PRP}\enspace$\cup$ {\tt CNF\_*\_EPR\_*} &
 Unsatisfiable and satisfiable sets of propositional and effectively propositional clauses.
 Un/Satisfiable sets are coherent because the problems are decidable.
-& 913 942 & 69 805 \\
+& 1425 1457 & 78 1311 \\
 {\tt FOF\_THM\_RFO\_*} &
 Really first-order theorems, with or without equality.
 & 7202 7204 & 1116 971 \\
@@ -604,8 +604,6 @@ Some examples are:
 \vspace*{1em}
 \noindent
 The results of the following four analyses are presented in Section~\ref{Evidence}.
-The Excel spreadhseet that summarises all the data is available at
-\href{}{}.
 
 \paragraph{Fraction Unsolved:}
 The first overall analysis looks at the fraction of problems that had a rating 1.00 
@@ -687,7 +685,9 @@ the individual ATP systems made strong contributions to those strong SotA system
 \label{Evidence}
 
 Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter four analyses
-described in Section~\ref{AnalysisTypes}.
+described in Section~\ref{AnalysisTypes}.\footnote{%
+An Excel spreadsheet of the data is available at
+\href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}}.
 Altogether there were 3110 problems that had a rating of 1.00 (unsolved) when they were added to
 the TPTP, of which 859 (28\%) were solved in some release by v8.2.0. 
 Conversely, there were 7319 problems that had a rating of 0.00 in v8.2.0, of which 2490 (34\%) 
@@ -698,21 +698,41 @@ The overall change in problem ratings is discussed below, and again the plots fo
 coherent SPC sets vary.
 Peaks in the Shapley values highlight improvements in one or more of the other values.
 
-Figures~\ref{Plot_CNF_UNS} to \ref{Plot_CNF_EPR} plot the values for the CNF-based coherent 
-SPC sets.
+Figures~\ref{Plot_CNF_UNS} to \ref{Plot_FOF_CNF_EPR} plot the values for the CNF-based coherent 
+SPC sets (the FOF problems in {\tt \{FOF,CNF\}\_*\_EPR\_*} are typically reduced to CNF before
+reasoning starts).
 CNF is now the ``assembly language'' of most ATP systems, which typically translate more
 expressive logics down to CNF.
 As such, progress in CNF-based SPCs typically underlies progress in other SPCs.
 
+{\tt CNF\_UNS\_RFO\_PEQ\_UEQ} showed progress in v6.4.0 due to the strong performance of
+Twee~2.0 \cite{Sma21}, which made a lot more problems easy by v7.0.0.
+In v7.4.0 E~2.5 made a strong contribution, then in v8.1.0 Twee~2.4 made another strong 
+contribution, alongside CSE\_E~1.3 \cite{XL+18}, which contributed to the drop in unsolved
+problems.
+Waldmeister~710 \cite{LH02}, which had dominated the SPC since 1997, had the highest Shapley 
+contribution across all the releases.
+However, iin v8.1.0 both Twee and CSE\_E solved more problems than Waldmeister.
+% {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} is interesting because it is possible to use complete search 
+% strategies, so that in a strategy schedule the individual strategies can be run for longer 
+% periods with hope of solving harder problems \cite{SD24-CASC}.
+ 
+{\tt CNF\_UNS\_RFO\_*\_NUE} had small but quite consistent decline in the problem ratings, 
+indicating some progress.
+The big advances were in v7.0.0 when Vampire~4.2 performed well, and in v8.2.0 when SnakeForV~1.0
+appeared.
+The numbers of unsolved and easy problems improved correspondingly.
+SnakeForV is interesting, as it is a variant of Vampire with a different approach to the strategy
+scheduling \cite{Sud22}.
+
+{\tt CNF\_SAT\_RFO\_*} had only one high point, in v6.4.0 when Vampire~4.0.5 made a strong
+contribution.
+The plots showed minimal progress from v6.4.0 onwards.
+
+{\tt \{FOF,CNF\}\_*\_EPR\_*} HAS TO BE DONE.
+
 \begin{figure}[h!]
 \centering
-\begin{minipage}[t]{.49\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_EPR.pdf}
-  \vspace*{-2em}
-  \caption{{\tt CNF\_*\_EPR\_*}}
-  \label{Plot_CNF_EPR}
-\end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_UEQ.pdf}
@@ -734,11 +754,37 @@ As such, progress in CNF-based SPCs typically underlies progress in other SPCs.
   \caption{{\tt CNF\_SAT\_RFO\_*}}
   \label{Plot_CNF_SAT}
 \end{minipage}
+\begin{minipage}[t]{.49\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_CNF_EPR.pdf}
+  \vspace*{-2em}
+  \caption{{\tt \{FOF,CNF\}\_*\_EPR\_*}}
+  \label{Plot_FOF_CNF_EPR}
+\end{minipage}
 \end{figure}
 
-Figures~\ref{Plot_FOF_THM_RFO} and \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF-based 
+Figures~\ref{Plot_FOF_THM_RFO} to \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF-based 
 coherent SPC sets.
-WHAT CAN I SAY.
+{\tt FOF\_THM\_RFO\_*} is the best known SPC, with the most ATP systems able to attempt the 
+problems, and the target of most new systems.
+The raw problem difficulty ratings are quiet flat, although there is some decrease in the
+monotonized ratings.
+The largest steps of progress came in v7.0.0 and v7.4.0, which also contributed to less unsolved
+problems and more easy problems.
+In v7.0.0 the strong contributions came from Vampire~4.2 with some improvements to preprocessing, 
+and E~2.0 with improved FOF to CNF conversion.
+In v7.4.0 Enigma~0.4 \cite{JU17,JC+20} was a new system that made a strong contribution to 
+progress.
+Vampire~4.5 also contributed to progress with a new layered clause selection approach 
+\cite{GS20} and a new subsumption demodulation rule \cite{GKR20}.
+
+{\tt FOF\_\{CSA,SAT\}\_RFO\_*} is also well known, and along with its typed-first order
+counterpart (not analysed, because there is not enough data) is becoming recognized as 
+increasingly important for applications, e.g., \cite{DKW08}.
+The observations here are similar to those for {\tt FOF\_THM\_RFO\_*}, but with the largest
+sign of progress in v6.4.0.
+The main contributor was iProver~2.5 with restructured core data structures and improved 
+preprocessing, including predicated elimination.
 
 \begin{figure}[h!]
 \centering
@@ -760,7 +806,33 @@ WHAT CAN I SAY.
 
 Figures~\ref{Plot_TF0_THM_NAR} to \ref{Plot_TH0_THM_NAR} plot the values for the TFF and
 THF-based coherent SPC sets.
-WHAT CAN I SAY.
+{\tt TF0\_THM\_*\_NAR} uses the simplest of the typed TPTP languages, with tolerably small
+entry barrier for ATP system development.
+In v7.0.0 there was progress thanks to Vampire~4.2, for which there was significant effort
+devoted to improve performance on {\tt TF0\_THM\_*\_NAR} and {\tt TF0\_THM\_*\_ARI}.
+In v8.2.0 there was progress thanks to SnakeForV~1.0, as in {\tt CNF\_UNS\_RFO\_*\_NUE}.
+
+{\tt TF0\_THM\_*\_ARI} is an important SPC because it is the simplest TPTP language that 
+includes arithmetic, which occurs naturally in application areas such as mathematics \cite{KK+23}, 
+software verification \cite{BF+15}, and interactive theorem proving \cite{PB10}.
+There was clearly some significant progress in v6.4.0 as many problems were solved for the
+first time.
+A strong contributor was Vampire~4.0.5, which had integrated Z3 \cite{dMB08} since Vampire~4.0.
+CVC4~1.5 \cite{BC+11} and Princess~150706 \cite{Rue08} also performed well.
+
+{\tt TH0\_THM\_*\_NAR} uses typed higher-order logic, and despite it being a more expressive
+language than the typed first-order {\tt TF0\_*} SPCs, has been the focus of ATP system development
+longer \cite{SB10,SS+12}.
+The problem ratings decline moderately, and there are bursts of progress in v7.0.0 and v7.5.0.
+The progress in v7.0.0 increased the number of easy problems in v7.1.0.
+The progress was largely thanks to Satallax~3.2 \cite{Bro12}, which included a SInE-like 
+\cite{HV11} procedure for premise selection that enabled it to solve some large problems that 
+were previously out of reach. 
+The progress in v7.5.0 reduced the number of unsolved problems.
+In v7.5.0 Zipperposition~2.0 \cite{BB+19-CADE} improved over the previous version, and solved
+more problems than Satallax that had dominated the SPC since 2013.
+Despite Vampire's improving performance on {\tt THF\_*} problems (noted above), it took until
+Vampire~4.8 for it to surpass Zipperposition, and that performance data was collected after v8.2.0.
 
 \begin{figure}[h!]
 \centering
@@ -806,7 +878,9 @@ been stuck at 0.00 or 1.00 since v5.0.0. The ratings generally show a downward t
 has been progress!''.
 The same analysis has been done now at TPTP release v8.2.0, for the 16236 problems that have been 
 unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 0.00 or 1.00 since 
-v6.3.0.
+v6.3.0.\footnote{%
+An Excel spreadsheet of the data is available at
+\href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}}.
 The two figures' plots dovetail quite well, which gives confidence that they really are comparable
 (there are some minor differences caused by the data cleaning done for this work, and recent 
 refinements to the rating calculations \cite{SD23-CASC,SD24-CASC}).
@@ -836,17 +910,22 @@ The possible reasons are discussed in the conclusion (Section~\ref{Conclusion}).
 \section{Conclusion}
 \label{Conclusion}
 
-This paper 
+This paper has presented an empirical assessment of progress in ATP, using data from TPTP/TSTP
+v6.3.0 in 2015 to v8.2.0 in 2023.
+The assessment has been in terms of five analyses, divided into nine coherent SPC sets of problems
+that are reasonably homogeneous for ATP systems.
 
 The analyses have shown progress in the last eight years, in some aspects. 
 There have been some first solutions of problems that are of direct interest to humans, 
 a quite large number of first ATP solutions of problems from the TPTP, and 
 some noteworthy improvements in individual ATP systems.
-The big picture is less bright (at least in terms of analysis of the problem difficulty ratings).
-While the monotonized ratings necessarily go down, the trend is not dramatic, and the raw
-ratings are generally stable.
+There were clear steps of progress up to v7.1.0 (2018), but then a period of quiet until some
+more signs of progress in v8.2.0.
+In terms of problem difficulty ratings, the monotonized ratings necessarily went down but the 
+trend was not dramatic, and the raw ratings were generally stable.
 This is in contrast to the clearly decreasing ratings from 2011 to 2016.
-The reasons for this apparently slow progress are not definitely known, but we have thought of 
+
+The reasons for the apparent slowing of progress are not definitely known, but we have thought of 
 the following possible reasons:
 \begin{itemize}
 \item System developers have expended effort adding breadth of capability at the expense of 
