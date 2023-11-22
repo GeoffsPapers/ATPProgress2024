@@ -101,7 +101,7 @@ ATP problems.
 As the ATP systems are improved over time, the problems that they must solve also change to meet 
 the demands of applications.
 (If there is a fixed set of problems then the systems can simply be finely tuned to solve that
-fixed set, with inevitable asymptotic progress towards solving all the problems.)
+fixed set, with inevitable asymptotic progress towards solving all the problems. \cite{OB+22})
 The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
 ATP users, and is an appropriate basis for assessing the changing ability of ATP systems.
 Alongside the TPTP problem library, the TSTP solution library provides data about ATP 
@@ -121,13 +121,17 @@ Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
 
 The use of system performance data to evaluate a field of endeavour is common.
 In the realm of logic-based systems, examples include
-the various compititions \cite{BB+19} for logic-based systems, e.g., CASC \cite{Sut16}, the SAT 
-Competition \cite{JL+12}, SMT-COMP \cite{BdS05,CSW15}, the ASP Competition \cite{CI+12},
+the various competitions \cite{BB+19} for logic-based systems (e.g., CASC \cite{Sut16}, the SAT 
+Competition \cite{JL+12}, SMT-COMP \cite{BdS05}, the ASP Competition \cite{CI+12}),
+longitudinal surveys of competitions \cite{SS06-SoCASC,CSW15},
 the Technical Performance chapter of Stanford University's AI Index Annual Report \cite{MF+23},
 the use of Shapley values to evaluate algorithmic improvements in SAT solving \cite{FK+16,KF+19},
+an examination of progress in SAT solving comparing algorithmic and hardware advances \cite{FHS20},
 and
-an examination of progress in SAT solving comparing algorithmic and hardware advances \cite{FHS20}.
-A general examination of the requirements for such benchmarking is provided by \cite{BLW19}.
+other more specialized benchmarking, e.g., \cite{ZHP22}.
+
+A general examination of the requirements for such benchmarking is provided by \cite{BLW19}, and
+an ontology of artificial intelligence benchmarks is described in \cite{BB+22-SD}.
 In all cases the common features of the evaluation are (i)~the ability of systems solve given test
 problems, and (ii)~the resources required by the systems to solve those test problem.
 In order for the results to be relevant, the test problems must be representative of the problems
@@ -137,18 +141,20 @@ the availability and demands of the applications.
 It is important to differentiate between evaluations at instances in time, such as provided by
 competitions, and evaluation over time.
 At instances of time the test problems used for evaluation, the systems being evaluated, and
-the hardware/software platform used, are static.
+the hardware/software platform used, are static, e.g., as done in \cite{CSW15}.
 That provides a clean basis for detailed comparison between systems.
 In contrast, evaluation over time is complicated by changing test problems, changing systems,
 and changing hardware/software.
 This dynamic evaluation environment requires additional control to provide meaningful results.
 
 \paragraph{Paper structure:}
-Section~\ref{TPTP} provides ...
-Section~\ref{TSTP} provides ...
-Section~\ref{AnalysisProcesses} provides ...
-Section~\ref{Evidence} provides ...
-Section~\ref{Conclusion} concludes. 
+Section~\ref{TPTP} a brief background to the TPTP problem library, highlighting features relevant
+to this work, then Section~\ref{TSTP} does the same for the TSTP solution library.
+Section~\ref{AnalysisProcesses} describes the how the the TPTP and TSTP data was prepared for
+analysis, and describes the five analyses performed.
+Section~\ref{Evidence} is the core of the paper, giving the results of the analyses, with 
+commentary.
+Section~\ref{Conclusion} concludes.
 
 %--------------------------------------------------------------------------------------------------
 \section{The TPTP Problem Library}
@@ -971,6 +977,8 @@ the following possible reasons:
 \end{itemize}
 
 Ongoing and future work includes~\ldots
+The global dynamics of the impact of using benchmarks sets such as the TPTP are investigated
+in \cite{OB+22}, AND I NEED TO READ THAT PAPER TO SAY MORE.
 
 %--------------------------------------------------------------------------------------------------
 \bibliographystyle{splncs04}
