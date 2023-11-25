@@ -560,13 +560,13 @@ Typed monomorphic higher-order theorems, with and without equality, no arithmeti
 \end{table*}
 
 %--------------------------------------------------------------------------------------------------
-\subsection{Five Analyses}
+\subsection{Six Analyses}
 \label{AnalysisTypes}
 
 The cleaned TPTP problems ratings and the historical data is used for five analyses of progress
 in ATP.
 Individual problem ratings are used for the first analysis.
-The other four analyses are wrt the coherent SPC sets described in Section~\ref{SPCSets}.
+The other five analyses are wrt the coherent SPC sets described in Section~\ref{SPCSets}.
 
 \paragraph{First Solutions:}
 ATP has been successfully applied in a range applications.
@@ -611,9 +611,9 @@ Some examples are:
 
 \vspace*{1em}
 \noindent
-The results of the following four analyses are presented in Section~\ref{Evidence}.
+The results of the following five analyses are presented in Section~\ref{Evidence}.
 
-\paragraph{Fraction Unsolved:}
+\paragraph{Never Solved:}
 The first overall analysis looks at the fraction of problems that had a rating 1.00 
 (unsolved) in all TPTP releases up to each TPTP release, relative to the number in v6.3.0.
 (This is the measure plotted in \cite{SSP21}.)
@@ -622,10 +622,18 @@ system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
 
-\paragraph{Fraction Easy:}
+\paragraph{Solved:}
+This is the ratio of the number problems solved to the most problems solved across all releases, 
+wrt the least number solved across all releases.
+The releases with a 1.00 value were those in which the most problems were solved, and those with
+0.00 had the least number solved.
+Decreasing fractions are evidence of progress, with more problems being solved by the 
+state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
+
+\paragraph{Always Easy:}
 This is the converse of Fraction Unsolved -- the fraction of problems that had a rating of 
 0.00 (easy) in all TPTP releases up to each TPTP release, relative to the number in v8.2.0.
-Decreasing fractions are evidence of progress, with more problems being solved by the 
+Increasing fractions are evidence of progress, with more problems being solved by the 
 state-of-the-art (cf.~Section~\ref{Ratings}) in ATP systems.
 
 \paragraph{Decreasing Ratings:}
@@ -692,7 +700,7 @@ the individual ATP systems made strong contributions to those strong SotA system
 \section{Evidence of Progress}
 \label{Evidence}
 
-Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter four analyses
+Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter five analyses
 described in Section~\ref{AnalysisTypes}.\footnote{%
 The data is in \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/} 
 \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}{DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}}.
