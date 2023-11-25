@@ -129,10 +129,12 @@ the use of Shapley values to evaluate algorithmic improvements in SAT solving \c
 an examination of progress in SAT solving comparing algorithmic and hardware advances \cite{FHS20},
 and
 other more specialized benchmarking, e.g., \cite{ZHP22}.
-
 A general examination of the requirements for such benchmarking is provided by \cite{BLW19}, and
 an ontology of artificial intelligence benchmarks is described in \cite{BB+22-SD}.
-In all cases the common features of the evaluation are (i)~the ability of systems solve given test
+\cite{OB+22} provides an insightful analysis of the global dynamics of using benchmarks sets in
+computer vision and natural language processing, and the takeaway messages are broadly applicable 
+including to benchmarks for logic-based systems.
+In all cases the common measures for evaluation are (i)~the ability of systems solve given test
 problems, and (ii)~the resources required by the systems to solve those test problem.
 In order for the results to be relevant, the test problems must be representative of the problems
 the systems will face in applications, and the resource measurements must be appropriate for 
@@ -614,7 +616,7 @@ The results of the following four analyses are presented in Section~\ref{Evidenc
 \paragraph{Fraction Unsolved:}
 The first overall analysis looks at the fraction of problems that had a rating 1.00 
 (unsolved) in all TPTP releases up to each TPTP release, relative to the number in v6.3.0.
-(This is the metric plotted in \cite{SSP21}.)
+(This is the measure plotted in \cite{SSP21}.)
 Decreasing fractions are evidence of progress, with less problems being unsolved by some ATP 
 system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
@@ -692,7 +694,7 @@ the individual ATP systems made strong contributions to those strong SotA system
 
 Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter four analyses
 described in Section~\ref{AnalysisTypes}.\footnote{%
-The data is at github.com/GeoffsPapers/ATPProgress2024/raw/master/ 
+The data is in \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/} 
 \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}{DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}}.
 Altogether there were 3110 problems that had a rating of 1.00 (unsolved) when they were added to
 the TPTP, of which 859 (28\%) were solved in some release by v8.2.0. 
@@ -735,7 +737,14 @@ scheduling \cite{Sud22}.
 contribution.
 The plots showed minimal progress from v6.4.0 onwards.
 
-{\tt \{FOF,CNF\}\_*\_EPR\_*} HAS TO BE DONE.
+{\tt \{FOF,CNF\}\_*\_EPR\_*} had two points of progress, the first in v7.0.0 and the second in
+v7.3.0, and the impacts on the number of unsolved problems and the number of easy problems is
+clear in the plots.
+In both cases the progress came largely from iProver and Vampire.
+In v7.0.0 the progress came from iProver~2.6 that had integrated an abstraction-refinement 
+framework \cite{HK17}, and Vampire~4.2 that had some changes in model building that improved 
+performance on satisfiable EPR problems.
+In v7.3.0 iProver~3.0 integrated superposition \cite{DK20}.
 
 \begin{figure}[h!]
 \centering
@@ -885,7 +894,7 @@ has been progress!''.
 The same analysis has been done now at TPTP release v8.2.0, for the 16236 problems that have been 
 unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 0.00 or 1.00 since 
 v6.3.0.\footnote{%
-The data is at github.com/GeoffsPapers/ATPProgress2024/raw/master/
+The data is in \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/} 
 \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}{DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}}.
 The two figures' plots dovetail quite well, which gives confidence that they really are comparable
 (there are some minor differences caused by the data cleaning done for this work, and recent 
@@ -976,9 +985,23 @@ the following possible reasons:
       new developments and progress.
 \end{itemize}
 
-Ongoing and future work includes~\ldots
-The global dynamics of the impact of using benchmarks sets such as the TPTP are investigated
-in \cite{OB+22}, AND I NEED TO READ THAT PAPER TO SAY MORE.
+This evaluation is based on the ability of ATP systems to solve problems.
+Evaluation of other performance measures would be interesting, and some have been done
+in other evaluations of logic-based systems.
+These include measures such as resource usage and verifiability of proofs/models.
+Evaluation in non-performance measures is often ignored, but for users might be just as
+necessary.
+These include measures such as 
+the range of logics covered, 
+ease of building and deploying,
+portability to different hardware and operating system environments, 
+availability of source code, 
+quality of source code and its documentation,
+licensing that permits a required level of use or modification, 
+availability of user documentation, 
+and (maybe most importantly!)
+developer support.
+These are topics for future work.
 
 %--------------------------------------------------------------------------------------------------
 \bibliographystyle{splncs04}

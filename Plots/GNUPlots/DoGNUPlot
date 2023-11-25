@@ -33,14 +33,14 @@ set x2tics add ("v8.2.0" "06/13/23")
 
 set grid
 
-set output "CNF_UNS_RFO_NUE.pdf"
-set key at "07/01/23",0.65
+set output "FUCK.pdf"
+set key at "07/01/23",0.72
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
-"CNF_UNS_RFO_NUE.txt" using 2:3 pointsize 0.8 title "Average rating",\
-"CNF_UNS_RFO_NUE.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_UNS_RFO_NUE.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
-"CNF_UNS_RFO_NUE.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
-"CNF_UNS_RFO_NUE.txt" using 2:6 pointsize 0.8 title "Shapley value"
+"CNF_UNS_RFO_UEQ.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_UNS_RFO_UEQ.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
+"CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_UNS_RFO_UEQ.txt" using 2:6 pointsize 0.8 title "Shapley value"
 
 set output "CNF_UNS_RFO_UEQ.pdf"
 set key at "07/01/23",0.72
@@ -50,6 +50,15 @@ plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
 "CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
 "CNF_UNS_RFO_UEQ.txt" using 2:6 pointsize 0.8 title "Shapley value"
+
+set output "CNF_UNS_RFO_NUE.pdf"
+set key at "07/01/23",0.65
+plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
+"CNF_UNS_RFO_NUE.txt" using 2:3 pointsize 0.8 title "Average rating",\
+"CNF_UNS_RFO_NUE.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
+"CNF_UNS_RFO_NUE.txt" using 2:4 pointsize 0.8 title "Fraction unsolved",\
+"CNF_UNS_RFO_NUE.txt" using 2:5 pointsize 0.8 title "Fraction easy",\
+"CNF_UNS_RFO_NUE.txt" using 2:6 pointsize 0.8 title "Shapley value"
 
 set output "CNF_SAT_RFO.pdf"
 set key at "07/01/23",0.70
