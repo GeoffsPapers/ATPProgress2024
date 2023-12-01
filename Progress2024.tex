@@ -155,7 +155,7 @@ This dynamic evaluation environment requires additional control to provide meani
 \paragraph{Paper structure:}
 Sections~\ref{TPTP} and \ref{TSTP} provide a brief background to the TPTP problem library and
 TSTP solution library, highlighting features relevant to this work.
-Section~\ref{AnalysisProcesses} describes the how the the TPTP and TSTP data was prepared for
+Section~\ref{AnalysisProcesses} describes the how the TPTP and TSTP data was prepared for
 analysis, and describes the measures used.
 Section~\ref{Evidence} is the core of the paper, giving the results with commentary.
 Section~\ref{Conclusion} concludes.
@@ -511,13 +511,6 @@ Some SPCs that that capture compatible problem characteristic can be merged to f
 The coherent SPC sets used for the analyses are listed in Table~\ref{SPCSetsTable}.
 The SPCs column lists the SPCs that are in the set, using the abbreviations given in 
 Section~\ref{SPCs}.
-The Description column describes the set, explaining why it is coherent.
-The Anal/Size column gives the number of problems in TPTP v8.2.0, and the number of problems 
-left for analysis after the data cleaning described in Section~\ref{AnalysisData}.
-The 1.00/0.00 column gives the number of problems with rating 1.00 in TPTP v6.3.0, and the number
-of problems with rating 0.00 in v8.2.0. -- these numbers provide context for the ``Never-solved'' 
-and ``Always-easy'' measures described in Section~\ref{AnalysisTypes}.
-The acronyms for problem types are listed in Section~\ref{SPCs}.
 Some noteworthy exclusions are:
 typed extended first-order problems because they were added to the TPTP only in v8.0.0;
 typed polymorphic first-order and higher-order problems because too few systems are 
@@ -528,41 +521,31 @@ which combined have only 154 problems.
 \begin{table*}[h!]
 \renewcommand{\arraystretch}{1.5}
 \center
-\begin{tabular}{p{3.5cm}|p{6.5cm}|R{0.7cm}R{0.7cm}}
+\begin{tabular}{p{3.5cm}|p{8.0cm}}
 \hline
-SPCs & Description & Anal Size & 1.00 0.00 \\
+SPCs & Description \\
 \hline
 {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} &
-Unsatisfiable sets of really-first-order unit equality clauses.
-& 1140 1140 & 120 233 \\
+Unsatisfiable really-first-order unit equality clauses. \\
 {\tt CNF\_UNS\_RFO\_NEQ\_*}\enspace$\cup$ {\tt CNF\_UNS\_RFO\_SEQ\_*}\enspace$\cup$
 {\tt CNF\_UNS\_RFO\_PEQ\_NUE} &
-Unsatisfiable sets of really first-order clauses that are not unit equality.
-& 4441 4445 & 568 1780 \\
+Unsatisfiable really first-order clauses that are not unit equality. \\
 {\tt CNF\_SAT\_RFO\_*} &
-Satisfiable sets of really-first-order clauses.
-& 1042 1044 & 155 598 \\
+Satisfiable really-first-order clauses. \\
 {\tt FOF\_*\_PRP}\enspace$\cup$ {\tt FOF\_*\_EPR\_*}\enspace$\cup$
 {\tt CNF\_*\_PRP}\enspace$\cup$ {\tt CNF\_*\_EPR\_*} &
-Unsatisfiable and satisfiable sets of propositional and effectively propositional clauses.
-Un/Satisfiable sets are coherent because the problems are decidable.
-& 1425 1457 & 78 1311 \\
+Unsatisfiable and satisfiable propositional and effectively propositional clauses.
+Un/Satisfiable is coherent because the problems are decidable. \\
 {\tt FOF\_THM\_RFO\_*} &
-Really first-order theorems, with or without equality.
-& 7202 7204 & 1116 971 \\
+Really first-order theorems, with or without equality. \\
 {\tt FOF\_CSA\_RFO\_*}\enspace$\cup$ {\tt FOF\_SAT\_RFO\_*} &
-Really first-order non-theorems and satisfiable sets, with and without equality.
-% 707 + 322 = 1329 problems.
-& 1028 1329 & 282 709 \\
+Really first-order non-theorems and satisfiable sets, with and without equality. \\
 {\tt TF0\_THM\_*\_NAR} &
-Typed monomorphic first-order theorems, with and without equality, no arithmetic.
-& 397 400 & 120 123 \\
+Typed monomorphic first-order theorems, with and without equality, no arithmetic. \\
 {\tt TF0\_THM\_*\_ARI} &
-Typed monomorphic first-order theorems, with and without equality, with arithmetic.
-& 1087 1176 & 172 785 \\
+Typed monomorphic first-order theorems, with and without equality, with arithmetic. \\
 {\tt TH0\_THM\_*\_NAR} &
-Typed monomorphic higher-order theorems, with and without equality, no arithmetic.
-& 3183 3189 & 461 1244 \\
+Typed monomorphic higher-order theorems, with and without equality, no arithmetic. \\
 \hline
 \end{tabular}
 \vspace*{0.5em}
@@ -629,7 +612,7 @@ The results of the following five analyses are presented in Section~\ref{Evidenc
 This measures the fraction of problems that had a rating 1.00 (unsolved) in all TPTP releases 
 up to each TPTP release, relative to the number in v6.3.0.
 (This is the measure plotted in \cite{SSP21}.)
-Decreasing fractions are evidence of progress.
+Decreases are evidence of progress.
 % with less problems being unsolved by some ATP system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
@@ -640,7 +623,7 @@ This measures the ratio of the number problems solved to the most problems solve
 releases, wrt the least number solved across all releases.
 The releases with a 1.00 value were those in which the most problems were solved, and those with
 0.00 had the least number solved.
-Decreasing fractions are evidence of progress.
+Increases are evidence of progress.
 % with more problems being solved by the 
 % state-of-the-art (See Section~\ref{Ratings}) in ATP systems.
 
@@ -648,18 +631,18 @@ Decreasing fractions are evidence of progress.
 \paragraph{Always-easy:}
 This measure is the converse of Never-solved -- the fraction of problems that had a rating of 
 0.00 (easy) in all TPTP releases back to each TPTP release, relative to the number in v8.2.0.
-Increasing fractions are evidence of progress.
+Increases are evidence of progress.
 % with more problems being solved by the 
 % state-of-the-art (See Section~\ref{Ratings}) in ATP systems.
 
 \vspace*{-0.5em}
-\paragraph{Decreasing Ratings:}
+\paragraph{Ratings:}
 This measures the decrease in problem difficulty ratings over time. 
 (This approach was used in \cite{SFS01}.)
 % The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
 % the ratings decrease
-As the problems are unchanged (they are not actually getting easier), decreasing ratings are 
-evidence of progress in the state-of-the-art in ATP systems.
+As the problems are unchanged (they are not actually getting easier), decreases are 
+evidence of progress in ATP systems.
 This analysis is done wrt the raw difficulty ratings and the monotonized ratings.
 
 \vspace*{-0.5em}
@@ -667,9 +650,9 @@ This analysis is done wrt the raw difficulty ratings and the monotonized ratings
 This measures the marginal contributions of systems with Shapley values \cite{XH+12}.
 In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
 defined by the union of the problems solved by all the individual ATP systems.
-The SotA systems in all the TPTP releases are treated as a portfolio of systems to be analysed, and 
-temporal Shapley analysis \cite{KF+19} measures which SotA systems made strong contributions to 
-progress, i.e., it identifies the TPTP releases where strong progress was evident.
+The SotA systems in all the TPTP releases are treated as a portfolio of systems to be analysed, 
+and temporal Shapley analysis \cite{KF+19} is used to measure their contributions to progress.
+Peaks in the Shapley values identify releases where there was strong progress.
 Following that static Shapley analysis \cite{FK+16} is used to identify which of 
 the individual ATP systems made strong contributions to those strong SotA systems.
 % Finally (MAYBE) temporal Shapley analysis is used to analyse the progress of some of the
@@ -719,17 +702,19 @@ Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter
 described in Section~\ref{AnalysisTypes}.\footnote{%
 The data is in \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsNoMissing-v6.3.0-v8.2.0.xlsx}{github.com/GeoffsPapers/ATPProgress2024/raw/master/} 
 \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}{DataForAnalysis/RatingsAugmented-v6.3.0-v8.2.0.xlsx}}.
-Altogether there were 3110 problems that had a rating of 1.00 (unsolved) when they were added to
-the TPTP, of which 859 (28\%) were solved in some release by v8.2.0. 
-Conversely, there were 7319 problems that had a rating of 0.00 in v8.2.0, of which 2490 (34\%) 
-had a higher rating in some preceding release.
+There was a total of 25325 problems analysed over the coherent SPCs, of which 19762 (78\%) were 
+solved in TPTP v6.3.0, increasing to 20227 (80\%) in v8.2.0.
+Of the 25325 problems, 5563 (22\%) were unsolved when they were added to the TPTP, of which 1009 
+(4\%) were solved in some release by v8.2.0. 
+Conversely, there were 8984 problems (35\%) that had a rating of 0.00 in v8.2.0, of which 2965 
+(12\%) had a higher rating in some preceding release.
 These overall figures provide evidence of overall progress, but the contributions vary across
 the coherent SPC sets, as can be seen in the plots.
-The overall change in problem ratings is discussed below, and again the plots for the individual
-coherent SPC sets vary.
-Peaks in the Shapley values highlight improvements in one or more of the other values.
+The captions provide the numbers of `P'roblems in TPTP v8.2.0 and the number left for analysis 
+after the data cleaning (see Section~\ref{AnalysisData}), and the numbers of `N'ever-solved, 
+`S'olved, and `A'lways-easy problems in releases v6.3.0-v8.2.0.
 
-Figures~\ref{Plot_CNF_UNS} to \ref{Plot_FOF_CNF_EPR} plot the values for the CNF-based coherent 
+Figures~\ref{Plot_CNF_UEQ} to \ref{Plot_FOF_CNF_EPR} plot the values for the CNF-based coherent 
 SPC sets (the FOF problems in {\tt \{FOF,CNF\}\_*\_EPR\_*} are typically reduced to CNF before
 reasoning starts).
 CNF is now the ``assembly language'' of most ATP systems, which typically translate more
@@ -739,11 +724,17 @@ As such, progress in CNF-based SPCs typically underlies progress in other SPCs.
 {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} showed progress in v6.4.0 due to the strong performance of
 Twee~2.0 \cite{Sma21}, which made a lot more problems always-easy by v7.0.0.
 In v7.4.0 E~2.5 made a strong contribution, then in v8.1.0 Twee~2.4 made another strong 
-contribution, alongside CSE\_E~1.3 \cite{XL+18}, which contributed to the drop in never-solved
-problems.
+contribution, alongside CSE\_E~1.3 \cite{XL+18}.
 Waldmeister~710 \cite{LH02}, which had dominated the SPC since 1997, had the highest Shapley 
 contribution across all the releases.
-However, iin v8.1.0 both Twee and CSE\_E solved more problems than Waldmeister.
+However, in v8.1.0 both Twee and CSE\_E solved more problems than Waldmeister.
+The lowest number of problems solved was in v7.5.0 and v8.0.0, when 23 less problems were solved
+than in to v7.4.0 -- not many in the context of the 1034 solved in v7.4.0.
+There is no discernable common feature of those 23 problems except that they had ratings over
+0.90 in v7.4.0.
+Apparently some changes in the ATP system versions from v7.4.0 to v7.5.0 made the problems
+unsolvable in v7.5.0, and further changes reversed the situation for v8.1.0 when 1043 problems
+were solved.
 % {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} is interesting because it is possible to use complete search 
 % strategies, so that in a strategy schedule the individual strategies can be run for longer 
 % periods with hope of solving harder problems \cite{SD24-CASC}.
@@ -753,30 +744,42 @@ indicating some progress.
 The big advances were in v7.0.0 when Vampire~4.2 performed well, and in v8.2.0 when SnakeForV~1.0
 appeared.
 The numbers of never-solved and always-easy problems improved correspondingly.
+The biggest drop in problems solved was between v7.2.0 and v7.3.0, when 66 less problems were
+solved.
+The largest increase in problems solved was between v8.1.0 and v8.2.0, when 50 more problems
+were solved.
+The detailed data reveals that SnakeForV was again the big contributor to the increase.
 SnakeForV is interesting, as it is a variant of Vampire with a different approach to the strategy
 scheduling \cite{Sud22}.
 
 {\tt CNF\_SAT\_RFO\_*} had only one high point, in v6.4.0 when Vampire~4.0.5 made a strong
 contribution.
-The plots showed minimal progress from v6.4.0 onwards.
+The sudden drop in problems solved in v7.0.0 was due to Prover9~1105 \cite{McC-Prover9-URL}
+data not being available; the reason is lost in the mists of time, but it interesting to note 
+that the older system was able to solve some problems that other systems could not.
+By v7.1.0 new systems had taken up the slack.
+The plots are all quite stable from v7.1.0 onwards.
 
 {\tt \{FOF,CNF\}\_*\_EPR\_*} had two points of progress, the first in v7.0.0 and the second in
 v7.3.0, and the impacts on the number of never-solved problems and the number of always-easy 
-problems is clear in the plots.
-In both cases the progress came largely from iProver and Vampire.
+problems is clear.
 In v7.0.0 the progress came from iProver~2.6 that had integrated an abstraction-refinement 
-framework \cite{HK17}, and Vampire~4.2 that had some changes in model building that improved 
-performance on satisfiable EPR problems.
+framework \cite{HK17}, and Vampire~4.2 that had some changes in model building.
 In v7.3.0 iProver~3.0 integrated superposition \cite{DK20}.
+The number of problems solved increased continuously until v8.2.0. 
+The drop in v8.2.0 was only 17 less problems solved than in v8.1.0, and was due to poorer
+performances by the new iProver~3.7, SnakeForV~1.0, and Vampire~4.7.
+These systems share the same FOF to CNF translator, which might have been the source of the
+common change.
 
-Figures~\ref{Plot_FOF_THM_RFO} to \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF-based 
+Figures~\ref{Plot_FOF_THM_RFO} and \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF-based 
 coherent SPC sets.
 {\tt FOF\_THM\_RFO\_*} is the best known SPC, with the most ATP systems able to attempt the 
-problems, and the target of most new systems.
+problems, and is the target of most new systems.
 The raw problem difficulty ratings are quiet flat, although there is some decrease in the
 monotonized ratings.
-The largest steps of progress came in v7.0.0 and v7.4.0, which also contributed to less 
-never-solved problems and more always-easy problems.
+The number of problems solved increased quite regularly, from 6086 in v6.3.0 to 6235 in v8.2.0.
+The largest steps of progress came in v7.0.0 and v7.4.0.
 In v7.0.0 the strong contributions came from Vampire~4.2 with some improvements to preprocessing, 
 and E~2.0 with improved FOF to CNF conversion.
 In v7.4.0 Enigma~0.4 \cite{JU17,JC+20} was a new system that made a strong contribution to 
@@ -791,49 +794,60 @@ The observations here are similar to those for {\tt FOF\_THM\_RFO\_*}, but with 
 sign of progress in v6.4.0.
 The main contributor was iProver~2.5 with restructured core data structures and improved 
 preprocessing, including predicated elimination.
+There is a drop of 10 problems solved from v8.0.0 to v8.2.0.
+As in {\tt CNF\_UNS\_RFO\_PEQ\_UEQ}, there is no discernible common feature of those 10 problems,
+and their ratings were at most 0.75.
+This again shows that the set of problems solved by evolving versions of systems does not grow
+monotonically.
 
-\begin{figure}[h!]
+\begin{figure}[b!]
 \centering
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_UEQ.pdf}
   \vspace*{-2em}
-  \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ}}
+  \caption{{\tt CNF\_UNS\_RFO\_PEQ\_UEQ} \\ 
+           {\scriptsize P:1140-1140 N:120-86 S:1020-1049 A:38-233}}
   \label{Plot_CNF_UEQ}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_UNS_RFO_NUE.pdf}
   \vspace*{-2em}
-  \caption{{\tt CNF\_UNS\_RFO\_*\_NUE}}
+  \caption{{\tt CNF\_UNS\_RFO\_*\_NUE} \\
+           {\scriptsize P:4445-4441 N:569-391 S:3873-3966 A:1004-1780}}
   \label{Plot_CNF_UNS}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/CNF_SAT_RFO.pdf}
   \vspace*{-2em}
-  \caption{{\tt CNF\_SAT\_RFO\_*}}
+  \caption{{\tt CNF\_SAT\_RFO\_*} \\
+           {\scriptsize P:1044-1042 N:155-147 S:887-889 A:476-598}}
   \label{Plot_CNF_SAT}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_CNF_EPR.pdf}
   \vspace*{-2em}
-  \caption{{\tt \{FOF,CNF\}\_*\_EPR\_*}}
+  \caption{{\tt \{FOF,CNF\}\_*\_EPR\_*} \\
+           {\scriptsize P:1457-1425 N:78-43 S:1347-1360 A:1027-1311}}
   \label{Plot_FOF_CNF_EPR}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_THM_RFO.pdf}
   \vspace*{-2em}
-  \caption{{\tt FOF\_THM\_RFO\_*}}
+  \caption{{\tt FOF\_THM\_RFO\_*} \\
+           {\scriptsize P:7204-7202 N:1116-818 S:6086-6235 A:696-971}}
   \label{Plot_FOF_THM_RFO}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/FOF_CSA_SAT_RFO.pdf}
   \vspace*{-2em}
-  \caption{{\tt FOF\_\{CSA,SAT\}\_RFO\_*}}
+  \caption{{\tt FOF\_\{CSA,SAT\}\_RFO\_*} \\
+           {\scriptsize P:1329-1028 N:282-256 S:746-753 A:481-709}}
   \label{Plot_FOF_CSA_SAT_RFO}
 \end{minipage}
 \end{figure}
@@ -845,13 +859,17 @@ entry barrier for ATP system development.
 In v7.0.0 there was progress thanks to Vampire~4.2, for which there was significant effort
 devoted to improve performance on {\tt TF0\_THM\_*\_NAR} and {\tt TF0\_THM\_*\_ARI}.
 In v8.2.0 there was progress thanks to SnakeForV~1.0, as in {\tt CNF\_UNS\_RFO\_*\_NUE}.
+In between those points of progress there was a drop in the number of problems solved, from
+282 in v7.4.0 down to 260 in v7.5.0, apparently due to poorer performance of CVC4~1.9 \cite{BC+11}
+in v7.5.0 compared to that of CVC4~1.7 in v7.4.0.
 
 {\tt TF0\_THM\_*\_ARI} is an important SPC because it is the simplest TPTP language that 
 includes arithmetic, which occurs naturally in application areas such as mathematics \cite{KK+23}, 
 software verification \cite{BF+15}, and interactive theorem proving \cite{PB10}.
 There was clearly some significant progress in v6.4.0 as many problems were solved for the
-first time.
-A strong contributor was Vampire~4.0.5, which had integrated Z3 \cite{dMB08} since Vampire~4.0.
+first time, which naturally increased the number of problems solved from 915 to 1009.
+A strong contributor in v6.4.0 was Vampire~4.0.5, which had integrated Z3 \cite{dMB08} since 
+Vampire~4.0.
 CVC4~1.5 \cite{BC+11} and Princess~150706 \cite{Rue08} also performed well.
 
 {\tt TH0\_THM\_*\_NAR} uses typed higher-order logic, and despite it being a more expressive
@@ -862,7 +880,7 @@ The progress in v7.0.0 increased the number of always-easy problems in v7.1.0.
 The progress was largely thanks to Satallax~3.2 \cite{Bro12}, which included a SInE-like 
 \cite{HV11} procedure for premise selection that enabled it to solve some large problems that 
 were previously out of reach. 
-The progress in v7.5.0 noticably reduced the number of never-solved problems.
+The progress in v7.5.0 noticeably reduced the number of never-solved problems.
 In v7.5.0 Zipperposition~2.0 \cite{BB+19-CADE} improved over the previous version, and solved
 more problems than Satallax that had dominated the SPC since 2013.
 Despite Vampire's improving performance on {\tt THF\_*} problems (noted above), it took until
@@ -895,21 +913,24 @@ The possible reasons are discussed in the conclusion (Section~\ref{Conclusion}).
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TF0_THM_NAR.pdf}
   \vspace*{-2em}
-  \caption{{\tt TF0\_THM\_*\_NAR}}
+  \caption{{\tt TF0\_THM\_*\_NAR} \\
+           {\scriptsize P:400-397 N:120-103 S:277-268 A:117-123}}
   \label{Plot_TF0_THM_NAR}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TF0_THM_ARI.pdf}
   \vspace*{-2em}
-  \caption{{\tt TF0\_THM\_*\_ARI}}
+  \caption{{\tt TF0\_THM\_*\_ARI} \\
+           {\scriptsize P:1176-1087 N:172-58 S:915-1022 A:763-785}}
   \label{Plot_TF0_THM_ARI}
 \end{minipage}
 \begin{minipage}[t]{.49\textwidth}
   \centering
   \includegraphics[width=\textwidth]{Plots/GNUPlots/TH0_THM_NAR.pdf}
   \vspace*{-2em}
-  \caption{{\tt TH0\_THM\_*\_NAR}}
+  \caption{{\tt TH0\_THM\_*\_NAR} \\
+           {\scriptsize PA:3189-3183 N:461-305 S:2722-2814 A:617-1244}}
   \label{Plot_TH0_THM_NAR}
 \end{minipage}
 \\
@@ -961,7 +982,7 @@ the following possible reasons:
            2023 \cite{BR19,Bha20-Thesis,BRS23}.
 \item The high entry barrier to building new high-performance ATP systems, as top systems
       dominate the field and attract the best developer talent.
-      In Maria Paola Bonacina's wecoming address at the Dagstuhl Seminar ``The Next Generation 
+      In Maria Paola Bonacina's welcoming address at the Dagstuhl Seminar ``The Next Generation 
       of Deduction Systems: from Composition to Compositionality''\footnote{%
       \href{https://www.dagstuhl.de/23471}{www.dagstuhl.de/23471}} she referred to this as a
      `crisis of growth''.
