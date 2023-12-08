@@ -647,17 +647,19 @@ This analysis is done wrt the raw difficulty ratings and the monotonized ratings
 
 \vspace*{-0.5em}
 \paragraph{Shapley Values:}
-This measures the marginal contributions of systems with Shapley values \cite{XH+12}.
-In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is 
-defined by the union of the problems solved by all the individual ATP systems.
-The SotA systems in all the TPTP releases are treated as a portfolio of systems to be analysed, 
-and temporal Shapley analysis \cite{KF+19} is used to measure their contributions to progress.
-Peaks in the Shapley values identify releases where there was strong progress.
-Following that (non-temporal) Shapley analysis \cite{FK+16} is used to identify which of 
-the individual ATP systems made strong contributions to those strong SotA systems.
-Finally (LARS TO SUGGEST THE RIGHT WORDS) GLOBAL? temporal Shapley analysis is used to analyse the 
-progress of the individual systems to expose their specific contributions, particularly the 
-numbers of problems they solved and which had never been solved before.
+% This measures the progress of systems through their marginal contributions and Shapley 
+% values \cite{XH+12}.
+In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is
+defined by the union of the problems solved by the individual ATP systems. 
+Temporal Shapley analysis \cite{KF+19} is used to measure the SotA systems' contributions to 
+progress.
+% (in this case the temporal Shapley value is equal to the temporal marginal contribution).
+Peaks identify releases where there was strong progress.
+Following that (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of
+individual systems at each release.
+Finally, temporal Shapley analysis for all systems and all releases is used to analyse the
+contributions of the individual system versions when they were introduced, which reveals the 
+numbers of problems they solved but that had never been solved before.
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
