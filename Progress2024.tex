@@ -100,15 +100,15 @@ and it supports the CADE ATP System Competition (CASC).
 
 Any meaningful assessment of progress in ATP must refer to the ability of systems to solve 
 ATP problems.
-As the ATP systems are improved over time, the problems that they must solve also change to meet 
-the demands of applications (with a fixed set of problems then the systems can simply be finely 
+As the ATP systems improve over time, the problems that they must solve also change to meet 
+the demands of applications (with a fixed set of problems the systems can simply be finely 
 tuned to the set, with inevitable asymptotic progress towards solving all the problems 
 \cite{OB+22}).
 The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
 ATP users, and is an appropriate basis for assessing the changing ability of ATP systems.
 Alongside the TPTP problem library, the TSTP solution library provides data about ATP systems' 
 abilities to solve the problems in the TPTP problem library.
-This paper examines the progress in ATP, based on the data from TPTP v6.3.0 released on 
+This paper examines progress in ATP, based on the data from TPTP v6.3.0 released on 
 28th November 2015 to TPTP v8.2.0 released on 13th June 2023.
 Six measures are examined, all of which
 %  fives of which are in fixed coherent sets of problems.
@@ -132,8 +132,8 @@ the use of Shapley values to evaluate algorithmic improvements in SAT solving \c
 comparison of algorithmic and hardware advances (in SAT solving) \cite{FHS20},
 and
 other more specialized benchmarking, e.g., \cite{ZHP22}.
-A general examination of the requirements for such benchmarking is provided by \cite{BLW19}, and
-an ontology of artificial intelligence benchmarks is described in \cite{BB+22-SD}.
+A general examination of the requirements for such benchmarking is provided by \cite{BLW19}.
+An ontology of artificial intelligence benchmarks is described in \cite{BB+22-SD}.
 \cite{OB+22} provides an insightful analysis of the global dynamics of using benchmarks sets in
 computer vision and natural language processing, and the takeaway messages are broadly applicable 
 including to benchmark sets for logic-based systems.
@@ -209,7 +209,7 @@ v8.2.0  & 13/06/23 & New problems                            &   25474 & 25325 \
 \label{TPTPReleases}
 \end{table}
 
-Each TPTP problem file has a header section (as comments) that file contains information for users
+Each TPTP problem file has a header section (as comments) that contains information for users
 in four parts:
 the first part identifies and describes the problem;
 the second part provides information about occurrences of the problem in the literature and 
@@ -289,7 +289,8 @@ The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
       \end{tabular}
 \end{enumerate}
 
-Using these characteristics 223 SPCs are defined in TPTP v8.2.0, for example
+Using these characteristics 223 SPCs are defined in TPTP v8.2.0. 
+For example
 % Some examples are:
 % {\tt CNF\_SAT\_EPR\_PEQ\_UEQ} -- clause normal form satisfiable clauses that are effectively
 % propositional, have purely equality literals in unit equality clauses;
@@ -314,7 +315,7 @@ in each TPTP edition.
 Rating is done separately for each SPC.
 A partial order between systems is determined according to whether or not a system solves a strict 
 superset of the problems solved by another system. 
-If a strict superset is solved, the first system is said to {\em subsume} the second system. 
+If a strict superset is solved, the first system is said to {\em subsume} the second. 
 The union of the problems solved by the non-subsumed systems defines the state-of-the-art -- all 
 the problems that are solved by any system. 
 The fraction of non-subsumed systems that fail on a problem is the difficulty rating for the 
@@ -358,7 +359,7 @@ By that time the problem ratings were
 % consistently and reliably 
 based on data produced on the StarExec computers.
 
-The StarExec Iowa computers have an 
+The StarExec Iowa computers have a
 quad-core Intel Xeon CPU E5-2609 CPU run at 2.40 GHz,
 128 GiB memory,
 and the CentOS Linux release 7.9.2009 operating system.
@@ -445,22 +446,24 @@ Problems are added to the TPTP in each release, and corresponding TSTP data is g
 the available ATP systems.
 As it is not possible to run all previously available ATP systems on new problems when they 
 are added to the TPTP, it has been (quite reasonably) assumed that if a problem was unsolved by the 
-current ATP systems when it was added to the TPTP, then it would have been unsolved by 
-previously available ATP systems.
-The rating data was thus augmented for problems added after v6.3.0 with an initial rating 
-of 1.00 (unsolved), by setting the problems' ratings in prior TPTP releases to 1.00.
+current ATP systems when it was added to the TPTP (initial rating 1.00), then it would have been 
+unsolved by previously available ATP systems.
+The rating data was thus augmented for problems that were added at or after v6.3.0 and had an
+initial rating of 1.00, by setting the problems' ratings in prior TPTP releases to 1.00.
+There were 1854 such problems.
 This, however, can lead to an unfairly optimistic view of progress, because those retrospectively 
 added 1.00 ratings increase the average problem rating in the past.
-For problems added after v6.3.0 with an initial rating less than 1.00, it is unknown if the
-previously available ATP systems would have been able to solve them.
+For problems that were solved when they were added to the TPTP (initial rating less than 1.00),
+it is unknown if the previously available ATP systems would have been able to solve them.
 Augmenting the rating data by setting the problems' ratings in prior TPTP releases to their 
-initial rating can lead to a pessimistic view of progress, because those retrospectively
-added ratings decrease the average problem rating in the past.
+initial rating of less than 1.00 could lead to a pessimistic view of progress, because those 
+retrospectively added ratings decrease the average problem rating in the past.
 The optimistic/pessimistic effect gets stronger when rating data is augmented for problems that
 were added in more recent TPTP releases.
-In this work the rating data was augmented for all problems added after v6.3.0.
-That results in 4486 problems having their ratings augmented, 1854 by 1.00 and 2632 by less than 
-1.00.
+In this work the rating data was augmented for problems that were added at or after v6.3.0 and 
+had an initial rating less than 1.00, by setting the problems' ratings in prior TPTP releases 
+to their initial rating.
+There were 2632 such problems.
 
 \vspace*{-0.5em}
 \paragraph{Cleaning for Change:}
@@ -471,7 +474,7 @@ Increases are caused by new ATP systems or system versions becoming available.
 If a new system is not subsumed then its TSTP data is used in the rating process.
 The ratings of problems that the new system solves decrease, but at the same time the ratings of
 problems that the new system does not solve increase -- you have to ``pay the piper''.\footnote{%
-Conversely, if a system that was not subsumed becomes unavailable, it does no longer contributes
+Conversely, if a system that was not subsumed becomes unavailable, it no longer contributes
 TSTP data for new problems.
 % The new problems have higher ratings than they would have had if the system had remained
 % available.
@@ -572,7 +575,7 @@ addressed in the ITP system.
 % HOLyHammer \cite{KU14} for HOL Light \cite{Har09} and HOL4 \cite{SN08}, 
 % MizAR \cite{KU15-M40} for Mizar \cite{GKN10}.
 In contrast, the use of ATP by practitioners to solve individual problems that have resisted
-manual approaches is less common, possibly less successful, but the sparsity makes successes 
+manual approaches is less common and possibly less successful, but the sparsity makes successes 
 particularly noteworthy. 
 First solutions of problems that are of direct interest to humans are indications of progress.
 These are identifiable by (i)~the rating decreasing from 1.00, and (ii)~some evidence that the 
@@ -601,7 +604,7 @@ Some examples are:
       of the four Moufang identities \cite{Wos19} was met by careful application \cite{Ver22} of
       Otter \cite{McC03-Otter} in 2021.
       While those specific problems are not in the TPTP, many related problems are in the
-      ring theory ({\tt RNG}) domain if the TPTP.
+      ring theory ({\tt RNG}) domain of the TPTP.
 \end{packed_itemize}
 
 \noindent
@@ -611,16 +614,17 @@ The results of the following five analyses are presented in Section~\ref{Evidenc
 \paragraph{Never-solved:}
 This measures the fraction of problems that had a rating 1.00 (unsolved) in all TPTP releases 
 up to each TPTP release, relative to the number in v6.3.0.
-(This is the measure plotted in \cite{SSP21}.)
+(The converse of this is the measure plotted in \cite{SSP21}.)
 Decreases are evidence of progress.
-% with less problems being unsolved by some ATP system.
+% with fewer problems being unsolved by some ATP system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
 % CS OBJECTS In order for this analysis to be meaningful 
 
 \vspace*{-0.5em}
 \paragraph{Solved:}
-This measures the ratio of the number problems solved to the most problems solved across all 
+This measures the ratio of the number of problems solved to the most problems solved across all 
 releases, wrt the least number solved across all releases.
+%GEOFF TO CLARIFY THIS
 The releases with a 1.00 value were those in which the most problems were solved, and those with
 0.00 had the least number solved.
 Increases are evidence of progress.
@@ -636,7 +640,7 @@ Increases are evidence of progress.
 % state-of-the-art (See Section~\ref{Ratings}) in ATP systems.
 
 \vspace*{-0.5em}
-\paragraph{Ratings:}
+\paragraph{Average rating:}
 This measures the decrease in problem difficulty ratings over time. 
 (This approach was used in \cite{SFS01}.)
 % The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
@@ -646,7 +650,7 @@ evidence of progress in ATP systems.
 This analysis is done wrt the raw difficulty ratings and the monotonized ratings.
 
 \vspace*{-0.5em}
-\paragraph{Shapley Values:}
+\paragraph{Shapley value:}
 % This measures the progress of systems through their marginal contributions and Shapley 
 % values \cite{XH+12}.
 In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is
@@ -655,7 +659,7 @@ Temporal Shapley analysis \cite{KF+19} is used to measure the SotA systems' cont
 progress.
 % (in this case the temporal Shapley value is equal to the temporal marginal contribution).
 Peaks identify releases where there was strong progress.
-Following that (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of
+Following that, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of
 individual systems at each release.
 Finally, temporal Shapley analysis for all systems and all releases is used to analyse the
 contributions of the individual system versions when they were introduced, which reveals the 
@@ -701,10 +705,10 @@ numbers of problems they solved but that had never been solved before.
 \section{Evidence of Progress}
 \label{Evidence}
 
-Figures~\ref{Plot_CNF_UNS}-\ref{Plot_TH0_THM_NAR} plot the values for the latter five analyses
+Figures~\ref{Plot_CNF_UEQ}-\ref{Plot_TH0_THM_NAR} plot the values for the latter five analyses
 described in Section~\ref{AnalysisTypes}.\footnote{%
 Data: \href{https://github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis}{github.com/GeoffsPapers/ATPProgress2024/raw/master/DataForAnalysis}}
-There was a total of 25325 problems analysed over the coherent SPCs, of which 19762 (78\%) were 
+A total of 25325 problems were analysed over the coherent SPCs, of which 19762 (78\%) were 
 solved in TPTP v6.3.0, increasing to 20227 (80\%) in v8.2.0.
 Of the 25325 problems, 5563 (22\%) were unsolved when they were added to the TPTP, of which 1009 
 (4\%) were solved in some release by v8.2.0. 
@@ -712,12 +716,12 @@ Conversely, there were 8984 problems (35\%) that had a rating of 0.00 in v8.2.0,
 (12\%) had a higher rating in some preceding release.
 These overall figures provide evidence of overall progress, but the contributions vary across
 the coherent SPC sets, as can be seen in the plots.
-The captions provide the numbers of `P'roblems in TPTP v8.2.0 and the number left for analysis 
+The captions provide the numbers of `P'roblems in TPTP v8.2.0, the number left for analysis 
 after the data cleaning (see Section~\ref{AnalysisData}), and the numbers of `N'ever-solved, 
 `S'olved, and `A'lways-easy problems in releases v6.3.0-v8.2.0.
 
-Figures~\ref{Plot_CNF_UEQ} to \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the FOF- and
-CNF-based coherent SPC sets.
+Figures~\ref{Plot_CNF_UEQ} to \ref{Plot_FOF_CSA_SAT_RFO} plot the values for the CNF- and
+FOF-based coherent SPC sets.
 CNF is now the ``assembly language'' of most ATP systems, which typically translate more
 expressive logics, e.g., FOF, down to CNF.
 As such, progress in CNF-based SPCs typically contributes to progress in other SPCs.
@@ -730,7 +734,7 @@ In v7.4.0 E~2.5 made a strong contribution, then in v8.1.0 Twee~2.4 made another
 contribution, alongside CSE\_E~1.3 \cite{XL+18}.
 Waldmeister~710 had the highest Shapley value across all the releases, but in
 v8.1.0 both Twee and CSE\_E solved more problems than Waldmeister.
-The lowest number of problems solved was in v7.5.0 and v8.0.0, when 23 less problems were solved
+The lowest number of problems solved was in v7.5.0 and v8.0.0, when 23 fewer problems were solved
 than in to v7.4.0 -- not many in the context of the 1034 solved in v7.4.0.
 There is no discernable common feature of those 23 problems except that they had ratings over
 0.90 in v7.4.0.
@@ -747,7 +751,7 @@ The big advances were in v7.0.0 when Vampire~4.2 performed well, including solvi
 that had never been solved before.
 In v8.2.0 SnakeForV~1.0 solved 26 problems that had never been solved before.
 % The numbers of always-easy and never-solved problems improved correspondingly.
-The biggest drop in problems solved was between v7.2.0 and v7.3.0, when 66 less problems were
+The biggest drop in problems solved was between v7.2.0 and v7.3.0, when 66 fewer problems were
 solved.
 The largest increase in problems solved was between v8.1.0 and v8.2.0, when 50 more problems
 were solved.
@@ -771,7 +775,7 @@ Between them they solved five problems that had never been solved before.
 In v7.3.0 iProver~3.0 integrated superposition \cite{DK20}.
 The number of problems solved increased continuously until v8.2.0. 
 The drop in v8.2.0 
-% was only 17 less problems solved than in v8.1.0, and 
+% was only 17 fewer problems solved than in v8.1.0, and 
 was due to poorer performances by the new iProver~3.7, SnakeForV~1.0, and Vampire~4.7.
 These systems share the same FOF to CNF translator, which might have been the source of the
 common change.
@@ -789,7 +793,7 @@ Vampire~4.5 also contributed to progress in v7.4.0, with a new layered clause se
 \cite{GS20} and a new subsumption demodulation rule \cite{GKR20}.
 
 {\tt FOF\_\{CSA,SAT\}\_RFO\_*} is also well known, and along with its typed first-order
-counterpart (not analyseddue to insufficient data) is important for applications, 
+counterpart (not analysed due to insufficient data) is important for applications, 
 e.g.,~\cite{DKW08}.
 The largest sign of progress was in v6.4.0.
 The main contributors were Vampire~4.0.5 with improvements to its satisfiability checking,
@@ -884,7 +888,7 @@ In v7.5.0 Zipperposition~2.0 \cite{BB+19-CADE} improved over the previous versio
 % Despite Vampire's improving performance on {\tt THF\_*} problems (noted above), it took until
 % Vampire~4.8 in 2023 to surpass Zipperposition, and that performance data was collected after v8.2.0.
 
-In prior analysis, done at TPTP release v6.4.0 \cite{Sut17}, Figure~\ref{Ratings_v5.0.0_v6.4.0} 
+In a prior analysis, done at TPTP release v6.4.0 \cite{Sut17}, Figure~\ref{Ratings_v5.0.0_v6.4.0} 
 was presented. 
 It was noted: ``Over time, decreasing difficult ratings of individual TPTP problems provide an 
 indication of progress in the field \cite{SFS01}. Figure~3 plots the average ratings for the 
@@ -995,10 +999,10 @@ the following possible reasons:
       given clause selection, e.g., \cite{JU17-CICM,CA+21,AA+22-ML,MS23}), 
       learning for large problem corpora, e.g., \cite{KM+14,JU19,BL+19-ICML}, 
       and recently use of large language models to improve ATP performance \cite{WX+23,AS+23}.
-      This work has focussed largely on large problem sets with a fixed signatures and many
+      This work has focussed largely on large problem sets with fixed signatures and many
       very similar problem, and has not resulted in general improvements.
 \item SMT solvers have been in existence since the late 1970s \cite{NO79}, blossomed fully
-      in the early 2000s, and since then has attracted ever-increasing interest.
+      in the early 2000s, and has attracted ever-increasing interest since then.
       Some ATP systems have been adapted to solving SMT problems, e.g., Vampire has been entered
       into SMT-COMP since 2016, and iProver since 2021.
       This is all good work, but has possibly diverted developer energy from ATP to SMT.

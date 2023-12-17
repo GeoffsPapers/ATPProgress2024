@@ -38,9 +38,9 @@ set key at "07/01/23",0.72
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_UNS_RFO_UEQ.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "CNF_UNS_RFO_UEQ.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "CNF_UNS_RFO_UEQ.txt" using 2:8 pointsize 0.8 title "Solved",\
-"CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "CNF_UNS_RFO_UEQ.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "CNF_UNS_RFO_UEQ.pdf"
@@ -48,9 +48,9 @@ set key at "07/01/23",0.72
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_UNS_RFO_UEQ.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "CNF_UNS_RFO_UEQ.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"CNF_UNS_RFO_UEQ.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "CNF_UNS_RFO_UEQ.txt" using 2:8 pointsize 0.8 title "Solved",\
-"CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"CNF_UNS_RFO_UEQ.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "CNF_UNS_RFO_UEQ.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "CNF_UNS_RFO_NUE.pdf"
@@ -58,9 +58,9 @@ set key at "07/01/23",0.68
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_UNS_RFO_NUE.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "CNF_UNS_RFO_NUE.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_UNS_RFO_NUE.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"CNF_UNS_RFO_NUE.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "CNF_UNS_RFO_NUE.txt" using 2:8 pointsize 0.8 title "Solved",\
-"CNF_UNS_RFO_NUE.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"CNF_UNS_RFO_NUE.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "CNF_UNS_RFO_NUE.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "CNF_SAT_RFO.pdf"
@@ -68,9 +68,9 @@ set key at "07/01/23",0.68
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "CNF_SAT_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "CNF_SAT_RFO.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"CNF_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"CNF_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "CNF_SAT_RFO.txt" using 2:8 pointsize 0.8 title "Solved",\
-"CNF_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"CNF_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "CNF_SAT_RFO.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "FOF_CNF_EPR.pdf"
@@ -78,9 +78,9 @@ set key at "07/01/23",0.95
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "FOF_CNF_EPR.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "FOF_CNF_EPR.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"FOF_CNF_EPR.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"FOF_CNF_EPR.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "FOF_CNF_EPR.txt" using 2:8 pointsize 0.8 title "Solved",\
-"FOF_CNF_EPR.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"FOF_CNF_EPR.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "FOF_CNF_EPR.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "FOF_THM_RFO.pdf"
@@ -88,9 +88,9 @@ set key at "07/01/23",0.42
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "FOF_THM_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "FOF_THM_RFO.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"FOF_THM_RFO.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"FOF_THM_RFO.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "FOF_THM_RFO.txt" using 2:8 pointsize 0.8 title "Solved",\
-"FOF_THM_RFO.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"FOF_THM_RFO.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "FOF_THM_RFO.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "FOF_CSA_SAT_RFO.pdf"
@@ -98,9 +98,9 @@ set key at "07/01/23",0.72
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "FOF_CSA_SAT_RFO.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "FOF_CSA_SAT_RFO.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"FOF_CSA_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"FOF_CSA_SAT_RFO.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "FOF_CSA_SAT_RFO.txt" using 2:8 pointsize 0.8 title "Solved",\
-"FOF_CSA_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"FOF_CSA_SAT_RFO.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "FOF_CSA_SAT_RFO.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "TF0_THM_NAR.pdf"
@@ -108,9 +108,9 @@ set key at "07/01/23",0.42
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "TF0_THM_NAR.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "TF0_THM_NAR.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"TF0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"TF0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "TF0_THM_NAR.txt" using 2:8 pointsize 0.8 title "Solved",\
-"TF0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"TF0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "TF0_THM_NAR.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "TF0_THM_ARI.pdf"
@@ -118,9 +118,9 @@ set key at "07/01/23",0.78
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "TF0_THM_ARI.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "TF0_THM_ARI.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"TF0_THM_ARI.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"TF0_THM_ARI.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "TF0_THM_ARI.txt" using 2:8 pointsize 0.8 title "Solved",\
-"TF0_THM_ARI.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"TF0_THM_ARI.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "TF0_THM_ARI.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "TH0_THM_NAR.pdf"
@@ -128,9 +128,9 @@ set key at "07/01/23",0.68
 plot ["11/01/15":"07/01/23"] [-0.05:1.05] \
 "TH0_THM_NAR.txt" using 2:3 pointsize 0.8 title "Average rating",\
 "TH0_THM_NAR.txt" using 2:7 pointsize 0.8 title "Monotonic rating",\
-"TH0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Never solved",\
+"TH0_THM_NAR.txt" using 2:4 pointsize 0.8 title "Never-solved",\
 "TH0_THM_NAR.txt" using 2:8 pointsize 0.8 title "Solved",\
-"TH0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Always easy",\
+"TH0_THM_NAR.txt" using 2:5 pointsize 0.8 title "Always-easy",\
 "TH0_THM_NAR.txt" using 2:6 pointsize 0.8 title "Shapley"
 
 set output "../RatingsDecline_v6.3.0_v8.2.0.pdf"
