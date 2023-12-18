@@ -261,8 +261,8 @@ The characteristics used to define the SPCs in TPTP v8.2.0 are~\ldots
       \multicolumn{2}{@{}l}{{\tt CAX} -- Contradictory AXioms (merged with {\tt THM} in this work)} \\
       {\tt UNS} -- UNSatisfiable &
       {\tt SAT} -- SATisfiable \\
-      {\tt OPN} -- OPeN &
-      {\tt UNK} -- UNKown \\
+      {\tt UNK} -- UNKown &
+      {\tt OPN} -- OPeN \\
       \end{tabular}
 \item Order (for {\tt CNF} and {\tt FOF}): \\
       {\tt PRP} -- PRoPositional \\
@@ -435,8 +435,8 @@ The biased problems are excluded from the analyses.
 
 \vspace*{-0.5em}
 \paragraph{Cleaning for Bugfixes:}
-Over time there are problems that have to be removed from the TPTP because they are renamed,
-duplicates, wrongly formulated, etc.
+Over time some problems have had to be removed from the TPTP because they are renamed, duplicates, 
+wrongly formulated, etc.
 Such problems in a TPTP release are thus not in subsequent releases.
 The removed problems are excluded from the analyses.
 
@@ -472,14 +472,14 @@ increase with time, because they are computed wrt the TSTP data from all the cur
 ATP systems.
 Increases are caused by new ATP systems or system versions becoming available.
 If a new system is not subsumed then its TSTP data is used in the rating process.
-The ratings of problems that the new system solves decrease, but at the same time the ratings of
-problems that the new system does not solve increase -- you have to ``pay the piper''.\footnote{%
+The ratings of problems that it solves decrease, but at the same time the ratings of problems that 
+it does not solve increase -- you have to ``pay the piper''.\footnote{%
 Conversely, if a system that was not subsumed becomes unavailable, it no longer contributes
 TSTP data for new problems.
 % The new problems have higher ratings than they would have had if the system had remained
 % available.
-Since the TSTP data started being generated on StarExec this has been a rare occurrence, e.g.,
-Isabelle ran fine on StarExec Iowa, but did not port to StarExec Miami in 2018.
+% Since the TSTP data started being generated on StarExec this has been a rare occurrence, e.g.,
+% Isabelle ran fine on StarExec Iowa, but did not port to StarExec Miami in 2018.
 This phenomenon has not materially impacted the analyses of progress.} 
 A common case of this phenomenon is a new system that can solve some previously unsolved
 (rating 1.00) problems, but that cannot solve a substantial number of problems that are solved
@@ -512,7 +512,7 @@ The SPCs provide a fine-grained partitioning of the TPTP problems so that each S
 Some SPCs that that capture compatible problem characteristic can be merged to form a coherent set.
 
 The coherent SPC sets used for the analyses are listed in Table~\ref{SPCSetsTable}.
-The SPCs column lists the SPCs that are in the set, using the abbreviations given in 
+The SPC set column lists the SPCs that are in the set, using the abbreviations given in 
 Section~\ref{SPCs}.
 Some noteworthy exclusions are:
 typed extended first-order problems because they were added to the TPTP only in v8.0.0;
@@ -526,7 +526,7 @@ which combined have only 154 problems.
 \center
 \begin{tabular}{p{3.5cm}|p{8.0cm}}
 \hline
-SPCs & Description \\
+SPC set & Description \\
 \hline
 {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} &
 Unsatisfiable really-first-order unit equality clauses. \\
@@ -612,7 +612,7 @@ The results of the following five analyses are presented in Section~\ref{Evidenc
 
 \vspace*{-0.5em}
 \paragraph{Never-solved:}
-This measures the fraction of problems that had a rating 1.00 (unsolved) in all TPTP releases 
+This is the fraction of problems that had a rating 1.00 (unsolved) in all TPTP releases 
 up to each TPTP release, relative to the number in v6.3.0.
 (The converse of this is the measure plotted in \cite{SSP21}.)
 Decreases are evidence of progress.
@@ -622,7 +622,7 @@ Decreases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Solved:}
-This measures the ratio of the number of problems solved to the most problems solved across all 
+This is the ratio of the number of problems solved to the most problems solved across all 
 releases, wrt the least number solved across all releases.
 %GEOFF TO CLARIFY THIS
 The releases with a 1.00 value were those in which the most problems were solved, and those with
@@ -633,7 +633,7 @@ Increases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Always-easy:}
-This measure is the converse of Never-solved -- the fraction of problems that had a rating of 
+This is the converse of Never-solved -- the fraction of problems that had a rating of 
 0.00 (easy) in all TPTP releases back to each TPTP release, relative to the number in v8.2.0.
 Increases are evidence of progress.
 % with more problems being solved by the 
@@ -641,7 +641,7 @@ Increases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Average rating:}
-This measures the decrease in problem difficulty ratings over time. 
+This is the average problem difficulty rating.
 (This approach was used in \cite{SFS01}.)
 % The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
 % the ratings decrease
@@ -656,14 +656,15 @@ This analysis is done wrt the raw difficulty ratings and the monotonized ratings
 In a first phase the problems solved by a State-of-the-Art (SotA) system for a TPTP release is
 defined by the union of the problems solved by the individual ATP systems. 
 Temporal Shapley analysis \cite{KF+19} is used to measure the SotA systems' contributions to 
-progress.
+progress, and is shown in the plots of Section~\ref{Evidence}.
 % (in this case the temporal Shapley value is equal to the temporal marginal contribution).
-Peaks identify releases where there was strong progress.
-Following that, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of
+Peaks indicate strong progress.
+Next, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of the
 individual systems at each release.
-Finally, temporal Shapley analysis for all systems and all releases is used to analyse the
-contributions of the individual system versions when they were introduced, which reveals the 
-numbers of problems they solved but that had never been solved before.
+Finally, temporal Shapley analysis for all systems and all releases is used to measure the
+contributions of the individual system versions when they were introduced.
+% , which reveals the numbers of problems they solved but that had never been solved before.
+The latter two analyses provide insights into the systems' performances.
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
