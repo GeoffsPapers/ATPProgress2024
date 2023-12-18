@@ -585,7 +585,7 @@ Some examples are:
 \item The solution of the Robbins problem\footnote{%
       The Robbins problem was posed in personal communications between Edward Huntington,
       Herbert Robbins, and Alfred Tarski.
-      The background is available in 
+      The background is given in 
       \href{https://en.wikipedia.org/wiki/Robbins_algebra}{en.wikipedia.org/wiki/Robbins\_algebra}.}
       by the specialist ATP system EQP \cite{McC97} 
       in 1996 was a noteworthy success, as the problem had defied the efforts of eminent 
@@ -611,10 +611,19 @@ Some examples are:
 The results of the following five analyses are presented in Section~\ref{Evidence}.
 
 \vspace*{-0.5em}
+\paragraph{Average difficulty ratings:}
+This is the average problem difficulty rating, and the average monotonized difficulty rating.
+(This approach was used in \cite{SFS01}.)
+% The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
+% the ratings decrease
+As the problems are unchanged (they are not actually getting easier), decreases are 
+evidence of progress in ATP systems.
+
+\vspace*{-0.5em}
 \paragraph{Never-solved:}
-This is the fraction of problems that had a rating 1.00 (unsolved) in all TPTP releases 
+This is the fraction of problems that were unsolved (rating 1.00) in all TPTP releases 
 up to each TPTP release, relative to the number in v6.3.0.
-(The converse of this is the measure plotted in \cite{SSP21}.)
+(The converse of this is plotted in \cite{SSP21}.)
 Decreases are evidence of progress.
 % with fewer problems being unsolved by some ATP system.
 % This analysis uses the cleaned ratings data, averaged over the problems in each coherent SPC set.
@@ -622,10 +631,9 @@ Decreases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Solved:}
-This is the ratio of the number of problems solved to the most problems solved across all 
-releases, wrt the least number solved across all releases.
-%GEOFF TO CLARIFY THIS
-The releases with a 1.00 value were those in which the most problems were solved, and those with
+This is the fraction of problems solved less the least solved across all releases, 
+relative to the most solved less the least solved across all releases.
+The releases with a 1.00 value are those in which the most problems were solved, and those with
 0.00 had the least number solved.
 Increases are evidence of progress.
 % with more problems being solved by the 
@@ -633,21 +641,11 @@ Increases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Always-easy:}
-This is the converse of Never-solved -- the fraction of problems that had a rating of 
-0.00 (easy) in all TPTP releases back to each TPTP release, relative to the number in v8.2.0.
+This is the converse of Never-solved -- the fraction of problems that were easy (rating 0.00) in 
+all TPTP releases back to each TPTP release, relative to the number in v8.2.0.
 Increases are evidence of progress.
 % with more problems being solved by the 
 % state-of-the-art (See Section~\ref{Ratings}) in ATP systems.
-
-\vspace*{-0.5em}
-\paragraph{Average rating:}
-This is the average problem difficulty rating.
-(This approach was used in \cite{SFS01}.)
-% The ratings are updated in each TPTP release, so that as time goes by and ATP systems improve 
-% the ratings decrease
-As the problems are unchanged (they are not actually getting easier), decreases are 
-evidence of progress in ATP systems.
-This analysis is done wrt the raw difficulty ratings and the monotonized ratings.
 
 \vspace*{-0.5em}
 \paragraph{Shapley value:}
@@ -661,7 +659,7 @@ progress, and is shown in the plots of Section~\ref{Evidence}.
 Peaks indicate strong progress.
 Next, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of the
 individual systems at each release.
-Finally, temporal Shapley analysis for all systems and all releases is used to measure the
+Finally, temporal Shapley analysis for all systems in all releases is used to measure the
 contributions of the individual system versions when they were introduced.
 % , which reveals the numbers of problems they solved but that had never been solved before.
 The latter two analyses provide insights into the systems' performances.
