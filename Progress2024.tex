@@ -63,17 +63,8 @@ SRI International, USA,
 \begin{abstract}
 The TPTP World is a well established infrastructure that supports research, development, and 
 deployment of Automated Theorem Proving (ATP) systems.
-Data in the TPTP World has been used to assess progress in ATP in the last eights years.
-%  in
-% terms of 
-% first solutions of problems that are of direct interest to humans, 
-% the fraction of unsolved problems, 
-% the fraction of solved problems, 
-% the fraction of easy problems,
-% decreasing problem difficulty ratings, 
-% and 
-% temporal Shapley values.
-The analyses give clear signs of progress, but an apparent slowing of progress compared to the
+Data in the TPTP World has been used to assess progress in ATP in the last eight years.
+The analyses show clear signs of progress, but an apparent slowing of progress compared to the
 prior five years; some possible reasons are suggested.
 
 \keywords{Automated Theorem Proving \and Empirical Evaluation \and Progress}
@@ -110,18 +101,19 @@ Alongside the TPTP problem library, the TSTP solution library provides data abou
 abilities to solve the problems in the TPTP problem library.
 This paper examines progress in ATP, based on the data from TPTP v6.3.0 released on 
 28th November 2015 to TPTP v8.2.0 released on 13th June 2023.
-Six measures are examined, all of which
-%  fives of which are in fixed coherent sets of problems.
-% (i)~First ATP solutions of individual problems that are of direct interest to humans,
-% (ii)~The fraction of ``never solved'' problems,
-% (iii)~The fraction of solved problems,
-% (iv)~The fraction of ``always easy'' problems,
-% (v)~The decrease in problem difficulty ratings,
-% (vi)~Shapley values over time and at fixed points in time.
-are fundamentally based on the ability of ATP systems to solve TPTP problems, and do not 
-explicitly factor in the resources needed to find solutions, e.g., hardware, time limits, etc. 
+The analyses done in this work do not explicitly factor in the resources needed to find solutions, 
+e.g., hardware, time limits, etc;
 Section~\ref{ResourceLimits} explains why this makes sense in the ATP context.
+It is important to differentiate between evaluations at instances in time, such as provided by
+competitions, and evaluations over time.
+At instances of time the test problems used for evaluation, the systems being evaluated, and
+the hardware/software platform used, are static, e.g., as done in \cite{CSW15}.
+That provides a clean basis for detailed comparison between systems.
+In contrast, evaluation over time is complicated by changing test problems, changing systems,
+and changing hardware/software.
+This dynamic evaluation environment requires additional control to provide meaningful results.
 
+\paragraph{Related work:}
 The use of system performance data to evaluate a field of endeavour is common.
 In the realm of logic-based systems, examples include
 the various competitions \cite{BB+19} for logic-based systems (e.g., CASC \cite{Sut16}, the SAT 
@@ -143,14 +135,13 @@ In order for results to be relevant, test problems must be representative of the
 the systems will face in applications, and the resource measurements must be appropriate for 
 the availability and demands of the applications.
 
-It is important to differentiate between evaluations at instances in time, such as provided by
-competitions, and evaluation over time.
-At instances of time the test problems used for evaluation, the systems being evaluated, and
-the hardware/software platform used, are static, e.g., as done in \cite{CSW15}.
-That provides a clean basis for detailed comparison between systems.
-In contrast, evaluation over time is complicated by changing test problems, changing systems,
-and changing hardware/software.
-This dynamic evaluation environment requires additional control to provide meaningful results.
+\paragraph{Summary of findings:}
+There has been progress in the last eight years, with stronger progress from v6.3.0 (2015) up 
+to v7.1.0 (2018), but then a period of quiet until some more signs of progress in v8.2.0 (2023).
+There have been some first solutions of problems that are of direct interest to humans,
+a quite large number of first ATP solutions of problems from the TPTP, and
+some noteworthy improvements in individual ATP systems.
+There has been an apparent slowing of progress compared to the five years prior to 2015.
 
 \paragraph{Paper structure:}
 Sections~\ref{TPTP} and \ref{TSTP} provide a brief background to the TPTP problem library and
@@ -571,7 +562,7 @@ Arguably the most successful use of ATP comes from the ``hammers'' \cite{BK+16} 
 Interactive Theorem Proving (ITP) systems, where the individual problems being solved are 
 typically not of direct interest to the human users who are focussed on the larger task being 
 addressed in the ITP system.
-%  e.g., Sledghammer \cite{PB10} for Isabelle \cite{NPW02}, 
+%  e.g., Sledgehammer \cite{PB10} for Isabelle \cite{NPW02}, 
 % HOLyHammer \cite{KU14} for HOL Light \cite{Har09} and HOL4 \cite{SN08}, 
 % MizAR \cite{KU15-M40} for Mizar \cite{GKN10}.
 In contrast, the use of ATP by practitioners to solve individual problems that have resisted
@@ -662,7 +653,8 @@ individual systems at each release.
 Finally, temporal Shapley analysis for all systems in all releases is used to measure the
 contributions of the individual system versions when they were introduced.
 % , which reveals the numbers of problems they solved but that had never been solved before.
-The latter two analyses provide insights into the systems' performances.
+The latter two analyses were used to provide insights for the commentary about the systems' 
+performances (they are not plotted).
 
 %% \begin{enumerate}
 %% \item Extract all data from TSTP, starting from v6.2.0, per above.
@@ -735,7 +727,7 @@ Waldmeister~710 had the highest Shapley value across all the releases, but in
 v8.1.0 both Twee and CSE\_E solved more problems than Waldmeister.
 The lowest number of problems solved was in v7.5.0 and v8.0.0, when 23 fewer problems were solved
 than in to v7.4.0 -- not many in the context of the 1034 solved in v7.4.0.
-There is no discernable common feature of those 23 problems except that they had ratings over
+There is no discernible common feature of those 23 problems except that they had ratings over
 0.90 in v7.4.0.
 Apparently some changes in the ATP system versions from v7.4.0 to v7.5.0 made the problems
 unsolvable in v7.5.0, and further changes reversed the situation for v8.1.0 when 1043 problems
@@ -955,15 +947,14 @@ The possible reasons are discussed in the conclusion (Section~\ref{Conclusion}).
 
 This paper has presented an empirical assessment of progress in ATP, using data from TPTP/TSTP
 v6.3.0 in 2015 to v8.2.0 in 2023.
-The assessment has been in terms of five analyses, divided into nine coherent SPC sets of problems
+The assessment has been in terms of six measures, divided into nine coherent SPC sets of problems
 that are reasonably homogeneous for ATP systems.
-
-The analyses have shown progress in some aspects in the last eight years.
-There have been some first solutions of problems that are of direct interest to humans, 
-a quite large number of first ATP solutions of problems from the TPTP, and 
+The assessment shows that there has been progress in the last eight years, with stronger progress 
+from v6.3.0 (2015) up to v7.1.0 (2018), but then a period of quiet until some more signs of 
+progress in v8.2.0 (2023).
+There have been some first solutions of problems that are of direct interest to humans,
+a quite large number of first ATP solutions of problems from the TPTP, and
 some noteworthy improvements in individual ATP systems.
-There were clear steps of progress up to v7.1.0 (2018), but then a period of quiet until some
-more signs of progress in v8.2.0 (2023).
 In terms of problem difficulty ratings, the monotonized ratings necessarily went down but the 
 trend was not dramatic, and the raw ratings were generally stable.
 This is in contrast to the clearly decreasing ratings from 2011 to 2016.
