@@ -106,7 +106,7 @@ It is important to differentiate between evaluations at instances in time, such 
 competitions, and evaluations over time.
 At instances of time the test problems used for evaluation, the systems being evaluated, and
 the hardware/software platform used, are static, e.g., as done in \cite{CSW15}.
-That provides a clean basis for detailed comparison between systems.
+That provides a clean basis for a detailed comparison between systems.
 In contrast, evaluation over time is complicated by changing test problems, changing systems,
 and changing hardware/software.
 This dynamic evaluation environment requires additional control to provide meaningful results.
@@ -127,7 +127,7 @@ and
 other more specialized benchmarking, e.g., \cite{ZHP22}.
 A general examination of the requirements for such benchmarking is provided by \cite{BLW19}.
 An ontology of artificial intelligence benchmarks is described in \cite{BB+22-SD}.
-\cite{OB+22} provides an insightful analysis of the global dynamics of using benchmarks sets in
+\cite{OB+22} provides an insightful analysis of the global dynamics of using benchmark sets in
 computer vision and natural language processing, and the takeaway messages are broadly applicable,
 including to benchmark sets for logic-based systems.
 In all cases the common measures for evaluation are (i)~the ability of systems to solve problems, 
@@ -212,7 +212,7 @@ The third part is most relevant to this work.
 It contains the problem's SZS status \cite{SZS03} that provides the semantic status of the 
 problem, e.g., if it is a {\tt Theorem}, a {\tt Satisfiable} set of formulae, a problem whose 
 status is {\tt Unknown}, etc.
-It also contains statistics about the problem's syntax, e.g., the number of formulae, the 
+It also includes statistics about the problem's syntax, e.g., the number of formulae, the 
 numbers of symbols, the use of equality and arithmetic, etc.
 The SZS status and the syntactic characteristics are used to form the Specialist Problem Class
 of the problem, as explained in Section~\ref{SPCs}.
@@ -353,12 +353,12 @@ By that time the problem ratings were
 based on data produced on the StarExec computers.
 
 The StarExec Iowa computers have a
-quad-core Intel Xeon CPU E5-2609 CPU run at 2.40 GHz,
+quad-core Intel Xeon CPU E5-2609 CPU running at 2.40 GHz,
 128 GiB memory,
 and the CentOS Linux release 7.9.2009 operating system.
 % Linux kernel 3.10.0-693.el7.x86\_64.
 The StarExec Miami computers have an
-octa-core Intel Xeon E5-2667 v4 CPU run at 2.10 GHz,
+octa-core Intel Xeon E5-2667 v4 CPU running at 2.10 GHz,
 128 GiB memory,
 and the CentOS Linux release 7.4.1708 operating system.
 % Linux kernel 3.10.0-1160.62.1.el7.x86\_64.
@@ -463,7 +463,7 @@ were added in more recent TPTP releases, and balance each other out in the analy
 A counterintuitive feature of an individual problem's difficulty ratings is that they sometimes 
 increase with time. 
 It is counterintuitive because the problem has not changed.
-(This was also noted in prior analysis \cite{Sut17}.)
+(This was also noted in a prior analysis \cite{Sut17}.)
 % where it was noted: ``The ratings generally 
 % show a downward trend - there has been progress!'', but ``ratings can also increase when data 
 % from new systems is added to the TSTP.''
@@ -489,7 +489,7 @@ Monotonized ratings make clear sense in the case of problems that were unsolved 
 were later solved by a new system (the rating drops to less than 1.00) -- if a problem is 
 solved, it cannot become unsolved -- the solving system still exists in principle.
 In cases where the rating is less than 1.00 monotonized ratings might be considered to be 
-optimistic, because ratings do have to ``pay the piper''.
+optimistic because ratings do have to ``pay the piper''.
 
 %--------------------------------------------------------------------------------------------------
 \subsection{Coherent SPC Sets}
@@ -872,7 +872,7 @@ in v7.5.0 compared to that of CVC4~1.7 in v7.4.0.
 includes arithmetic, which occurs naturally in application areas \cite{KK+23,BF+15,PB10}.
 There was clearly some significant progress in v6.4.0 as many problems were solved for the
 first time by Vampire~4.0.5, which had integrated Z3 \cite{dMB08} since Vampire~4.0.
-This contributed to the increase in the number of problems solved, from  915 in v6.3.0 to 1009 
+This contributed to the increase in the number of problems solved, from 915 in v6.3.0 to 1009 
 in v6.4.0.
 CVC4~1.5 \cite{BC+11} and Princess~150706 \cite{Rue08} also performed well.
 
