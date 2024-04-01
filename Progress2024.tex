@@ -9,6 +9,7 @@
 \usepackage{verbatim}
 \usepackage{multicol}
 \usepackage{array}
+\usepackage{bbding}
 \newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
 \newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
 \newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
@@ -34,7 +35,7 @@
 \titlerunning{Progress in ATP}
 
 \author{
-Geoff Sutcliffe\inst{1}\orcidID{0000-0001-9120-3927}
+Geoff Sutcliffe\inst{1}\orcidID{0000-0001-9120-3927}\Envelope
 \and
 Christian Suttner\inst{2}
 \and \\
@@ -45,16 +46,16 @@ C. Raymond Perrault\inst{4}\orcidID{0009-0001-1178-343X}
 Zain~Khalid\inst{1}\orcidID{0009-0001-2063-6933}
 }
 \authorrunning{G. Sutcliffe, et al.}
-\institute{University of Miami, USA,
+\institute{University of Miami, Miami, USA,
 \email{geoff@cs.miami.edu},
 \email{zsk17@miami.edu}
 \and
 Deceased
 \and 
-University of Wyoming, USA,
+University of Wyoming, Laramie, USA,
 \email{larsko@uwyo.edu}
 \and 
-SRI International, USA,
+SRI International, Menlo Park, USA,
 \email{ray.perrault@sri.com}
 }
 
@@ -97,7 +98,9 @@ the demands of applications (with a fixed set of problems the systems can simply
 tuned to the set, with inevitable asymptotic progress towards solving all the problems 
 \cite{OB+22}).
 The TPTP problem library provides an evolving set of ATP problems that reflect the needs of 
-ATP users, and is an appropriate basis for assessing the changing ability of ATP systems.
+ATP users, and is an appropriate basis for assessing the changing ability of ATP systems
+(the library is almost monotonically growing, but occasionally problems are removed -- 
+see Section~\ref{AnalysisData}).
 Alongside the TPTP problem library, the TSTP solution library provides data about ATP systems' 
 abilities to solve the problems in the TPTP problem library.
 This paper examines progress in ATP, based on the data from TPTP v6.3.0 released on 
@@ -449,14 +452,17 @@ added 1.00 ratings increase the average problem rating in the past.
 For problems that were solved when they were added to the TPTP (initial rating less than 1.00),
 it is unknown if the previously available ATP systems would have been able to solve them.
 Augmenting the rating data by setting the problems' ratings in prior TPTP releases to their 
-initial rating of less than 1.00 could lead to a pessimistic view of progress, because those 
-retrospectively added ratings decrease the average problem rating in the past.
+initial rating of less than 1.00 could lead to an optimistic or pessimistic view of progress, 
+depending if the rating was greater or less than the average in the past releases.
 In this work the rating data was augmented for problems that were added after v6.3.0 and 
 had an initial rating less than 1.00, by setting the problems' ratings in the prior TPTP releases 
 to their initial rating.
 There were 2632 such problems.
 The optimistic/pessimistic effect gets stronger when rating data is augmented for problems that
-were added in more recent TPTP releases, and balance each other out in the analyses.
+were added in more recent TPTP releases. 
+A total of $1854+2632=4486$ problems had their initial ratings propagated backwards, starting
+from the various releases over the eight years of analysis.
+Overall this could have had a slightly optimistic impact in the analyses.
 
 \vspace*{-0.5em}
 \paragraph{Cleaning for Change:}
@@ -483,7 +489,7 @@ A common instance of this phenomenon is a new system that can solve some previou
 (rating 1.00) problems, but that cannot solve a substantial number of problems that are solved
 by other systems (rating less than 1.00).
 In this work the anomaly is resolved by additionally looking at {\em monotonic ratings}:
-if a problem's rating in a TPTP release is greater than it's previous rating, the monotonic 
+if a problem's rating in a TPTP release is greater than its previous rating, the monotonic 
 rating is set to the previous lower rating.
 Monotonized ratings make clear sense in the case of problems that were unsolved (rating 1.00) and 
 were later solved by a new system (the rating drops to less than 1.00) -- if a problem is 
@@ -593,8 +599,13 @@ Decreases are evidence of progress.
 
 \vspace*{-0.5em}
 \paragraph{Solved:}
-This is the fraction of problems solved less the least solved across all releases, 
-relative to the most solved less the least solved across all releases.
+For the given system and a given TPTP release, this is~\ldots
+\begin{center}
+$\frac{ProblemSolvedInRelease - LeastSolvedAcrossAllReleases}
+  {MostSolvedAcrossAllReleases - LeastSolvedAcrossAllReleases}$ \\
+\end{center}
+% This is the fraction of problems solved less the least solved across all releases, 
+% relative to the most solved less the least solved across all releases.
 The releases with a 1.00 value are those in which the most problems were solved, and those with
 0.00 had the least number solved.
 Increases are evidence of progress.
@@ -616,6 +627,9 @@ Increases are evidence of progress.
 A State-of-the-Art (SotA) ATP system for a TPTP release is defined as one that solves the union 
 of the problems solved by the individual ATP systems, e.g., by using competition parallelism
 \cite{SS94-PPAI}.
+The Shapley value \cite{XH+12} is the average of the marginal contributions (how much the SotA
+system improves when adding each given system) over all systems added to all possible subsets 
+of other systems.
 First, temporal Shapley analysis \cite{KF+19} is used to measure the SotA systems' contributions to 
 progress, and peaks indicate strong progress.
 Next, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of the
@@ -963,11 +977,28 @@ that are reasonably homogeneous for ATP systems.
 The assessment shows that there has been progress in the last eight years, with stronger progress 
 from v6.3.0 (2015) up to v7.1.0 (2018), but then a period of quiet until some more signs of 
 progress in v8.2.0 (2023).
-There have been some first solutions of problems that are of direct interest to humans,
-a quite large number of first ATP solutions of problems from the TPTP, and
-some noteworthy improvements in individual ATP systems.
+There have been some first solutions of problems that are of direct interest to humans, and
+a quite large number of first ATP solutions of problems from the TPTP.
 The coherent SPCs with the strongest signs of progress were {\tt CNF\_UNS\_RFO\_PEQ\_UEQ} and
 {\tt TH0\_THM\_*\_NAR}.
+
+In addition to overall trends, it is worth noting some of the salient improvements in individual 
+ATP systems, extracted from Section~\ref{Evidence}~\ldots
+\begin{packed_itemize}
+\item The development of EQP leading to the solution of the Robbins problem in 1996.
+\item The release of Waldmeister in 1997 (before the period of analysis), which dominated UEQ 
+      problem solving until the arrival of Twee 2.4 in 2021.
+\item The release of Satallax 2.8 in 2015 with strong performance on THF problems, inproving
+      up to Satallax 3.2 in 2017.
+\item The release of Vampire 4.0.5 in 2016, with arithmetic capability included.
+\item The release of Vampire 4.2 in 2017 with significantly improved performance on many types 
+      of problems, including NUE, EPR, FOF, and TF0\_NAR.
+\item The release of iProver versions 2.5 to 2.8 between 2016 and 2018, with strong performance 
+      on EPR problems.
+\item the release of Zipperposition 2.0 in 2020, with strong performance on THF problems.
+\item The release of the Vampire-based SnakeForV 1.0 in 2022, which outperformed Vampire on
+      many types of problems.
+\end{packed_itemize}
 
 In terms of problem difficulty ratings, the monotonized ratings necessarily went down but the 
 trend was not dramatic, and the raw ratings were generally stable.
@@ -994,8 +1025,8 @@ the following possible reasons:
       % incrementally added to existing systems.
       % In Pascal Fontaine's presentation ``On the Need for a Modular Approach for Automated 
       % Reasoners'' he referred to this as an ``Automated reasoning software crisis''.
-\item New systems that take new approaches solve different subsets of SPCs have an impact on 
-      problem difficulty ratings.
+\item New systems that take new approaches that solve different subsets of SPCs have an 
+      impact on problem difficulty ratings.
       For examples:
       CSE\_E \cite{XL+18} was new in 2018, combining the S-CS calculus with E;
       Zipperposition \cite{BB+21} was new in 2019, extending superposition to higher-order logic;
@@ -1012,6 +1043,12 @@ the following possible reasons:
       Some ATP systems have been adapted to solving SMT problems, e.g., Vampire has been entered
       into SMT-COMP since 2016, and iProver since 2021.
       This is all good work, but has possibly diverted developer energy from ATP to SMT.
+\item The divisions of CASC cause developers to put extra effort into solving the types of
+      problems in the divsion.
+      For examples, the Effectively Propositional (EPR) division was run from CASC-JC in 2001 to 
+      CASC-27 in 2019, and during those years several ATP systems were optimized for EPR
+      problems, most notably iProver.
+      Putting a division on hiatus leads to less development in that aspect of ATP.
 \item In \cite{SD24-CASC} it was noted that CASC might be causing incremental development of ATP
       systems.
       This concern has been expressed as far back as CASC-JC in 2001 \cite{PSS02}.
@@ -1021,8 +1058,9 @@ the following possible reasons:
 \end{itemize}
 
 This assessment of progress is based on ATP systems' abilities to solve problems.
-Evaluation of other performance measures would be interesting, and some have been done
-in other evaluations of logic-based systems.
+Evaluation of other performance measures would be interesting, e.g., stability of proof search 
+modulo perturbations of the input, and some have been done in other evaluations of logic-based 
+systems.
 These include measures such as resource usage and verifiability of proofs/models.
 Evaluation of non-performance measures is often ignored, but for users might be just as
 necessary.
