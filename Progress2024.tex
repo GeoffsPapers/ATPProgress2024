@@ -631,7 +631,10 @@ The Shapley value \cite{XH+12} is the average of the marginal contributions (how
 system improves when adding each given system) over all systems added to all possible subsets 
 of other systems.
 First, temporal Shapley analysis \cite{KF+19} is used to measure the SotA systems' contributions to 
-progress, and peaks indicate strong progress.
+progress, normalized by the number of previously unsolved problems so that 0.0 means no 
+previously unsolved problems were solved and 1.0 means all previously unsolved problems were 
+solved. 
+Peaks indicate stronger progress.
 Next, (non-temporal) Shapley analysis \cite{FK+16} is used to measure the contributions of the
 individual systems in each release.
 Finally, temporal Shapley analysis for all systems in all releases is used to measure the
@@ -907,13 +910,13 @@ In v7.5.0 Zipperposition~2.0 \cite{BB+19-CADE} improved over the previous versio
 
 Figure~\ref{Ratings_v5.0.0_v6.4.0} was presented (verbatim) in a prior analysis done at TPTP 
 release v6.4.0 \cite{Sut17}.
-The figure plotted the average ratings for the 14527 problems that have been unchanged in the 
+The figure plotted the average ratings for the 14527 problems that were unchanged in the 
 TPTP since v5.0.0, and whose ratings had not been stuck at 0.00 or 1.00 since v5.0.0. 
 It was noted in \cite{Sut17}: 
 ``The ratings generally show a downward trend - there has been progress!''.
-The same analysis has now been done at TPTP release v8.2.0, for the 16236 problems that have been 
-unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 0.00 or 1.00 since 
-v6.3.0.
+Figure~\ref{Ratings_v6.3.0_v8.2.0} shows the same done at TPTP release v8.2.0, for the 16236 
+problems that were unchanged in the TPTP since v6.3.0, and whose ratings have not been stuck at 
+0.00 or 1.00 since v6.3.0.
 The two figures' plots dovetail quite well, which gives confidence that they really are comparable
 (there are some minor differences caused by the data cleaning done for this work, and recent 
 refinements to the rating calculations \cite{SD23-CASC,SD24-CASC}).
